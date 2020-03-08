@@ -1,0 +1,166 @@
+<resources>
+    <string name="app_name">AR Marseille</string>
+    <string name="username">Identifiant</string>
+    <string name="password">Mot de passe</string>
+    <string name="sign_in">Connexion</string>
+    <string name="report">Signaler une agression</string>
+    <string name="stats">Voir les statistiques de la ligne</string>
+    <string name="register">S\'inscrire</string>
+    <string name="full_name">Nom complet</string>
+    <string name="confirm_password">Confirmation du mot de passe </string>
+    <string name="already_having_account">Déjà un compte?</string>
+    <string name="log_in">Connexion</string>
+    <string name="not_having_account">Pas de compte?</string>
+    <string name="sign_up">Inscription</string>
+    <string name="logout">Déconnexion</string>
+    <string name="country__prompt">Choisir une ligne</string>
+    <string name="save">Enregistrer</string>
+    <string name="bus">Lignes de bus</string>
+    <string name="metro">Lignes de métro</string>
+    <string name="tram">Lignes de tramway</string>
+    <string name="nightbus">Lignes de bus nocturnes</string>
+    <string name="line">Signaler une agression sur cette ligne</string>
+
+    <string-array name="bus_line">
+        <item>B1</item>
+        <item>B2</item>
+        <item>B3A</item>
+        <item>B3B</item>
+        <item>1</item>
+        <item>1S</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>4B</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>7B</item>
+        <item>7T</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+        <item>12A</item>
+        <item>12B</item>
+        <item>12S</item>
+        <item>15</item>
+        <item>15S</item>
+        <item>16</item>
+        <item>16S</item>
+        <item>16T</item>
+        <item>17</item>
+        <item>18</item>
+        <item>19</item>
+        <item>21Jet</item>
+        <item>22</item>
+        <item>22S</item>
+        <item>23</item>
+        <item>24</item>
+        <item>24B</item>
+        <item>24T</item>
+        <item>25</item>
+        <item>27</item>
+        <item>28</item>
+        <item>28B</item>
+        <item>30</item>
+        <item>31</item>
+        <item>32</item>
+        <item>33</item>
+        <item>35</item>
+        <item>35S</item>
+        <item>35T</item>
+        <item>36</item>
+        <item>36B</item>
+        <item>37</item>
+        <item>37A</item>
+        <item>37S</item>
+        <item>38</item>
+        <item>39</item>
+        <item>40</item>
+        <item>41</item>
+        <item>42</item>
+        <item>42T</item>
+        <item>44</item>
+        <item>45</item>
+        <item>46</item>
+        <item>46s</item>
+        <item>47</item>
+        <item>48</item>
+        <item>48T</item>
+        <item>49</item>
+        <item>50</item>
+        <item>51</item>
+        <item>52</item>
+        <item>53</item>
+        <item>54</item>
+        <item>55</item>
+        <item>56</item>
+        <item>60</item>
+        <item>61</item>
+        <item>67</item>
+        <item>70</item>
+        <item>72</item>
+        <item>73</item>
+        <item>74</item>
+        <item>80</item>
+        <item>81</item>
+        <item>82</item>
+        <item>82S</item>
+        <item>83</item>
+        <item>84</item>
+        <item>86</item>
+        <item>88</item>
+        <item>89</item>
+        <item>91</item>
+        <item>95</item>
+        <item>96</item>
+        <item>97</item>
+        <item>98</item>
+        <item>121</item>
+        <item>122</item>
+        <item>142</item>
+        <item>142A</item>
+        <item>142S</item>
+        <item>143</item>
+        <item>144</item>
+        <item>144S</item>
+        <item>145</item>
+
+
+    </string-array>
+    <string-array name="metro_lines">
+        <item>M1</item>
+        <item>M2</item>
+    </string-array>
+    <string-array name="tram_lines">
+        <item>T1</item>
+        <item>T2</item>
+        <item>T3</item>
+    </string-array>
+    <string-array name="nightbus_lines">
+        <item>B3</item>
+        <item>145</item>
+        <item>509</item>
+        <item>518</item>
+        <item>521</item>
+        <item>526</item>
+        <item>530</item>
+        <item>533</item>
+        <item>535</item>
+        <item>540</item>
+        <item>582</item>
+        <item>583</item>
+
+    </string-array>
+    <string name="title_activity_report_activy">ReportActivy</string>
+    <string-array name="report_item">
+        <item name="sexual">Agression sexuelle</item>
+        <item name="verbal">Agression verbale</item>
+        <item name="physical">Agression physique</item>
+    </string-array>
+    <string name="title_activity_main111">MainActivity111</string>
+    <string name="title_activity_stats">Stats</string>
+</resources>
+
