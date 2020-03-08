@@ -40,7 +40,7 @@
             android:id="@+id/spinner3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:entries="@array/nightbus_lines"
+            android:entries="@array/bus_line"
             android:prompt="@string/country__prompt" />
 
         <Button

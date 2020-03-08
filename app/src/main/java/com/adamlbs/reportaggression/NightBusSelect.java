@@ -24,7 +24,7 @@ public class NightBusSelect extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         setTheme(R.style.AppTheme);
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_busselect);
+        setContentView(R.layout.activity_nightbusselect);
         session = new SessionHandler(getApplicationContext());
         User user = session.getUserDetails();
         addListenerOnButton();

@@ -17,6 +17,7 @@ public class DashboardActivity extends AppCompatActivity {
     public Button btnSubmit, btnMetro, btnTram, btnBus, btnNightBus;
     private SharedPreferences sharedPreference;
     private String text;
+    private TextView welcomeText;
     Activity context = this;
 
     //TODO Lignes favorites permettant d'avoir sur le dashboard les statistiques de la ligne avec la plus récente aggression
@@ -29,7 +30,16 @@ public class DashboardActivity extends AppCompatActivity {
         session = new SessionHandler(getApplicationContext());
         User user = session.getUserDetails();
         addListenerOnButton();
+        findViewsById();
+
+        welcomeText.setText("Veuillez sélectionner un type de ligne ");
+
     }
+
+    private void findViewsById() {
+        welcomeText = (TextView) findViewById(R.id.welcomeText2);
+    }
+
 
     //get the selected dropdown list value
     public void addListenerOnButton() {
