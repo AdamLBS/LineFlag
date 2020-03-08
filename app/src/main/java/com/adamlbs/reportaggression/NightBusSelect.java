@@ -19,7 +19,7 @@ public class NightBusSelect extends AppCompatActivity {
     private SharedPreferences sharedPreference;
     private String text;
     Activity context = this;
-
+ 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         setTheme(R.style.AppTheme);
