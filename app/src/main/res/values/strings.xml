@@ -20,7 +20,7 @@
     <string name="tram">Lignes de tramway</string>
     <string name="nightbus">Lignes de bus nocturnes</string>
     <string name="line">Signaler une agression sur cette ligne</string>
-
+    <string name="default_notification_channel_id">t</string>
     <string-array name="bus_line">
         <item>B1</item>
         <item>B2</item>

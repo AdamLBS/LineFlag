@@ -2,6 +2,7 @@ package com.adamlbs.reportaggression;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
@@ -10,6 +11,9 @@ import android.widget.Spinner;
 import androidx.appcompat.app.AppCompatActivity;
 import android.widget.TextView;
 import android.content.SharedPreferences;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
 
 public class DashboardActivity extends AppCompatActivity {
     private SessionHandler session;
@@ -19,6 +23,8 @@ public class DashboardActivity extends AppCompatActivity {
     private String text;
     private TextView welcomeText;
     Activity context = this;
+    Activity Context = this;
+
 
     //TODO Lignes favorites permettant d'avoir sur le dashboard les statistiques de la ligne avec la plus récente aggression
     //TODO Lignes de nuit
@@ -33,6 +39,15 @@ public class DashboardActivity extends AppCompatActivity {
         findViewsById();
 
         welcomeText.setText("Veuillez sélectionner un type de ligne ");
+        FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener(new OnSuccessListener<InstanceIdResult>() {
+            @Override
+            public void onSuccess(InstanceIdResult instanceIdResult) {
+                String token = instanceIdResult.getToken();
+                // send it to server
+                Log.d("Firebase", "token "+ token);
+
+            }
+        });
 
     }
 
