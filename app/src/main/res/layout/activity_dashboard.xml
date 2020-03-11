@@ -26,7 +26,21 @@
             android:textSize="20dp"/>
     </com.google.android.material.appbar.AppBarLayout>
 
-
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/bottom_navigation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            app:menu="@menu/bottom_navigation_menu"
+            app:itemBackground="@color/background_light"
+            app:itemIconTint="@color/background_light"
+            app:itemTextColor="@color/background_light" />
+    </RelativeLayout>
 
     <LinearLayout
         android:layout_width="match_parent"

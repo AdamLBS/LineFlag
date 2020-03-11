@@ -162,5 +162,7 @@
     </string-array>
     <string name="title_activity_main111">MainActivity111</string>
     <string name="title_activity_stats">Stats</string>
+    <string name="bottom_navigation_menu_landscape">Favoris</string>
+    <string name="bottom_navigation_menu_logos">Accueil</string>
 </resources>
 

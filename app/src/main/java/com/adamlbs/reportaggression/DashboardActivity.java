@@ -3,17 +3,25 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.Spinner;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import android.widget.TextView;
 import android.content.SharedPreferences;
+import android.widget.Toast;
+
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.appbar.AppBarLayout;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.InstanceIdResult;
+import butterknife.BindView;
 
 public class DashboardActivity extends AppCompatActivity {
     private SessionHandler session;
@@ -24,7 +32,6 @@ public class DashboardActivity extends AppCompatActivity {
     private TextView welcomeText;
     Activity context = this;
     Activity Context = this;
-
 
     //TODO Lignes favorites permettant d'avoir sur le dashboard les statistiques de la ligne avec la plus récente aggression
     //TODO Lignes de nuit
@@ -37,7 +44,21 @@ public class DashboardActivity extends AppCompatActivity {
         User user = session.getUserDetails();
         addListenerOnButton();
         findViewsById();
-
+        BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.action_landscape:
+                        Toast.makeText(DashboardActivity.this, "Recents", Toast.LENGTH_SHORT).show();
+                        break;
+                    case R.id.action_logo:
+                        Toast.makeText(DashboardActivity.this, "Favorites", Toast.LENGTH_SHORT).show();
+                        break;
+                }
+                return true;
+            }
+        });
         welcomeText.setText("Veuillez sélectionner un type de ligne ");
         FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener(new OnSuccessListener<InstanceIdResult>() {
             @Override
@@ -50,6 +71,8 @@ public class DashboardActivity extends AppCompatActivity {
         });
 
     }
+
+
 
     private void findViewsById() {
         welcomeText = (TextView) findViewById(R.id.welcomeText2);
