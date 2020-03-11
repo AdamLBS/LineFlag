@@ -44,21 +44,6 @@ public class DashboardActivity extends AppCompatActivity {
         User user = session.getUserDetails();
         addListenerOnButton();
         findViewsById();
-        BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()) {
-                    case R.id.action_landscape:
-                        Toast.makeText(DashboardActivity.this, "Recents", Toast.LENGTH_SHORT).show();
-                        break;
-                    case R.id.action_logo:
-                        Toast.makeText(DashboardActivity.this, "Favorites", Toast.LENGTH_SHORT).show();
-                        break;
-                }
-                return true;
-            }
-        });
         welcomeText.setText("Veuillez sélectionner un type de ligne ");
         FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener(new OnSuccessListener<InstanceIdResult>() {
             @Override
