@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_logo"
+        android:enabled="true"
+        android:icon="@drawable/ic_action_name"
+        android:title="@string/bottom_navigation_menu_logos"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/action_landscape"
+        android:enabled="true"
+        android:icon="@drawable/ic_home_button"
+        android:title="@string/bottom_navigation_menu_landscape"
+        app:showAsAction="ifRoom" />
+</menu>
