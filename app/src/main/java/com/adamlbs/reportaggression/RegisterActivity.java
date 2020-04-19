@@ -33,7 +33,7 @@ public class RegisterActivity extends AppCompatActivity {
     private String confirmPassword;
     private String fullName;
     private ProgressDialog pDialog;
-    private String register_url = "https://admlbs.fr/dev/register.php";
+    private String register_url = "https://api.aggressionreport.fr/register.php";
     private SessionHandler session;
 
     @Override

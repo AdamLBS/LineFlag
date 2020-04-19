@@ -15,7 +15,7 @@ public class ReportSql {
     private String line;
     private String password;
     private ProgressBar pDialog;
-    private String login_url = "https://admlbs.fr/dev/login.php";
+    private String login_url = "https://api.aggressionreport.fr/login.php";
     private SessionHandler session;
 
 }

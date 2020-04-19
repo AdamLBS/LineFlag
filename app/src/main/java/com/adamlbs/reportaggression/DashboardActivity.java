@@ -1,13 +1,18 @@
 package com.adamlbs.reportaggression;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
@@ -26,9 +31,11 @@ import butterknife.BindView;
 public class DashboardActivity extends AppCompatActivity {
     private SessionHandler session;
     public Spinner spinner1, spinner2;
-    public Button btnSubmit, btnMetro, btnTram, btnBus, btnNightBus;
+    public Button btnSubmit;
+    public ImageButton btnMetro, btnTram, btnBus, btnNightBus;
     private SharedPreferences sharedPreference;
     private String text;
+    private int city;
     private TextView welcomeText;
     Activity context = this;
     Activity Context = this;
@@ -38,13 +45,16 @@ public class DashboardActivity extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         setTheme(R.style.AppTheme);
+        boolean firstrun = getSharedPreferences("PREFERENCE", MODE_PRIVATE).getBoolean("firstrun", true);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
         session = new SessionHandler(getApplicationContext());
         User user = session.getUserDetails();
         addListenerOnButton();
         findViewsById();
-        welcomeText.setText("Veuillez sélectionner un type de ligne ");
+        welcomeText.setTypeface(null, Typeface.BOLD);
+        welcomeText.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
+
         FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener(new OnSuccessListener<InstanceIdResult>() {
             @Override
             public void onSuccess(InstanceIdResult instanceIdResult) {
@@ -54,6 +64,64 @@ public class DashboardActivity extends AppCompatActivity {
 
             }
         });
+        if (firstrun) {
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("AR Marseille");
+            builder.setMessage("L'application est toujours en développement. Il est possible que des bugs surviennent, n'hésitez pas à les signaler !"+
+                    "\n"+
+                    "\nVous pouvez aussi faire part de vos suggestions via le Play Store." +
+                    "\n" +
+                    "\nVous pouvez pour le moment signaler 3 types d'agression : Verbale, physique et sexuelle." +
+                    "\n" +
+                    "\nN'oubliez pas de suivre notre twitter @AggrReport pour suivre le développement de l'application"
+            +"\n"
+            + "\nD'autres villes (Paris, Lyon etc...) seront suportées au fil du temps.")
+                    .setCancelable(false)
+                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+// setup the alert builder
+                    //        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                      //      builder.setTitle("Choisissez une ville");
+
+// add a radio button list
+                        //    String[] cities = {"Marseille", "Lyon", "Paris"};
+                          //  final int checkedItem = city; // Lyon
+                            //builder.setSingleChoiceItems(cities, checkedItem, new DialogInterface.OnClickListener() {
+                              //  @Override
+                                //public void onClick(DialogInterface dialog2, int which) {
+                                    // user checked an item
+                             //   }
+                            //});
+
+// add OK and Cancel buttons
+                            //builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                              //  @Override
+                                // public void onClick(DialogInterface dialog2, int which) {
+                                    // user clicked OK
+                                   // Toast toast=Toast.makeText(getApplicationContext(),"Done ! Thanks."+ city,Toast.LENGTH_SHORT);
+                                    // toast.show();
+                             //   }
+                           // });
+
+// create and show the alert dialog
+                           // AlertDialog dialog2 = builder.create();
+                           // dialog2.setCancelable(false);
+                            //dialog2.setCanceledOnTouchOutside(false);
+
+                            // dialog2.show();
+                        }
+                    });
+
+
+            AlertDialog alert = builder.create();
+            alert.show();
+
+            getSharedPreferences("PREFERENCE", MODE_PRIVATE)
+                    .edit()
+                    .putBoolean("firstrun", false)
+                    .commit();
+        }
 
     }
 
@@ -67,10 +135,10 @@ public class DashboardActivity extends AppCompatActivity {
     //get the selected dropdown list value
     public void addListenerOnButton() {
 
-        Button btnTram = findViewById(R.id.btnTram);
-        Button btnMetro = findViewById(R.id.btnMetro);
-        Button btnBus = findViewById(R.id.btnBus);
-        Button btnNightBus = findViewById(R.id.btnNightBus);
+        ImageButton btnTram = findViewById(R.id.btnTram);
+        ImageButton btnMetro = findViewById(R.id.btnMetro);
+        ImageButton btnBus = findViewById(R.id.btnBus);
+        ImageButton btnNightBus = findViewById(R.id.btnNightBus);
         //      btnSubmit = (Button) findViewById(R.id.btnSubmit);
 
         //  btnSubmit.setOnClickListener(new OnClickListener() {

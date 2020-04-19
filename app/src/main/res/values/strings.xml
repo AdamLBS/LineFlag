@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">AR Marseille</string>
+    <string name="app_name">Agression Report</string>
     <string name="username">Identifiant</string>
     <string name="password">Mot de passe</string>
     <string name="sign_in">Connexion</string>
@@ -164,5 +164,8 @@
     <string name="title_activity_stats">Stats</string>
     <string name="bottom_navigation_menu_landscape">Favoris</string>
     <string name="bottom_navigation_menu_logos">Accueil</string>
+
+    <string name="twitter_consumer_key" translatable="false"> N4QRlQzTGHPnJ0fLL0zdyHlbE </string>
+    <string name="twitter_consumer_secret" translatable="false"> v20BDobVflqAc5zRlzrtfHiXQdRG6cKufRWnQszulXGSEKfEnF </string>
 </resources>
 

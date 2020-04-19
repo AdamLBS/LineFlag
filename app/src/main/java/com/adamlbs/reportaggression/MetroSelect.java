@@ -2,6 +2,7 @@ package com.adamlbs.reportaggression;
 
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.app.Activity;
 import android.content.Intent;
@@ -18,7 +19,7 @@ import android.content.SharedPreferences;
 public class MetroSelect extends AppCompatActivity{
     private SessionHandler session;
     public Spinner spinner3, spinner2;
-    public Button lineselect,logoutBtn;
+    public ImageButton lineselect,logoutBtn;
     private SharedPreferences sharedPreference;
     private String text;
     Activity context = this;
@@ -49,8 +50,8 @@ public class MetroSelect extends AppCompatActivity{
 
             }
         });
-        lineselect = (Button) findViewById(R.id.lineselect);
-        Button logoutBtn = findViewById(R.id.btnLogout);
+        lineselect = (ImageButton) findViewById(R.id.lineselect);
+        ImageButton logoutBtn = findViewById(R.id.btnLogout);
 
         lineselect.setOnClickListener(new OnClickListener() {
                                          @Override

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.content.Intent;
 import android.widget.Spinner;
@@ -21,9 +22,9 @@ import org.json.JSONObject;
 
 
 public class ReportActivy extends AppCompatActivity {
-    private String report_url = "https://admlbs.fr/dev/index2.php";
+    private String report_url = "https://api.aggressionreport.fr/report.php";
     private TextView welcomeText;
-    public Button btnSubmit2;
+    public ImageButton btnSubmit2;
     public Spinner spinner3;
     private static final String LOCATION = "location";
     private static final String AGGRESSION = "aggression";
@@ -31,7 +32,7 @@ public class ReportActivy extends AppCompatActivity {
 
     private ProgressDialog pDialog;
 
-
+//TODO Faire en sorte qu'à la fin du report on arrive sur la page de statistiques de la ligne en question
     private SharedPreference sharedPreference;
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -62,7 +63,7 @@ public class ReportActivy extends AppCompatActivity {
         spinner3 = (Spinner) findViewById(R.id.spinner3);
         String text = spinner3.getSelectedItem().toString();;
         spinner3 = (Spinner) findViewById(R.id.spinner3);
-        btnSubmit2 = (Button) findViewById(R.id.btnSubmit2);
+        btnSubmit2 = (ImageButton) findViewById(R.id.btnSubmit2);
         btnSubmit2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -114,9 +115,7 @@ public class ReportActivy extends AppCompatActivity {
                         pDialog.dismiss();
 
                         //Display error message whenever an error occurs
-                        Toast toast=Toast.makeText(getApplicationContext(),"Done ! Thanks.",Toast.LENGTH_SHORT);
-                        toast.show();
-                        loadDashboard();
+                        loadStatistics();
                     }
                 });
 
@@ -127,6 +126,13 @@ public class ReportActivy extends AppCompatActivity {
         Intent i = new Intent(getApplicationContext(), DashboardActivity.class);
         startActivity(i);
         finish();
+
+    }
+
+    public void loadStatistics() {
+        Intent i = new Intent(ReportActivy.this, Stats.class);
+        i.putExtra("key", String.valueOf(spinner3.getSelectedItem())); //Optional parameters
+        startActivity(i);
 
     }
 }

@@ -11,76 +11,90 @@
     <com.google.android.material.appbar.AppBarLayout
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
+        android:padding="15dp"
         android:theme="@style/AppTheme.AppBarOverlay">
-
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
+        <ImageView
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:popupTheme="@style/AppTheme.PopupOverlay" />
+            android:layout_height="match_parent"
+            android:layout_alignParentBottom="true"
+            android:scaleType="fitCenter"
+
+            android:src="@drawable/marseille">
+
+
+        </ImageView>
+
         <TextView
             android:id="@+id/welcomeText2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="35dp"
-            android:textSize="20dp"/>
+            android:layout_gravity="center"
+            android:padding="15dp"
+            android:text="Veuillez sélectionner un type de ligne"
+            android:textSize="20sp" />
     </com.google.android.material.appbar.AppBarLayout>
 
-
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/bottom_navigation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             app:menu="@menu/bottom_navigation_menu"
-            app:itemBackground="@color/background_light"
-            app:itemIconTint="@color/background_light"
-            app:itemTextColor="@color/background_light" />
+            app:itemBackground="@color/background"
+            app:itemIconTint="@color/background"
+            app:itemTextColor="@color/background" />
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#00304769"
+        android:background="@color/background"
         android:gravity="center_vertical"
         android:orientation="vertical"
         android:padding="50dp"
         tools:context="com.adamlbs.reportaggression.DashboardActivity">
-
-        <Button
+        <ImageButton
             android:id="@+id/btnMetro"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:background="#f05924"
+            android:layout_width="wrap_content"
+            android:layout_height="74dp"
+            android:background="@null"
+            android:scaleType="fitCenter"
+
+            android:src="@drawable/metro"
             android:text="@string/metro"
             android:textColor="@android:color/white" />
-        <Button
+
+        <ImageButton
             android:id="@+id/btnBus"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:background="#f05924"
-            android:text="@string/bus"
+            android:layout_width="wrap_content"
+            android:layout_height="66dp"
+            android:background="@null"
+            android:scaleType="fitCenter"
+
+            android:src="@drawable/bus"
+            android:text="@string/metro"
             android:textColor="@android:color/white" />
-        <Button
+
+        <ImageButton
             android:id="@+id/btnNightBus"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:background="#f05924"
-            android:text="@string/nightbus"
+            android:layout_width="wrap_content"
+            android:layout_height="66dp"
+            android:background="@null"
+            android:scaleType="fitCenter"
+
+            android:src="@drawable/bus_nocturnes"
+            android:text="@string/metro"
             android:textColor="@android:color/white" />
-        <Button
+
+        <ImageButton
             android:id="@+id/btnTram"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:background="#f05924"
-            android:text="@string/tram"
+            android:layout_width="wrap_content"
+            android:layout_height="66dp"
+            android:background="@null"
+            android:scaleType="fitCenter"
+
+            android:src="@drawable/tramway"
+            android:text="@string/metro"
             android:textColor="@android:color/white" />
 
     </LinearLayout>

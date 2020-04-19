@@ -24,6 +24,7 @@
                                             <option name="values">
                                               <map>
                                                 <entry key="color" value="000000" />
+                                                <entry key="opacityPercent" value="80" />
                                               </map>
                                             </option>
                                           </PersistentState>
@@ -51,7 +52,7 @@
                                             <option name="values">
                                               <map>
                                                 <entry key="color" value="000000" />
-                                                <entry key="scalingPercent" value="82" />
+                                                <entry key="scalingPercent" value="75" />
                                               </map>
                                             </option>
                                           </PersistentState>
@@ -61,9 +62,8 @@
                                   </option>
                                   <option name="values">
                                     <map>
-                                      <entry key="foregroundImage" value="C:\Users\Adam\Desktop\APP\app\src\main\res\drawable\logo.png" />
-                                      <entry key="outputName" value="ic" />
-                                      <entry key="previewDensity" value="HIGH" />
+                                      <entry key="foregroundImage" value="C:\Users\Adam\Downloads\wetransfer-a39007 (1)\Sans_contours.png" />
+                                      <entry key="outputName" value="ic_2" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -85,6 +85,25 @@
                                           </PersistentState>
                                         </value>
                                       </entry>
+                                      <entry key="image">
+                                        <value>
+                                          <PersistentState>
+                                            <option name="values">
+                                              <map>
+                                                <entry key="color" value="000000" />
+                                                <entry key="paddingPercent" value="10" />
+                                              </map>
+                                            </option>
+                                          </PersistentState>
+                                        </value>
+                                      </entry>
+                                    </map>
+                                  </option>
+                                  <option name="values">
+                                    <map>
+                                      <entry key="assetType" value="IMAGE" />
+                                      <entry key="imageAsset" value="C:\Users\Adam\Desktop\APP\app\src\main\res\drawable\AR (1).png" />
+                                      <entry key="outputName" value="ic_login_icon" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -112,7 +131,7 @@
                                             <option name="values">
                                               <map>
                                                 <entry key="color" value="000000" />
-                                                <entry key="paddingPercent" value="-5" />
+                                                <entry key="trimmed" value="true" />
                                               </map>
                                             </option>
                                           </PersistentState>
@@ -123,7 +142,7 @@
                                   <option name="values">
                                     <map>
                                       <entry key="assetType" value="IMAGE" />
-                                      <entry key="imageAsset" value="C:\Users\Adam\Desktop\APP\app\src\main\res\drawable\AR.png" />
+                                      <entry key="imageAsset" value="C:\Users\Adam\Desktop\APP\app\src\main\res\drawable\binks.png" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -142,6 +161,11 @@
                 </map>
               </option>
             </PersistentState>
+          </value>
+        </entry>
+        <entry key="vectorWizard">
+          <value>
+            <PersistentState />
           </value>
         </entry>
       </map>

@@ -30,11 +30,19 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#00304769"
+        android:background="@color/background"
         android:gravity="center_vertical"
         android:orientation="vertical"
         android:padding="50dp"
         tools:context="com.adamlbs.reportaggression.ReportActivy">
+        <ImageView
+            android:layout_width="98dp"
+            android:layout_height="78dp"
+            android:layout_gravity="center"
+            android:scaleType="fitCenter"
+
+            android:src="@drawable/tram_logo">
+        </ImageView>
 
         <Spinner
             android:id="@+id/spinner3"
@@ -43,21 +51,25 @@
             android:entries="@array/tram_lines"
             android:prompt="@string/country__prompt" />
 
-        <Button
+        <ImageButton
             android:id="@+id/lineselect"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:background="#f05924"
-            android:text="@string/line"
+            android:layout_width="wrap_content"
+            android:layout_height="74dp"
+            android:background="@null"
+            android:scaleType="fitCenter"
+
+            android:src="@drawable/signaler"
+            android:text="@string/metro"
             android:textColor="@android:color/white" />
 
-        <Button
+        <ImageButton
             android:id="@+id/btnLogout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:background="#aaa"
+            android:layout_width="wrap_content"
+            android:layout_height="74dp"
+            android:background="@null"
+            android:scaleType="fitCenter"
+
+            android:src="@drawable/stats"
             android:text="@string/stats"
             android:textColor="@android:color/white" />
     </LinearLayout>

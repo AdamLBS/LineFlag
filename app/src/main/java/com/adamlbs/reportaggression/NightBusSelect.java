@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -15,7 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class NightBusSelect extends AppCompatActivity {
     private SessionHandler session;
     public Spinner spinner3, spinner2;
-    public Button lineselect, logoutBtn;
+    public ImageButton lineselect, logoutBtn;
     private SharedPreferences sharedPreference;
     private String text;
     Activity context = this;
@@ -46,8 +47,8 @@ public class NightBusSelect extends AppCompatActivity {
 
             }
         });
-        lineselect = (Button) findViewById(R.id.lineselect);
-        Button logoutBtn = findViewById(R.id.btnLogout);
+        lineselect = (ImageButton) findViewById(R.id.lineselect);
+        ImageButton logoutBtn = findViewById(R.id.btnLogout);
 
         lineselect.setOnClickListener(new View.OnClickListener() {
                                           @Override

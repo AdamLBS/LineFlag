@@ -6,4 +6,5 @@
     <color name="black">#020202</color>
     <color name="colorAccentDark">#4aa87a</color>
     <color name="background_light">#999999</color>
+    <color name ="background">#ced6e2</color>
 </resources>
