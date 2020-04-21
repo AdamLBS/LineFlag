@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Agression Report</string>
+    <string name="app_name">AR</string>
     <string name="username">Identifiant</string>
     <string name="password">Mot de passe</string>
     <string name="sign_in">Connexion</string>

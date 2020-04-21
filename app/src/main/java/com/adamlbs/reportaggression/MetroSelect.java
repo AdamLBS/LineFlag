@@ -1,5 +1,6 @@
 package com.adamlbs.reportaggression;
 
+import android.content.pm.ActivityInfo;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageButton;
@@ -28,6 +29,9 @@ public class MetroSelect extends AppCompatActivity{
     public void onCreate(Bundle savedInstanceState) {
         setTheme(R.style.AppTheme);
         super.onCreate(savedInstanceState);
+
+        setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
         setContentView(R.layout.activity_metroselect);
         session = new SessionHandler(getApplicationContext());
         User user = session.getUserDetails();

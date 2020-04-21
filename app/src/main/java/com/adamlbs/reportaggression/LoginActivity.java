@@ -3,6 +3,7 @@ package com.adamlbs.reportaggression;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -12,6 +13,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -62,6 +64,8 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
+        setTheme(R.style.AppTheme);
+        getSupportActionBar().hide();
 
         super.onCreate(savedInstanceState);
         session = new SessionHandler(getApplicationContext());
@@ -71,22 +75,24 @@ public class LoginActivity extends AppCompatActivity {
         if(session.isLoggedIn()){
             loadDashboard();
         }
+        setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         setContentView(R.layout.activity_login);
         mAuth = FirebaseAuth.getInstance();
 
         etUsername = findViewById(R.id.etLoginUsername);
         etPassword = findViewById(R.id.etLoginPassword);
-        SignInButton signInButton = findViewById(R.id.sign_in_button);
+        ImageButton signInButton = findViewById(R.id.sign_in_button);
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
                 .build();
         googleSignInClient = GoogleSignIn.getClient(this, gso);
-        Button register = findViewById(R.id.btnLoginRegister);
-        Button login = findViewById(R.id.btnLogin);
+        ImageButton register = findViewById(R.id.btnLoginRegister);
+        ImageButton login = findViewById(R.id.btnLogin);
 
-        SignInButton googleButton = (SignInButton) findViewById(R.id.sign_in_button);
+
+        ImageButton googleButton = findViewById(R.id.sign_in_button);
         googleButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -1,0 +1,8 @@
+<resources>
+	<dimen name="activity_vertical_margin">28.8dp</dimen>
+	<dimen name="layout_marginBottom">10dp</dimen>
+	<dimen name="fab_margin">28.8dp</dimen>
+	<dimen name="layout_maginTop">15dp</dimen>
+	<dimen name="layout_marseille_top">10dp</dimen>
+	<dimen name="layout_button_top">144dp</dimen>
+</resources>

@@ -1,8 +1,10 @@
 package com.adamlbs.reportaggression;
+import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
@@ -45,15 +47,18 @@ public class DashboardActivity extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         setTheme(R.style.AppTheme);
+        getSupportActionBar().hide();
+        setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
         boolean firstrun = getSharedPreferences("PREFERENCE", MODE_PRIVATE).getBoolean("firstrun", true);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
         session = new SessionHandler(getApplicationContext());
         User user = session.getUserDetails();
-        addListenerOnButton();
+        addListenerOnButton();;
+
+
         findViewsById();
-        welcomeText.setTypeface(null, Typeface.BOLD);
-        welcomeText.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
 
         FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener(new OnSuccessListener<InstanceIdResult>() {
             @Override

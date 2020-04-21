@@ -2,6 +2,7 @@ package com.adamlbs.reportaggression;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -58,6 +59,8 @@ public class Stats extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         sharedPreference = new SharedPreference();
+        setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
         setContentView(R.layout.activity_stats);
         findViewsById();
         location = sharedPreference.getValue(context);
@@ -114,6 +117,9 @@ public class Stats extends AppCompatActivity {
                             totalAggression = response.getInt("totalAggression");
                             if(totalAggression == 0) {
                                 welcomeText.setText("Vous avez choisi la ligne " + location +
+                                        "\n"+
+                                        "\n"+
+                                        "\n"+
                                         "\n Aucune agression n'a été signalé sur cette ligne. " +
                                         "\n Veuillez revenir plus tard où signalez une agression.");
                             } else {

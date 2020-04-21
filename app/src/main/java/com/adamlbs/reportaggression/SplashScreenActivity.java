@@ -3,6 +3,7 @@ package com.adamlbs.reportaggression;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.os.Handler;
 public class SplashScreenActivity extends AppCompatActivity {
@@ -10,6 +11,8 @@ public class SplashScreenActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
         setContentView(R.layout.activity_splash_screen);
         // démarrer l'app
         Runnable runnable = new Runnable() {

@@ -18,4 +18,12 @@
     <style name="splashScreenTheme" parent="@android:style/Theme.DeviceDefault.Light.NoActionBar">
         <item name="android:windowBackground">@drawable/splash_screen</item>
     </style>
+
+    <style name="thin_ab_style">
+        <item name="android:height">60dp</item>
+        <item name="android:background">@color/colorPrimary</item>
+        <item name="android:icon">@drawable/ic_stat_name</item>
+        <item name="icon">@drawable/ic_stat_name</item>
+    </style>
+
 </resources>

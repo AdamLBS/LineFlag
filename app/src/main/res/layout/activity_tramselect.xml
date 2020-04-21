@@ -10,6 +10,8 @@
     <com.google.android.material.appbar.AppBarLayout
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
+        android:padding="15dp"
+
         android:theme="@style/AppTheme.AppBarOverlay">
 
         <androidx.appcompat.widget.Toolbar
@@ -22,7 +24,7 @@
             android:id="@+id/welcomeText2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="30dp" />
+            android:padding="15dp" />
     </com.google.android.material.appbar.AppBarLayout>
 
 
@@ -40,6 +42,7 @@
             android:layout_height="78dp"
             android:layout_gravity="center"
             android:scaleType="fitCenter"
+            android:layout_marginTop="100dp"
 
             android:src="@drawable/tram_logo">
         </ImageView>
@@ -49,6 +52,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:entries="@array/tram_lines"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center"
+
             android:prompt="@string/country__prompt" />
 
         <ImageButton
@@ -57,6 +63,8 @@
             android:layout_height="74dp"
             android:background="@null"
             android:scaleType="fitCenter"
+            android:layout_marginTop="15dp"
+            android:layout_gravity="center"
 
             android:src="@drawable/signaler"
             android:text="@string/metro"
@@ -65,9 +73,11 @@
         <ImageButton
             android:id="@+id/btnLogout"
             android:layout_width="wrap_content"
-            android:layout_height="74dp"
+            android:layout_height="134dp"
             android:background="@null"
             android:scaleType="fitCenter"
+            android:layout_marginTop="15dp"
+            android:layout_gravity="center"
 
             android:src="@drawable/stats"
             android:text="@string/stats"

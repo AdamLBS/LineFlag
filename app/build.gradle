@@ -7,12 +7,17 @@ android {
     compileSdkVersion 29
     defaultConfig {
         applicationId "com.adamlbs.reportaggression"
-        minSdkVersion 26
+        minSdkVersion 23
         targetSdkVersion 29
-        versionCode 14
-        versionName "0.1.4.31"
+        versionCode 17
+        versionName "0.1.5.1"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
+
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
 
     }
     buildTypes {

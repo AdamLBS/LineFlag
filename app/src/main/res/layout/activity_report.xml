@@ -51,6 +51,8 @@
             android:layout_height="74dp"
             android:background="@null"
             android:scaleType="fitCenter"
+            android:layout_gravity="center"
+            android:layout_margin="15dp"
 
             android:src="@drawable/signaler"
             android:text="@string/stats"

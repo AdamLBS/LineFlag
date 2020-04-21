@@ -5,61 +5,47 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@drawable/main_layers"
     android:layout_height="match_parent"
+
     tools:context="com.adamlbs.reportaggression.DashboardActivity">
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent"
-        android:padding="15dp"
-        android:theme="@style/AppTheme.AppBarOverlay">
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_alignParentBottom="true"
-            android:scaleType="fitCenter"
-
-            android:src="@drawable/marseille">
-
-
-        </ImageView>
-
-        <TextView
-            android:id="@+id/welcomeText2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:padding="15dp"
-            android:text="Veuillez sélectionner un type de ligne"
-            android:textSize="20sp" />
-    </com.google.android.material.appbar.AppBarLayout>
-
-        <com.google.android.material.appbar.AppBarLayout
-            android:id="@+id/bottom_navigation"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            app:menu="@menu/bottom_navigation_menu"
-            app:itemBackground="@color/background"
-            app:itemIconTint="@color/background"
-            app:itemTextColor="@color/background" />
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/background"
         android:gravity="center_vertical"
         android:orientation="vertical"
-        android:padding="50dp"
+        android:padding="30dp"
+
         tools:context="com.adamlbs.reportaggression.DashboardActivity">
+
+        <ImageView
+            android:id="@+id/logo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/layout_maginTop"
+            android:layout_marginBottom="@dimen/layout_marginBottom"
+            android:src="@drawable/ar_logo_blue" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="@dimen/layout_marseille_top"
+
+            android:src="@drawable/title" />
+
         <ImageButton
             android:id="@+id/btnMetro"
             android:layout_width="wrap_content"
-            android:layout_height="74dp"
+            android:layout_height="66dp"
             android:background="@null"
             android:scaleType="fitCenter"
-
+            android:layout_gravity="center"
             android:src="@drawable/metro"
             android:text="@string/metro"
             android:textColor="@android:color/white" />
@@ -69,8 +55,11 @@
             android:layout_width="wrap_content"
             android:layout_height="66dp"
             android:background="@null"
-            android:scaleType="fitCenter"
 
+            android:scaleType="fitCenter"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="1dp"
             android:src="@drawable/bus"
             android:text="@string/metro"
             android:textColor="@android:color/white" />
@@ -80,9 +69,12 @@
             android:layout_width="wrap_content"
             android:layout_height="66dp"
             android:background="@null"
-            android:scaleType="fitCenter"
+            android:layout_marginTop="10dp"
 
-            android:src="@drawable/bus_nocturnes"
+            android:scaleType="fitCenter"
+            android:src="@drawable/bus_n"
+            android:layout_gravity="center"
+
             android:text="@string/metro"
             android:textColor="@android:color/white" />
 
@@ -91,9 +83,12 @@
             android:layout_width="wrap_content"
             android:layout_height="66dp"
             android:background="@null"
-            android:scaleType="fitCenter"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
 
-            android:src="@drawable/tramway"
+            android:scaleType="fitCenter"
+            android:src="@drawable/tram"
+            android:layout_marginBottom="50dp"
             android:text="@string/metro"
             android:textColor="@android:color/white" />
 
