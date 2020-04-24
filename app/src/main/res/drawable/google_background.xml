@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:drawable="@drawable/active_sign_in_g"
+        android:state_focused="true"
+
+        android:width="258dp"
+        android:height="55dp">
+    </item>
+    android:state_pressed="true"/>
+    <item android:drawable="@drawable/active_sign_in_g"
+        android:width="258dp"
+        android:height="55dp"
+        android:state_focused="false"
+        android:state_pressed="true"/>
+    <item android:drawable="@drawable/sign_in_google"/>
+
+</selector>

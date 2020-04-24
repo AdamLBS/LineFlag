@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -50,8 +51,8 @@ public class RegisterActivity extends AppCompatActivity {
         etConfirmPassword = findViewById(R.id.etConfirmPassword);
         etFullName = findViewById(R.id.etFullName);
 
-        Button login = findViewById(R.id.btnRegisterLogin);
-        Button register = findViewById(R.id.btnRegister);
+        ImageButton login = findViewById(R.id.btnRegisterLogin);
+        ImageButton register = findViewById(R.id.btnRegister);
 
         //Launch Login screen when Login Button is clicked
         login.setOnClickListener(new View.OnClickListener() {

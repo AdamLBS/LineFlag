@@ -1,85 +1,224 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout
+
+
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@drawable/main_layers"
     android:layout_height="match_parent"
     tools:context="com.adamlbs.reportaggression.NightBusSelect">
-
-    <com.google.android.material.appbar.AppBarLayout
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent"
-        android:padding="15dp"
-        android:theme="@style/AppTheme.AppBarOverlay">
-
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:popupTheme="@style/AppTheme.PopupOverlay" />
-        <TextView
-            android:id="@+id/welcomeText2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="15dp" />
-    </com.google.android.material.appbar.AppBarLayout>
 
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/background"
-        android:gravity="center_vertical"
         android:orientation="vertical"
-        android:padding="50dp"
-        tools:context="com.adamlbs.reportaggression.ReportActivy">
-
+        android:background="@null" >
         <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="69dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="95dp"
+            android:id="@+id/logo"
+            android:layout_marginTop="30dp"
 
-            android:src="@drawable/noc_logo">
-
-        </ImageView>
-
-        <Spinner
-            android:id="@+id/spinner3"
-            android:layout_width="match_parent"
+            android:contentDescription="image"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:entries="@array/nightbus_lines"
-            android:layout_marginTop="10dp"
-
-            android:prompt="@string/country__prompt" />
-
-        <ImageButton
-            android:id="@+id/lineselect"
-            android:layout_width="wrap_content"
-            android:layout_height="74dp"
-            android:background="@null"
-            android:scaleType="fitCenter"
-            android:layout_marginTop="15dp"
+            android:adjustViewBounds="true"
             android:layout_gravity="center"
+            android:src="@drawable/ar_logo_blue"
+            />
 
-            android:src="@drawable/signaler"
-            android:text="@string/metro"
-            android:textColor="@android:color/white" />
+    </LinearLayout>
 
-        <ImageButton
-            android:id="@+id/btnLogout"
-            android:layout_width="wrap_content"
-            android:layout_height="134dp"
-            android:background="@null"
-            android:scaleType="fitCenter"
-            android:layout_marginTop="15dp"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="match_parent">
+        <View
+            android:id="@+id/view"
+            android:layout_height="1dp"
+            android:layout_width="0dp"
+            android:layout_centerHorizontal="true"
+            />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="204dp"
             android:layout_gravity="center"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="60dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginBottom="20dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/metro_title">
 
-            android:src="@drawable/stats"
-            android:text="@string/stats"
-            android:textColor="@android:color/white" />
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="130dp"
+                android:src="@drawable/bbus_n_title" />
+
+        </RelativeLayout>
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+
+            android:layout_gravity="center">
+
+            <ImageButton
+                android:id="@+id/b3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/b3"
+                android:layout_marginRight="20dp"
+                android:background="@android:color/transparent"
+                android:foregroundGravity="center"
+                android:text="Allow"/>
+            <ImageButton
+                android:id="@+id/b145"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_toRightOf="@id/b3"
+                android:layout_marginRight="20dp"
+
+                android:src="@drawable/b145"
+                android:background="@android:color/transparent"
+                android:layout_alignTop="@id/b3"
+                android:text="Deny"/>
+            <ImageButton
+                android:id="@+id/b509"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginRight="20dp"
+                android:layout_toRightOf="@id/b145"
+                android:src="@drawable/b509"
+                android:background="@android:color/transparent"
+                android:layout_alignTop="@id/b145"
+                android:text="Deny"/>
+
+            <ImageButton
+                android:id="@+id/b518"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+
+                android:layout_toRightOf="@id/b509"
+                android:src="@drawable/b518"
+                android:background="@android:color/transparent"
+                android:layout_alignTop="@id/b509"
+                android:text="Deny"/>
+
+
+        </RelativeLayout>
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+
+            android:layout_gravity="center">
+
+            <ImageButton
+                android:id="@+id/b521"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/b521"
+                android:layout_marginRight="20dp"
+                android:background="@android:color/transparent"
+                android:foregroundGravity="center"
+                android:text="Allow"/>
+            <ImageButton
+                android:id="@+id/b526"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_toRightOf="@id/b521"
+                android:layout_marginRight="20dp"
+
+                android:src="@drawable/b526"
+                android:background="@android:color/transparent"
+                android:layout_alignTop="@id/b521"
+                android:text="Deny"/>
+            <ImageButton
+                android:id="@+id/b530"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginRight="20dp"
+                android:layout_toRightOf="@id/b526"
+                android:src="@drawable/b530"
+                android:background="@android:color/transparent"
+                android:layout_alignTop="@id/b530"
+                android:text="Deny"/>
+
+            <ImageButton
+                android:id="@+id/b533"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+
+                android:layout_toRightOf="@id/b530"
+                android:src="@drawable/b533"
+                android:background="@android:color/transparent"
+                android:layout_alignTop="@id/b533"
+                android:text="Deny"/>
+
+
+        </RelativeLayout>
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+
+            android:layout_gravity="center">
+
+            <ImageButton
+                android:id="@+id/b535"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/b535"
+                android:layout_marginRight="20dp"
+                android:background="@android:color/transparent"
+                android:foregroundGravity="center"
+                android:text="Allow"/>
+            <ImageButton
+                android:id="@+id/b540"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_toRightOf="@id/b535"
+                android:layout_marginRight="20dp"
+
+                android:src="@drawable/b540"
+                android:background="@android:color/transparent"
+                android:layout_alignTop="@id/b535"
+                android:text="Deny"/>
+            <ImageButton
+                android:id="@+id/b582"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginRight="20dp"
+                android:layout_toRightOf="@id/b540"
+                android:src="@drawable/b582"
+                android:background="@android:color/transparent"
+                android:layout_alignTop="@id/b540"
+                android:text="Deny"/>
+
+            <ImageButton
+                android:id="@+id/b583"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+
+                android:layout_toRightOf="@id/b582"
+                android:src="@drawable/b583"
+                android:background="@android:color/transparent"
+                android:layout_alignTop="@id/b582"
+                android:text="Deny"/>
+
+
+        </RelativeLayout>
     </LinearLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -29,8 +29,8 @@
         android:src="@drawable/binks" />
 
     <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="60dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="30dp"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="-5dp"
@@ -52,8 +52,8 @@
 
 
     <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="60dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="30dp"
         android:layout_marginTop="10dp"
         android:layout_marginRight="30dp"
@@ -71,46 +71,42 @@
             android:background="@android:color/transparent"
             android:hint="@string/password"
             android:inputType="textPassword"
-            android:padding="10dp" />>
+            android:padding="10dp" />
 
     </RelativeLayout>
 
 
     <ImageButton
         android:id="@+id/btnLogin"
-        android:layout_width="match_parent"
-        android:layout_height="79dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:background="@null"
-        android:scaleType="fitCenter"
-        android:src="@drawable/sign_in"
+        android:layout_gravity="center"
+        android:background="@drawable/sign_in_background"
         android:layout_marginBottom="-5dp"
-
         android:text="@string/sign_in"
         android:textColor="@android:color/white" />
 
     <ImageButton
         android:id="@+id/sign_in_button"
         android:layout_width="wrap_content"
-        android:layout_height="79dp"
-        android:background="@null"
+        android:layout_height="wrap_content"
+        android:background="@drawable/google_background"
         android:scaleType="fitCenter"
         android:layout_gravity="center"
         android:layout_marginBottom="-5dp"
 
-        android:src="@drawable/sign_in_google"
         android:text="@string/sign_in"
         android:textColor="@android:color/white" />
 
 
     <ImageButton
         android:id="@+id/btnLoginRegister"
-        android:src="@drawable/sign_up"
-        android:layout_width="match_parent"
-        android:layout_height="79dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="-5dp"
-
-        android:background="@null"
+        android:layout_gravity="center"
+        android:background="@drawable/sign_up_background"
         android:scaleType="fitCenter"
         android:text="@string/sign_in"
         android:textColor="@android:color/white" />

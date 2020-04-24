@@ -7,7 +7,7 @@
     <string name="stats">Voir les statistiques de la ligne</string>
     <string name="register">S\'inscrire</string>
     <string name="full_name">Nom complet</string>
-    <string name="confirm_password">Confirmation du mot de passe </string>
+    <string name="confirm_password">Confirmation</string>
     <string name="already_having_account">Déjà un compte?</string>
     <string name="log_in">Connexion</string>
     <string name="not_having_account">Pas de compte?</string>

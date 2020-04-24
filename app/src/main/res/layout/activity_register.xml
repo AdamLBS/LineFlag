@@ -1,92 +1,145 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    android:theme="@style/AppTheme.NoActionBar"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@drawable/main_layers"
     android:layout_height="match_parent"
-    android:background="#304769"
+    tools:context="com.adamlbs.reportaggression.RegisterActivity">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/layers"
     android:gravity="center_vertical"
     android:orientation="vertical"
     android:padding="50dp"
     tools:context="com.adamlbs.reportaggression.RegisterActivity">
 
-    <TextView
-        android:id="@+id/textView"
+    <ImageView
+        android:id="@+id/imageView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        android:gravity="center"
-        android:text="@string/sign_up"
-        android:textAllCaps="true"
-        android:textColor="@android:color/white"
-        android:textSize="26sp"
-        android:textStyle="bold" />
+        android:layout_gravity="center"
+        android:src="@drawable/inscription" />
 
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="-5dp"
+        android:layout_marginRight="30dp"
+        android:background="@drawable/bg_fields">
 
     <EditText
         android:id="@+id/etFullName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
-        android:background="@android:color/white"
+        android:layout_marginLeft="100dp"
+        android:background="@android:color/transparent"
         android:hint="@string/full_name"
+        android:textColorHint="@android:color/white"
+
         android:inputType="textPersonName"
         android:padding="10dp" />
 
-    <EditText
-        android:id="@+id/etUsername"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:background="@android:color/white"
-        android:hint="@string/username"
-        android:inputType="textPersonName"
-        android:padding="10dp" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="-5dp"
+        android:layout_marginRight="30dp"
+        android:background="@drawable/bg_fields">
+
+        <EditText android:id="@+id/etUsername"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_marginLeft="100dp"
+            android:background="@android:color/transparent"
+            android:hint="@string/username"
+            android:textColorHint="@android:color/white"
+            android:inputType="textPersonName"
+            android:padding="10dp" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="-5dp"
+        android:layout_marginRight="30dp"
+        android:background="@drawable/bg_fields">
+
+        <EditText
+            android:id="@+id/etPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_marginLeft="100dp"
+            android:background="@android:color/transparent"
+            android:hint="@string/password"
+            android:textColorHint="@android:color/white"
+
+            android:inputType="textPassword"
+            android:padding="10dp" />
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="-5dp"
+        android:layout_marginRight="30dp"
+        android:background="@drawable/bg_fields">
+
+        <EditText
+            android:id="@+id/etConfirmPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_marginStart="100dp"
+            android:background="@android:color/transparent"
+            android:hint="@string/confirm_password"
+            android:inputType="textPassword"
+            android:textColorHint="@android:color/white"
+
+            android:padding="10dp" />
+
+    </RelativeLayout>
 
 
-    <EditText
-        android:id="@+id/etPassword"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:background="@android:color/white"
-        android:hint="@string/password"
-        android:inputType="textPassword"
-        android:padding="10dp" />
-
-    <EditText
-        android:id="@+id/etConfirmPassword"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:background="@android:color/white"
-        android:hint="@string/confirm_password"
-        android:inputType="textPassword"
-        android:padding="10dp" />
-
-    <Button
+    <ImageButton
         android:id="@+id/btnRegister"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:background="#f05924"
+        android:layout_width="wrap_content"
+        android:layout_height="79dp"
+        android:layout_marginBottom="-5dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="5dp"
+
+        android:background="@drawable/sign_up_2_background"
         android:text="@string/register"
         android:textColor="@android:color/white" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:gravity="center"
-        android:text="@string/already_having_account"
-        android:textColor="#ccc" />
-
-    <Button
+    <ImageButton
         android:id="@+id/btnRegisterLogin"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_height="79dp"
         android:layout_margin="5dp"
-        android:background="#aaa"
+        android:layout_gravity="center"
+        android:layout_marginBottom="-5dp"
+
+        android:background="@drawable/sign_in_2_background"
         android:text="@string/log_in"
         android:textColor="@android:color/white" />
 
 </LinearLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

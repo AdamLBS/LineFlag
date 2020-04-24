@@ -16,8 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class TramSelect extends AppCompatActivity {
     private SessionHandler session;
-    public Spinner spinner3, spinner2;
-    public ImageButton lineselect, logoutBtn;
+    public ImageButton t1, t2,t3;
     private SharedPreferences sharedPreference;
     private String text;
     Activity context = this;
@@ -25,6 +24,7 @@ public class TramSelect extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         setTheme(R.style.AppTheme);
+        getSupportActionBar().hide();
         setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         super.onCreate(savedInstanceState);
@@ -36,66 +36,69 @@ public class TramSelect extends AppCompatActivity {
 
     //get the selected dropdown list value
     public void addListenerOnButton() {
+        t1 = (ImageButton) findViewById(R.id.t1);
+        ImageButton t2 = findViewById(R.id.t2);
+        t3 = (ImageButton) findViewById(R.id.t3);
+        t1.setOnClickListener(new View.OnClickListener() {
+                                  @Override
+                                  public void onClick(View v) {
+                                      SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
+                                      SharedPreferences.Editor editor = sp.edit();
+                                      text = "T1";
+                                      SharedPreference.save(context, text);
 
-        spinner3 = (Spinner) findViewById(R.id.spinner3);
-        String text = spinner3.getSelectedItem().toString();
-        spinner3.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            public void onItemSelected(AdapterView<?> adapter, View view,
-                                       int position, long id) {
-                String text = spinner3.getSelectedItem().toString();
+                                      Intent i = new Intent(TramSelect.this, ReportActivy.class);
+                                      i.putExtra("key", text ); //Optional parameters
+                                      startActivity(i);
+                                  }
 
-            }
 
-            public void onNothingSelected(AdapterView<?> arg0) {
 
-            }
-        });
-        lineselect = (ImageButton) findViewById(R.id.lineselect);
-        ImageButton logoutBtn = findViewById(R.id.btnLogout);
-
-        lineselect.setOnClickListener(new View.OnClickListener() {
-                                          @Override
-                                          public void onClick(View v) {
-                                              SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
-                                              SharedPreferences.Editor editor = sp.edit();
-                                              String text = spinner3.getSelectedItem().toString();
-                                              text = String.valueOf(spinner3.getSelectedItem());
-                                              // Save the text in SharedPreference
-                                              SharedPreference.save(context, text);
-
-                                              // Toast.makeText(DashboardActivity.this,
-                                              //       "OnClickListener : " +
-                                              //             "\nSpinner 1 : " + String.valueOf(spinner1.getSelectedItem()),
-                                              //   Toast.LENGTH_SHORT).show();
-                                              Intent i = new Intent(TramSelect.this, ReportActivy.class);
-                                              i.putExtra("key", String.valueOf(spinner3.getSelectedItem())); //Optional parameters
-                                              startActivity(i);
-
-                                          }
-
-                                          public void newActivity(View v) {
-                                          }
-                                      }
+                                  public void newActivity(View v) {
+                                  }
+                              }
 
         );
 
 
-        logoutBtn.setOnClickListener(new View.OnClickListener() {
-                                         @Override
-                                         public void onClick(View v) {
-                                             SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
-                                             SharedPreferences.Editor editor = sp.edit();
-                                             String text = spinner3.getSelectedItem().toString();
-                                             text = String.valueOf(spinner3.getSelectedItem());
-                                             // Save the text in SharedPreference
-                                             SharedPreference.save(context, text);
-                                             loadStatistics();
+        t2.setOnClickListener(new View.OnClickListener() {
+                                  @Override
+                                  public void onClick(View v) {
+                                      SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
+                                      SharedPreferences.Editor editor = sp.edit();
+                                      text = "T2";
+                                      SharedPreference.save(context, text);
 
-                                         }
+                                      Intent i = new Intent(TramSelect.this, ReportActivy.class);
+                                      i.putExtra("key", text ); //Optional parameters
+                                      startActivity(i);
+                                  }
 
-                                         public void newActivity(View v) {
-                                         }
-                                     }
+
+
+                                  public void newActivity(View v) {
+                                  }
+                              }
+
+        );
+        t3.setOnClickListener(new View.OnClickListener() {
+                                  @Override
+                                  public void onClick(View v) {
+                                      SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
+                                      SharedPreferences.Editor editor = sp.edit();
+                                      text = "T3";
+                                      SharedPreference.save(context, text);
+
+                                      Intent i = new Intent(TramSelect.this, ReportActivy.class);
+                                      i.putExtra("key", text ); //Optional parameters
+                                      startActivity(i);
+                                  }
+
+
+
+                                  public void newActivity(View v) {
+                                  }
+                              }
 
         );
     }
@@ -103,7 +106,7 @@ public class TramSelect extends AppCompatActivity {
 
     public void loadStatistics() {
         Intent i = new Intent(TramSelect.this, Stats.class);
-        i.putExtra("key", String.valueOf(spinner3.getSelectedItem())); //Optional parameters
+        i.putExtra("key", text); //Optional parameters
         startActivity(i);
 
     }

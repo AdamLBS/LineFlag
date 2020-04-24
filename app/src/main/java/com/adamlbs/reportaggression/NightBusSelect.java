@@ -17,7 +17,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class NightBusSelect extends AppCompatActivity {
     private SessionHandler session;
     public Spinner spinner3, spinner2;
-    public ImageButton lineselect, logoutBtn;
+    public ImageButton b3, b145, b509,b518, b521,b526,b530,b533,b535,b540,b582,b583;
     private SharedPreferences sharedPreference;
     private String text;
     Activity context = this;
@@ -25,6 +25,8 @@ public class NightBusSelect extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         setTheme(R.style.AppTheme);
+        getSupportActionBar().hide();
+
         setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         super.onCreate(savedInstanceState);
@@ -36,69 +38,263 @@ public class NightBusSelect extends AppCompatActivity {
 
     //get the selected dropdown list value
     public void addListenerOnButton() {
+        b3 = (ImageButton) findViewById(R.id.b3);
+        b145 = (ImageButton) findViewById(R.id.b145);
+        b509 = (ImageButton) findViewById(R.id.b509);
+        b518 = (ImageButton) findViewById(R.id.b518);
+        b521 = (ImageButton) findViewById(R.id.b521);
+        b526 = (ImageButton) findViewById(R.id.b526);
+        b530 = (ImageButton) findViewById(R.id.b530);
+        b533 = (ImageButton) findViewById(R.id.b533);
+        b535 = (ImageButton) findViewById(R.id.b535);
+        b540 = (ImageButton) findViewById(R.id.b540);
+        b582 = (ImageButton) findViewById(R.id.b582);
+        b583 = (ImageButton) findViewById(R.id.b583);
 
-        spinner3 = (Spinner) findViewById(R.id.spinner3);
-        String text = spinner3.getSelectedItem().toString();
-        spinner3.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            public void onItemSelected(AdapterView<?> adapter, View view,
-                                       int position, long id) {
-                String text = spinner3.getSelectedItem().toString();
+        b3.setOnClickListener(new View.OnClickListener() {
+                                  @Override
+                                  public void onClick(View v) {
+                                      SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
+                                      SharedPreferences.Editor editor = sp.edit();
+                                      text = "B3";
+                                      SharedPreference.save(context, text);
 
-            }
+                                      Intent i = new Intent(NightBusSelect.this, ReportActivy.class);
+                                      i.putExtra("key", text ); //Optional parameters
+                                      startActivity(i);
+                                  }
 
-            public void onNothingSelected(AdapterView<?> arg0) {
 
-            }
-        });
-        lineselect = (ImageButton) findViewById(R.id.lineselect);
-        ImageButton logoutBtn = findViewById(R.id.btnLogout);
 
-        lineselect.setOnClickListener(new View.OnClickListener() {
-                                          @Override
-                                          public void onClick(View v) {
-                                              SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
-                                              SharedPreferences.Editor editor = sp.edit();
-                                              String text = spinner3.getSelectedItem().toString();
-                                              text = String.valueOf(spinner3.getSelectedItem());
-                                              // Save the text in SharedPreference
-                                              SharedPreference.save(context, text);
-
-                                              // Toast.makeText(DashboardActivity.this,
-                                              //       "OnClickListener : " +
-                                              //             "\nSpinner 1 : " + String.valueOf(spinner1.getSelectedItem()),
-                                              //   Toast.LENGTH_SHORT).show();
-                                              Intent i = new Intent(NightBusSelect.this, ReportActivy.class);
-                                              i.putExtra("key", String.valueOf(spinner3.getSelectedItem())); //Optional parameters
-                                              startActivity(i);
-
-                                          }
-
-                                          public void newActivity(View v) {
-                                          }
-                                      }
+                                  public void newActivity(View v) {
+                                  }
+                              }
 
         );
 
 
-        logoutBtn.setOnClickListener(new View.OnClickListener() {
-                                         @Override
-                                         public void onClick(View v) {
-                                             SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
-                                             SharedPreferences.Editor editor = sp.edit();
-                                             String text = spinner3.getSelectedItem().toString();
-                                             text = String.valueOf(spinner3.getSelectedItem());
-                                             // Save the text in SharedPreference
-                                             SharedPreference.save(context, text);
-                                             loadStatistics();
+        b145.setOnClickListener(new View.OnClickListener() {
+                                  @Override
+                                  public void onClick(View v) {
+                                      SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
+                                      SharedPreferences.Editor editor = sp.edit();
+                                      text = "145";
+                                      SharedPreference.save(context, text);
 
-                                         }
+                                      Intent i = new Intent(NightBusSelect.this, ReportActivy.class);
+                                      i.putExtra("key", text ); //Optional parameters
+                                      startActivity(i);
+                                  }
 
-                                         public void newActivity(View v) {
-                                         }
-                                     }
+
+
+                                  public void newActivity(View v) {
+                                  }
+                              }
+
+        );
+        b509.setOnClickListener(new View.OnClickListener() {
+                                  @Override
+                                  public void onClick(View v) {
+                                      SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
+                                      SharedPreferences.Editor editor = sp.edit();
+                                      text = "509";
+                                      SharedPreference.save(context, text);
+
+                                      Intent i = new Intent(NightBusSelect.this, ReportActivy.class);
+                                      i.putExtra("key", text ); //Optional parameters
+                                      startActivity(i);
+                                  }
+
+
+
+                                  public void newActivity(View v) {
+                                  }
+                              }
+
+        );
+        b518.setOnClickListener(new View.OnClickListener() {
+                                  @Override
+                                  public void onClick(View v) {
+                                      SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
+                                      SharedPreferences.Editor editor = sp.edit();
+                                      text = "518";
+                                      SharedPreference.save(context, text);
+
+                                      Intent i = new Intent(NightBusSelect.this, ReportActivy.class);
+                                      i.putExtra("key", text ); //Optional parameters
+                                      startActivity(i);
+                                  }
+
+
+
+                                  public void newActivity(View v) {
+                                  }
+                              }
+
+        );
+        b521.setOnClickListener(new View.OnClickListener() {
+                                  @Override
+                                  public void onClick(View v) {
+                                      SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
+                                      SharedPreferences.Editor editor = sp.edit();
+                                      text = "521";
+                                      SharedPreference.save(context, text);
+
+                                      Intent i = new Intent(NightBusSelect.this, ReportActivy.class);
+                                      i.putExtra("key", text ); //Optional parameters
+                                      startActivity(i);
+                                  }
+
+
+
+                                  public void newActivity(View v) {
+                                  }
+                              }
+
+        );
+        b526.setOnClickListener(new View.OnClickListener() {
+                                  @Override
+                                  public void onClick(View v) {
+                                      SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
+                                      SharedPreferences.Editor editor = sp.edit();
+                                      text = "526";
+                                      SharedPreference.save(context, text);
+
+                                      Intent i = new Intent(NightBusSelect.this, ReportActivy.class);
+                                      i.putExtra("key", text ); //Optional parameters
+                                      startActivity(i);
+                                  }
+
+
+
+                                  public void newActivity(View v) {
+                                  }
+                              }
+
+        );
+        b530.setOnClickListener(new View.OnClickListener() {
+                                  @Override
+                                  public void onClick(View v) {
+                                      SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
+                                      SharedPreferences.Editor editor = sp.edit();
+                                      text = "530";
+                                      SharedPreference.save(context, text);
+
+                                      Intent i = new Intent(NightBusSelect.this, ReportActivy.class);
+                                      i.putExtra("key", text ); //Optional parameters
+                                      startActivity(i);
+                                  }
+
+
+
+                                  public void newActivity(View v) {
+                                  }
+                              }
+
+        );
+        b533.setOnClickListener(new View.OnClickListener() {
+                                  @Override
+                                  public void onClick(View v) {
+                                      SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
+                                      SharedPreferences.Editor editor = sp.edit();
+                                      text = "533";
+                                      SharedPreference.save(context, text);
+
+                                      Intent i = new Intent(NightBusSelect.this, ReportActivy.class);
+                                      i.putExtra("key", text ); //Optional parameters
+                                      startActivity(i);
+                                  }
+
+
+
+                                  public void newActivity(View v) {
+                                  }
+                              }
+
+        );
+        b535.setOnClickListener(new View.OnClickListener() {
+                                  @Override
+                                  public void onClick(View v) {
+                                      SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
+                                      SharedPreferences.Editor editor = sp.edit();
+                                      text = "535";
+                                      SharedPreference.save(context, text);
+
+                                      Intent i = new Intent(NightBusSelect.this, ReportActivy.class);
+                                      i.putExtra("key", text ); //Optional parameters
+                                      startActivity(i);
+                                  }
+
+
+
+                                  public void newActivity(View v) {
+                                  }
+                              }
+
+        );
+        b540.setOnClickListener(new View.OnClickListener() {
+                                  @Override
+                                  public void onClick(View v) {
+                                      SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
+                                      SharedPreferences.Editor editor = sp.edit();
+                                      text = "540";
+                                      SharedPreference.save(context, text);
+
+                                      Intent i = new Intent(NightBusSelect.this, ReportActivy.class);
+                                      i.putExtra("key", text ); //Optional parameters
+                                      startActivity(i);
+                                  }
+
+
+
+                                  public void newActivity(View v) {
+                                  }
+                              }
+
+        );
+        b582.setOnClickListener(new View.OnClickListener() {
+                                  @Override
+                                  public void onClick(View v) {
+                                      SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
+                                      SharedPreferences.Editor editor = sp.edit();
+                                      text = "582";
+                                      SharedPreference.save(context, text);
+
+                                      Intent i = new Intent(NightBusSelect.this, ReportActivy.class);
+                                      i.putExtra("key", text ); //Optional parameters
+                                      startActivity(i);
+                                  }
+
+
+
+                                  public void newActivity(View v) {
+                                  }
+                              }
+
+        );
+        b583.setOnClickListener(new View.OnClickListener() {
+                                  @Override
+                                  public void onClick(View v) {
+                                      SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
+                                      SharedPreferences.Editor editor = sp.edit();
+                                      text = "583";
+                                      SharedPreference.save(context, text);
+
+                                      Intent i = new Intent(NightBusSelect.this, ReportActivy.class);
+                                      i.putExtra("key", text ); //Optional parameters
+                                      startActivity(i);
+                                  }
+
+
+
+                                  public void newActivity(View v) {
+                                  }
+                              }
 
         );
     }
+
 
 
     public void loadStatistics() {

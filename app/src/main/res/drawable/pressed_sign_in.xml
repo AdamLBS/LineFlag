@@ -1,0 +1,14 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape>
+            <size
+                android:width="274dp"
+                android:height="70dp" />
+        </shape>
+    </item>
+    <item
+        android:width="285dp"
+        android:height="70dp"
+        android:drawable="@drawable/active_sign_in" >
+</item>
+</layer-list>
