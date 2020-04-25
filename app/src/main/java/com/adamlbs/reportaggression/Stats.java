@@ -131,7 +131,7 @@ public class Stats extends AppCompatActivity {
                                     builder.setMessage(Html.fromHtml("Il n'y a "+"<b>"+"pas "+"</b>"+"d'agressions signalées sur la ligne "+location, Html.FROM_HTML_MODE_LEGACY));
 
                                 } else {
-                                    builder.setMessage(Html.fromHtml("Hello "+"<b>"+"World"+"</b>"));
+                                    builder.setMessage(Html.fromHtml("Il n'y a "+"<b>"+"pas "+"</b>"+"d'agressions signalées sur la ligne "+location));
                                 }
                                 AlertDialog alert = builder.create();
                                 alert.show();
@@ -141,7 +141,7 @@ public class Stats extends AppCompatActivity {
                                         builder.setMessage(Html.fromHtml("Il y a actuellement " + "<b>" + totalAggression + " agression " + "</b>" + "signalées sur la ligne " + location, Html.FROM_HTML_MODE_LEGACY));
 
                                     } else {
-                                        builder.setMessage(Html.fromHtml("Hello " + "<b>" + "World" + "</b>"));
+                                        builder.setMessage(Html.fromHtml("Il n'y a "+"<b>"+"pas "+"</b>"+"d'agressions signalées sur la ligne "+location));
                                     }
                                     AlertDialog alert = builder.create();
                                     alert.show();
@@ -153,7 +153,7 @@ public class Stats extends AppCompatActivity {
                                         builder.setMessage(Html.fromHtml("Il y a actuellement " + "<b>" + totalAggression + " agressions " + "</b>" + "signalées sur la ligne " + location, Html.FROM_HTML_MODE_LEGACY));
 
                                     } else {
-                                        builder.setMessage(Html.fromHtml("Hello " + "<b>" + "World" + "</b>"));
+                                        builder.setMessage(Html.fromHtml("Il n'y a "+"<b>"+"pas "+"</b>"+"d'agressions signalées sur la ligne "+location));
                                     }
                                     AlertDialog alert = builder.create();
                                     alert.show();
