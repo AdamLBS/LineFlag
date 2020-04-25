@@ -54,14 +54,12 @@ public class NightBusSelect extends AppCompatActivity {
         b3.setOnClickListener(new View.OnClickListener() {
                                   @Override
                                   public void onClick(View v) {
-                                      SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
-                                      SharedPreferences.Editor editor = sp.edit();
                                       text = "B3";
-                                      SharedPreference.save(context, text);
-
-                                      Intent i = new Intent(NightBusSelect.this, ReportActivy.class);
-                                      i.putExtra("key", text ); //Optional parameters
-                                      startActivity(i);
+                                      Bundle bundle = new Bundle();
+                                      BottomSheetDialog bottomSheet = new BottomSheetDialog();
+                                      bundle.putString("text", text);
+                                      bottomSheet.setArguments(bundle);
+                                      bottomSheet.show(getSupportFragmentManager(),"text");
                                   }
 
 
@@ -76,14 +74,12 @@ public class NightBusSelect extends AppCompatActivity {
         b145.setOnClickListener(new View.OnClickListener() {
                                   @Override
                                   public void onClick(View v) {
-                                      SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
-                                      SharedPreferences.Editor editor = sp.edit();
                                       text = "145";
-                                      SharedPreference.save(context, text);
-
-                                      Intent i = new Intent(NightBusSelect.this, ReportActivy.class);
-                                      i.putExtra("key", text ); //Optional parameters
-                                      startActivity(i);
+                                      Bundle bundle = new Bundle();
+                                      BottomSheetDialog bottomSheet = new BottomSheetDialog();
+                                      bundle.putString("text", text);
+                                      bottomSheet.setArguments(bundle);
+                                      bottomSheet.show(getSupportFragmentManager(),"text");
                                   }
 
 
@@ -96,14 +92,12 @@ public class NightBusSelect extends AppCompatActivity {
         b509.setOnClickListener(new View.OnClickListener() {
                                   @Override
                                   public void onClick(View v) {
-                                      SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
-                                      SharedPreferences.Editor editor = sp.edit();
                                       text = "509";
-                                      SharedPreference.save(context, text);
-
-                                      Intent i = new Intent(NightBusSelect.this, ReportActivy.class);
-                                      i.putExtra("key", text ); //Optional parameters
-                                      startActivity(i);
+                                      Bundle bundle = new Bundle();
+                                      BottomSheetDialog bottomSheet = new BottomSheetDialog();
+                                      bundle.putString("text", text);
+                                      bottomSheet.setArguments(bundle);
+                                      bottomSheet.show(getSupportFragmentManager(),"text");
                                   }
 
 
@@ -116,14 +110,12 @@ public class NightBusSelect extends AppCompatActivity {
         b518.setOnClickListener(new View.OnClickListener() {
                                   @Override
                                   public void onClick(View v) {
-                                      SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
-                                      SharedPreferences.Editor editor = sp.edit();
                                       text = "518";
-                                      SharedPreference.save(context, text);
-
-                                      Intent i = new Intent(NightBusSelect.this, ReportActivy.class);
-                                      i.putExtra("key", text ); //Optional parameters
-                                      startActivity(i);
+                                      Bundle bundle = new Bundle();
+                                      BottomSheetDialog bottomSheet = new BottomSheetDialog();
+                                      bundle.putString("text", text);
+                                      bottomSheet.setArguments(bundle);
+                                      bottomSheet.show(getSupportFragmentManager(),"text");
                                   }
 
 
@@ -135,15 +127,13 @@ public class NightBusSelect extends AppCompatActivity {
         );
         b521.setOnClickListener(new View.OnClickListener() {
                                   @Override
-                                  public void onClick(View v) {
-                                      SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
-                                      SharedPreferences.Editor editor = sp.edit();
+                                  public void onClick(View v) { ;
                                       text = "521";
-                                      SharedPreference.save(context, text);
-
-                                      Intent i = new Intent(NightBusSelect.this, ReportActivy.class);
-                                      i.putExtra("key", text ); //Optional parameters
-                                      startActivity(i);
+                                      Bundle bundle = new Bundle();
+                                      BottomSheetDialog bottomSheet = new BottomSheetDialog();
+                                      bundle.putString("text", text);
+                                      bottomSheet.setArguments(bundle);
+                                      bottomSheet.show(getSupportFragmentManager(),"text");
                                   }
 
 
@@ -156,14 +146,12 @@ public class NightBusSelect extends AppCompatActivity {
         b526.setOnClickListener(new View.OnClickListener() {
                                   @Override
                                   public void onClick(View v) {
-                                      SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
-                                      SharedPreferences.Editor editor = sp.edit();
                                       text = "526";
-                                      SharedPreference.save(context, text);
-
-                                      Intent i = new Intent(NightBusSelect.this, ReportActivy.class);
-                                      i.putExtra("key", text ); //Optional parameters
-                                      startActivity(i);
+                                      Bundle bundle = new Bundle();
+                                      BottomSheetDialog bottomSheet = new BottomSheetDialog();
+                                      bundle.putString("text", text);
+                                      bottomSheet.setArguments(bundle);
+                                      bottomSheet.show(getSupportFragmentManager(),"text");
                                   }
 
 
@@ -176,14 +164,12 @@ public class NightBusSelect extends AppCompatActivity {
         b530.setOnClickListener(new View.OnClickListener() {
                                   @Override
                                   public void onClick(View v) {
-                                      SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
-                                      SharedPreferences.Editor editor = sp.edit();
                                       text = "530";
-                                      SharedPreference.save(context, text);
-
-                                      Intent i = new Intent(NightBusSelect.this, ReportActivy.class);
-                                      i.putExtra("key", text ); //Optional parameters
-                                      startActivity(i);
+                                      Bundle bundle = new Bundle();
+                                      BottomSheetDialog bottomSheet = new BottomSheetDialog();
+                                      bundle.putString("text", text);
+                                      bottomSheet.setArguments(bundle);
+                                      bottomSheet.show(getSupportFragmentManager(),"text");
                                   }
 
 
@@ -196,14 +182,12 @@ public class NightBusSelect extends AppCompatActivity {
         b533.setOnClickListener(new View.OnClickListener() {
                                   @Override
                                   public void onClick(View v) {
-                                      SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
-                                      SharedPreferences.Editor editor = sp.edit();
                                       text = "533";
-                                      SharedPreference.save(context, text);
-
-                                      Intent i = new Intent(NightBusSelect.this, ReportActivy.class);
-                                      i.putExtra("key", text ); //Optional parameters
-                                      startActivity(i);
+                                      Bundle bundle = new Bundle();
+                                      BottomSheetDialog bottomSheet = new BottomSheetDialog();
+                                      bundle.putString("text", text);
+                                      bottomSheet.setArguments(bundle);
+                                      bottomSheet.show(getSupportFragmentManager(),"text");
                                   }
 
 
@@ -216,14 +200,12 @@ public class NightBusSelect extends AppCompatActivity {
         b535.setOnClickListener(new View.OnClickListener() {
                                   @Override
                                   public void onClick(View v) {
-                                      SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
-                                      SharedPreferences.Editor editor = sp.edit();
                                       text = "535";
-                                      SharedPreference.save(context, text);
-
-                                      Intent i = new Intent(NightBusSelect.this, ReportActivy.class);
-                                      i.putExtra("key", text ); //Optional parameters
-                                      startActivity(i);
+                                      Bundle bundle = new Bundle();
+                                      BottomSheetDialog bottomSheet = new BottomSheetDialog();
+                                      bundle.putString("text", text);
+                                      bottomSheet.setArguments(bundle);
+                                      bottomSheet.show(getSupportFragmentManager(),"text");
                                   }
 
 
@@ -236,14 +218,12 @@ public class NightBusSelect extends AppCompatActivity {
         b540.setOnClickListener(new View.OnClickListener() {
                                   @Override
                                   public void onClick(View v) {
-                                      SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
-                                      SharedPreferences.Editor editor = sp.edit();
                                       text = "540";
-                                      SharedPreference.save(context, text);
-
-                                      Intent i = new Intent(NightBusSelect.this, ReportActivy.class);
-                                      i.putExtra("key", text ); //Optional parameters
-                                      startActivity(i);
+                                      Bundle bundle = new Bundle();
+                                      BottomSheetDialog bottomSheet = new BottomSheetDialog();
+                                      bundle.putString("text", text);
+                                      bottomSheet.setArguments(bundle);
+                                      bottomSheet.show(getSupportFragmentManager(),"text");
                                   }
 
 
@@ -256,14 +236,12 @@ public class NightBusSelect extends AppCompatActivity {
         b582.setOnClickListener(new View.OnClickListener() {
                                   @Override
                                   public void onClick(View v) {
-                                      SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
-                                      SharedPreferences.Editor editor = sp.edit();
                                       text = "582";
-                                      SharedPreference.save(context, text);
-
-                                      Intent i = new Intent(NightBusSelect.this, ReportActivy.class);
-                                      i.putExtra("key", text ); //Optional parameters
-                                      startActivity(i);
+                                      Bundle bundle = new Bundle();
+                                      BottomSheetDialog bottomSheet = new BottomSheetDialog();
+                                      bundle.putString("text", text);
+                                      bottomSheet.setArguments(bundle);
+                                      bottomSheet.show(getSupportFragmentManager(),"text");
                                   }
 
 
@@ -276,14 +254,12 @@ public class NightBusSelect extends AppCompatActivity {
         b583.setOnClickListener(new View.OnClickListener() {
                                   @Override
                                   public void onClick(View v) {
-                                      SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
-                                      SharedPreferences.Editor editor = sp.edit();
                                       text = "583";
-                                      SharedPreference.save(context, text);
-
-                                      Intent i = new Intent(NightBusSelect.this, ReportActivy.class);
-                                      i.putExtra("key", text ); //Optional parameters
-                                      startActivity(i);
+                                      Bundle bundle = new Bundle();
+                                      BottomSheetDialog bottomSheet = new BottomSheetDialog();
+                                      bundle.putString("text", text);
+                                      bottomSheet.setArguments(bundle);
+                                      bottomSheet.show(getSupportFragmentManager(),"text");
                                   }
 
 

@@ -45,7 +45,6 @@ public class Stats1 extends AppCompatActivity {
 
         setContentView(R.layout.activity_stats);
         findViewsById();
-        location = sharedPreference.getValue(context);
         String aggression;
         aggression = "sexual";
         welcomeText.setTypeface(welcomeText.getTypeface(), Typeface.BOLD);

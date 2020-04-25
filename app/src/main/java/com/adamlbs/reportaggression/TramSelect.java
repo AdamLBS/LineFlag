@@ -42,14 +42,12 @@ public class TramSelect extends AppCompatActivity {
         t1.setOnClickListener(new View.OnClickListener() {
                                   @Override
                                   public void onClick(View v) {
-                                      SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
-                                      SharedPreferences.Editor editor = sp.edit();
                                       text = "T1";
-                                      SharedPreference.save(context, text);
-
-                                      Intent i = new Intent(TramSelect.this, ReportActivy.class);
-                                      i.putExtra("key", text ); //Optional parameters
-                                      startActivity(i);
+                                      Bundle bundle = new Bundle();
+                                      BottomSheetDialog bottomSheet = new BottomSheetDialog();
+                                      bundle.putString("text", text);
+                                      bottomSheet.setArguments(bundle);
+                                      bottomSheet.show(getSupportFragmentManager(),"text");
                                   }
 
 
@@ -64,14 +62,12 @@ public class TramSelect extends AppCompatActivity {
         t2.setOnClickListener(new View.OnClickListener() {
                                   @Override
                                   public void onClick(View v) {
-                                      SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
-                                      SharedPreferences.Editor editor = sp.edit();
                                       text = "T2";
-                                      SharedPreference.save(context, text);
-
-                                      Intent i = new Intent(TramSelect.this, ReportActivy.class);
-                                      i.putExtra("key", text ); //Optional parameters
-                                      startActivity(i);
+                                      Bundle bundle = new Bundle();
+                                      BottomSheetDialog bottomSheet = new BottomSheetDialog();
+                                      bundle.putString("text", text);
+                                      bottomSheet.setArguments(bundle);
+                                      bottomSheet.show(getSupportFragmentManager(),"text");
                                   }
 
 
@@ -84,14 +80,12 @@ public class TramSelect extends AppCompatActivity {
         t3.setOnClickListener(new View.OnClickListener() {
                                   @Override
                                   public void onClick(View v) {
-                                      SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
-                                      SharedPreferences.Editor editor = sp.edit();
                                       text = "T3";
-                                      SharedPreference.save(context, text);
-
-                                      Intent i = new Intent(TramSelect.this, ReportActivy.class);
-                                      i.putExtra("key", text ); //Optional parameters
-                                      startActivity(i);
+                                      Bundle bundle = new Bundle();
+                                      BottomSheetDialog bottomSheet = new BottomSheetDialog();
+                                      bundle.putString("text", text);
+                                      bottomSheet.setArguments(bundle);
+                                      bottomSheet.show(getSupportFragmentManager(),"text");
                                   }
 
 

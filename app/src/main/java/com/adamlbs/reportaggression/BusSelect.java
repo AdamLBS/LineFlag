@@ -146,14 +146,12 @@ public class BusSelect  extends AppCompatActivity {
         b1.setOnClickListener(new View.OnClickListener() {
                                   @Override
                                   public void onClick(View v) {
-                                      SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
-                                      SharedPreferences.Editor editor = sp.edit();
                                       text = "1";
-                                      SharedPreference.save(context, text);
-
-                                      Intent i = new Intent(BusSelect.this, ReportActivy.class);
-                                      i.putExtra("key", text); //Optional parameters
-                                      startActivity(i);
+                                      Bundle bundle = new Bundle();
+                                      BottomSheetDialog bottomSheet = new BottomSheetDialog();
+                                      bundle.putString("text", text);
+                                      bottomSheet.setArguments(bundle);
+                                      bottomSheet.show(getSupportFragmentManager(),"text");
                                   }
 
 
@@ -167,14 +165,12 @@ public class BusSelect  extends AppCompatActivity {
         b2.setOnClickListener(new View.OnClickListener() {
                                   @Override
                                   public void onClick(View v) {
-                                      SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
-                                      SharedPreferences.Editor editor = sp.edit();
                                       text = "2";
-                                      SharedPreference.save(context, text);
-
-                                      Intent i = new Intent(BusSelect.this, ReportActivy.class);
-                                      i.putExtra("key", text); //Optional parameters
-                                      startActivity(i);
+                                      Bundle bundle = new Bundle();
+                                      BottomSheetDialog bottomSheet = new BottomSheetDialog();
+                                      bundle.putString("text", text);
+                                      bottomSheet.setArguments(bundle);
+                                      bottomSheet.show(getSupportFragmentManager(),"text");
                                   }
 
 
@@ -187,14 +183,12 @@ public class BusSelect  extends AppCompatActivity {
         b1jet.setOnClickListener(new View.OnClickListener() {
                                   @Override
                                   public void onClick(View v) {
-                                      SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
-                                      SharedPreferences.Editor editor = sp.edit();
                                       text = "1Jet";
-                                      SharedPreference.save(context, text);
-
-                                      Intent i = new Intent(BusSelect.this, ReportActivy.class);
-                                      i.putExtra("key", text); //Optional parameters
-                                      startActivity(i);
+                                      Bundle bundle = new Bundle();
+                                      BottomSheetDialog bottomSheet = new BottomSheetDialog();
+                                      bundle.putString("text", text);
+                                      bottomSheet.setArguments(bundle);
+                                      bottomSheet.show(getSupportFragmentManager(),"text");
                                   }
 
 
@@ -207,14 +201,12 @@ public class BusSelect  extends AppCompatActivity {
         b1s.setOnClickListener(new View.OnClickListener() {
                                   @Override
                                   public void onClick(View v) {
-                                      SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
-                                      SharedPreferences.Editor editor = sp.edit();
                                       text = "1S";
-                                      SharedPreference.save(context, text);
-
-                                      Intent i = new Intent(BusSelect.this, ReportActivy.class);
-                                      i.putExtra("key", text ); //Optional parameters
-                                      startActivity(i);
+                                      Bundle bundle = new Bundle();
+                                      BottomSheetDialog bottomSheet = new BottomSheetDialog();
+                                      bundle.putString("text", text);
+                                      bottomSheet.setArguments(bundle);
+                                      bottomSheet.show(getSupportFragmentManager(),"text");
                                   }
 
 
@@ -227,14 +219,12 @@ public class BusSelect  extends AppCompatActivity {
         b2.setOnClickListener(new View.OnClickListener() {
                                    @Override
                                    public void onClick(View v) {
-                                       SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
-                                       SharedPreferences.Editor editor = sp.edit();
                                        text = "2";
-                                       SharedPreference.save(context, text);
-
-                                       Intent i = new Intent(BusSelect.this, ReportActivy.class);
-                                       i.putExtra("key", text ); //Optional parameters
-                                       startActivity(i);
+                                       Bundle bundle = new Bundle();
+                                       BottomSheetDialog bottomSheet = new BottomSheetDialog();
+                                       bundle.putString("text", text);
+                                       bottomSheet.setArguments(bundle);
+                                       bottomSheet.show(getSupportFragmentManager(),"text");
                                    }
 
 
@@ -247,14 +237,12 @@ public class BusSelect  extends AppCompatActivity {
         b3b.setOnClickListener(new View.OnClickListener() {
                                   @Override
                                   public void onClick(View v) {
-                                      SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
-                                      SharedPreferences.Editor editor = sp.edit();
                                       text = "B3B";
-                                      SharedPreference.save(context, text);
-
-                                      Intent i = new Intent(BusSelect.this, ReportActivy.class);
-                                      i.putExtra("key", text ); //Optional parameters
-                                      startActivity(i);
+                                      Bundle bundle = new Bundle();
+                                      BottomSheetDialog bottomSheet = new BottomSheetDialog();
+                                      bundle.putString("text", text);
+                                      bottomSheet.setArguments(bundle);
+                                      bottomSheet.show(getSupportFragmentManager(),"text");
                                   }
 
 
@@ -267,14 +255,12 @@ public class BusSelect  extends AppCompatActivity {
         bb3a.setOnClickListener(new View.OnClickListener() {
                                    @Override
                                    public void onClick(View v) {
-                                       SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
-                                       SharedPreferences.Editor editor = sp.edit();
                                        text = "B3A";
-                                       SharedPreference.save(context, text);
-
-                                       Intent i = new Intent(BusSelect.this, ReportActivy.class);
-                                       i.putExtra("key", text ); //Optional parameters
-                                       startActivity(i);
+                                       Bundle bundle = new Bundle();
+                                       BottomSheetDialog bottomSheet = new BottomSheetDialog();
+                                       bundle.putString("text", text);
+                                       bottomSheet.setArguments(bundle);
+                                       bottomSheet.show(getSupportFragmentManager(),"text");
                                    }
 
 
@@ -287,14 +273,12 @@ public class BusSelect  extends AppCompatActivity {
         bb1.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View v) {
-                                        SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
-                                        SharedPreferences.Editor editor = sp.edit();
                                         text = "B1";
-                                        SharedPreference.save(context, text);
-
-                                        Intent i = new Intent(BusSelect.this, ReportActivy.class);
-                                        i.putExtra("key", text ); //Optional parameters
-                                        startActivity(i);
+                                        Bundle bundle = new Bundle();
+                                        BottomSheetDialog bottomSheet = new BottomSheetDialog();
+                                        bundle.putString("text", text);
+                                        bottomSheet.setArguments(bundle);
+                                        bottomSheet.show(getSupportFragmentManager(),"text");
                                     }
 
 
@@ -307,14 +291,12 @@ public class BusSelect  extends AppCompatActivity {
         bb2.setOnClickListener(new View.OnClickListener() {
                                    @Override
                                    public void onClick(View v) {
-                                       SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
-                                       SharedPreferences.Editor editor = sp.edit();
                                        text = "B2";
-                                       SharedPreference.save(context, text);
-
-                                       Intent i = new Intent(BusSelect.this, ReportActivy.class);
-                                       i.putExtra("key", text ); //Optional parameters
-                                       startActivity(i);
+                                       Bundle bundle = new Bundle();
+                                       BottomSheetDialog bottomSheet = new BottomSheetDialog();
+                                       bundle.putString("text", text);
+                                       bottomSheet.setArguments(bundle);
+                                       bottomSheet.show(getSupportFragmentManager(),"text");
                                    }
 
 
@@ -327,14 +309,12 @@ public class BusSelect  extends AppCompatActivity {
         bb3.setOnClickListener(new View.OnClickListener() {
                                    @Override
                                    public void onClick(View v) {
-                                       SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
-                                       SharedPreferences.Editor editor = sp.edit();
                                        text = "3";
-                                       SharedPreference.save(context, text);
-
-                                       Intent i = new Intent(BusSelect.this, ReportActivy.class);
-                                       i.putExtra("key", text ); //Optional parameters
-                                       startActivity(i);
+                                       Bundle bundle = new Bundle();
+                                       BottomSheetDialog bottomSheet = new BottomSheetDialog();
+                                       bundle.putString("text", text);
+                                       bottomSheet.setArguments(bundle);
+                                       bottomSheet.show(getSupportFragmentManager(),"text");
                                    }
 
 
@@ -347,14 +327,12 @@ public class BusSelect  extends AppCompatActivity {
         b4.setOnClickListener(new View.OnClickListener() {
                                    @Override
                                    public void onClick(View v) {
-                                       SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
-                                       SharedPreferences.Editor editor = sp.edit();
                                        text = "4";
-                                       SharedPreference.save(context, text);
-
-                                       Intent i = new Intent(BusSelect.this, ReportActivy.class);
-                                       i.putExtra("key", text ); //Optional parameters
-                                       startActivity(i);
+                                       Bundle bundle = new Bundle();
+                                       BottomSheetDialog bottomSheet = new BottomSheetDialog();
+                                       bundle.putString("text", text);
+                                       bottomSheet.setArguments(bundle);
+                                       bottomSheet.show(getSupportFragmentManager(),"text");
                                    }
 
 
@@ -367,14 +345,12 @@ public class BusSelect  extends AppCompatActivity {
         b4b.setOnClickListener(new View.OnClickListener() {
                                   @Override
                                   public void onClick(View v) {
-                                      SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
-                                      SharedPreferences.Editor editor = sp.edit();
                                       text = "4B";
-                                      SharedPreference.save(context, text);
-
-                                      Intent i = new Intent(BusSelect.this, ReportActivy.class);
-                                      i.putExtra("key", text ); //Optional parameters
-                                      startActivity(i);
+                                      Bundle bundle = new Bundle();
+                                      BottomSheetDialog bottomSheet = new BottomSheetDialog();
+                                      bundle.putString("text", text);
+                                      bottomSheet.setArguments(bundle);
+                                      bottomSheet.show(getSupportFragmentManager(),"text");
                                   }
 
 
@@ -387,14 +363,12 @@ public class BusSelect  extends AppCompatActivity {
         b5.setOnClickListener(new View.OnClickListener() {
                                    @Override
                                    public void onClick(View v) {
-                                       SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
-                                       SharedPreferences.Editor editor = sp.edit();
                                        text = "5";
-                                       SharedPreference.save(context, text);
-
-                                       Intent i = new Intent(BusSelect.this, ReportActivy.class);
-                                       i.putExtra("key", text ); //Optional parameters
-                                       startActivity(i);
+                                       Bundle bundle = new Bundle();
+                                       BottomSheetDialog bottomSheet = new BottomSheetDialog();
+                                       bundle.putString("text", text);
+                                       bottomSheet.setArguments(bundle);
+                                       bottomSheet.show(getSupportFragmentManager(),"text");
                                    }
 
 
@@ -407,14 +381,12 @@ public class BusSelect  extends AppCompatActivity {
         b6.setOnClickListener(new View.OnClickListener() {
                                   @Override
                                   public void onClick(View v) {
-                                      SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
-                                      SharedPreferences.Editor editor = sp.edit();
                                       text = "6";
-                                      SharedPreference.save(context, text);
-
-                                      Intent i = new Intent(BusSelect.this, ReportActivy.class);
-                                      i.putExtra("key", text ); //Optional parameters
-                                      startActivity(i);
+                                      Bundle bundle = new Bundle();
+                                      BottomSheetDialog bottomSheet = new BottomSheetDialog();
+                                      bundle.putString("text", text);
+                                      bottomSheet.setArguments(bundle);
+                                      bottomSheet.show(getSupportFragmentManager(),"text");
                                   }
 
 
@@ -427,14 +399,12 @@ public class BusSelect  extends AppCompatActivity {
         b7.setOnClickListener(new View.OnClickListener() {
                                                     @Override
                                                     public void onClick(View v) {
-                                                        SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
-                                                        SharedPreferences.Editor editor = sp.edit();
                                                         text = "7";
-                                                        SharedPreference.save(context, text);
-
-                                                        Intent i = new Intent(BusSelect.this, ReportActivy.class);
-                                                        i.putExtra("key", text ); //Optional parameters
-                                                        startActivity(i);
+                                                        Bundle bundle = new Bundle();
+                                                        BottomSheetDialog bottomSheet = new BottomSheetDialog();
+                                                        bundle.putString("text", text);
+                                                        bottomSheet.setArguments(bundle);
+                                                        bottomSheet.show(getSupportFragmentManager(),"text");
                                                     }
 
 
@@ -447,14 +417,12 @@ public class BusSelect  extends AppCompatActivity {
         b7b.setOnClickListener(new View.OnClickListener() {
                                   @Override
                                   public void onClick(View v) {
-                                      SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
-                                      SharedPreferences.Editor editor = sp.edit();
                                       text = "7B";
-                                      SharedPreference.save(context, text);
-
-                                      Intent i = new Intent(BusSelect.this, ReportActivy.class);
-                                      i.putExtra("key", text ); //Optional parameters
-                                      startActivity(i);
+                                      Bundle bundle = new Bundle();
+                                      BottomSheetDialog bottomSheet = new BottomSheetDialog();
+                                      bundle.putString("text", text);
+                                      bottomSheet.setArguments(bundle);
+                                      bottomSheet.show(getSupportFragmentManager(),"text");
                                   }
 
 
@@ -467,14 +435,12 @@ public class BusSelect  extends AppCompatActivity {
         b7t.setOnClickListener(new View.OnClickListener() {
                                    @Override
                                    public void onClick(View v) {
-                                       SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
-                                       SharedPreferences.Editor editor = sp.edit();
                                        text = "7T";
-                                       SharedPreference.save(context, text);
-
-                                       Intent i = new Intent(BusSelect.this, ReportActivy.class);
-                                       i.putExtra("key", text ); //Optional parameters
-                                       startActivity(i);
+                                       Bundle bundle = new Bundle();
+                                       BottomSheetDialog bottomSheet = new BottomSheetDialog();
+                                       bundle.putString("text", text);
+                                       bottomSheet.setArguments(bundle);
+                                       bottomSheet.show(getSupportFragmentManager(),"text");
                                    }
 
 
@@ -487,14 +453,12 @@ public class BusSelect  extends AppCompatActivity {
         b9.setOnClickListener(new View.OnClickListener() {
                                    @Override
                                    public void onClick(View v) {
-                                       SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
-                                       SharedPreferences.Editor editor = sp.edit();
                                        text = "9";
-                                       SharedPreference.save(context, text);
-
-                                       Intent i = new Intent(BusSelect.this, ReportActivy.class);
-                                       i.putExtra("key", text ); //Optional parameters
-                                       startActivity(i);
+                                       Bundle bundle = new Bundle();
+                                       BottomSheetDialog bottomSheet = new BottomSheetDialog();
+                                       bundle.putString("text", text);
+                                       bottomSheet.setArguments(bundle);
+                                       bottomSheet.show(getSupportFragmentManager(),"text");
                                    }
 
 
@@ -507,14 +471,13 @@ public class BusSelect  extends AppCompatActivity {
         b10.setOnClickListener(new View.OnClickListener() {
                                   @Override
                                   public void onClick(View v) {
-                                      SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
-                                      SharedPreferences.Editor editor = sp.edit();
-                                      text = "10";
-                                      SharedPreference.save(context, text);
 
-                                      Intent i = new Intent(BusSelect.this, ReportActivy.class);
-                                      i.putExtra("key", text ); //Optional parameters
-                                      startActivity(i);
+                                      text = "10";
+                                      Bundle bundle = new Bundle();
+                                      BottomSheetDialog bottomSheet = new BottomSheetDialog();
+                                      bundle.putString("text", text);
+                                      bottomSheet.setArguments(bundle);
+                                      bottomSheet.show(getSupportFragmentManager(),"text");
                                   }
 
 
@@ -527,14 +490,12 @@ public class BusSelect  extends AppCompatActivity {
         b11.setOnClickListener(new View.OnClickListener() {
                                    @Override
                                    public void onClick(View v) {
-                                       SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
-                                       SharedPreferences.Editor editor = sp.edit();
                                        text = "11";
-                                       SharedPreference.save(context, text);
-
-                                       Intent i = new Intent(BusSelect.this, ReportActivy.class);
-                                       i.putExtra("key", text ); //Optional parameters
-                                       startActivity(i);
+                                       Bundle bundle = new Bundle();
+                                       BottomSheetDialog bottomSheet = new BottomSheetDialog();
+                                       bundle.putString("text", text);
+                                       bottomSheet.setArguments(bundle);
+                                       bottomSheet.show(getSupportFragmentManager(),"text");
                                    }
 
 
@@ -547,14 +508,13 @@ public class BusSelect  extends AppCompatActivity {
         b12.setOnClickListener(new View.OnClickListener() {
                                    @Override
                                    public void onClick(View v) {
-                                       SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
-                                       SharedPreferences.Editor editor = sp.edit();
-                                       text = "12";
-                                       SharedPreference.save(context, text);
 
-                                       Intent i = new Intent(BusSelect.this, ReportActivy.class);
-                                       i.putExtra("key", text ); //Optional parameters
-                                       startActivity(i);
+                                       text = "12";
+                                       Bundle bundle = new Bundle();
+                                       BottomSheetDialog bottomSheet = new BottomSheetDialog();
+                                       bundle.putString("text", text);
+                                       bottomSheet.setArguments(bundle);
+                                       bottomSheet.show(getSupportFragmentManager(),"text");
                                    }
 
 
@@ -567,14 +527,13 @@ public class BusSelect  extends AppCompatActivity {
         b12a.setOnClickListener(new View.OnClickListener() {
                                    @Override
                                    public void onClick(View v) {
-                                       SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
-                                       SharedPreferences.Editor editor = sp.edit();
-                                       text = "12A";
-                                       SharedPreference.save(context, text);
 
-                                       Intent i = new Intent(BusSelect.this, ReportActivy.class);
-                                       i.putExtra("key", text ); //Optional parameters
-                                       startActivity(i);
+                                       text = "12A";
+                                       Bundle bundle = new Bundle();
+                                       BottomSheetDialog bottomSheet = new BottomSheetDialog();
+                                       bundle.putString("text", text);
+                                       bottomSheet.setArguments(bundle);
+                                       bottomSheet.show(getSupportFragmentManager(),"text");
                                    }
 
 
@@ -587,14 +546,12 @@ public class BusSelect  extends AppCompatActivity {
         b12b.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View v) {
-                                        SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
-                                        SharedPreferences.Editor editor = sp.edit();
                                         text = "12S";
-                                        SharedPreference.save(context, text);
-
-                                        Intent i = new Intent(BusSelect.this, ReportActivy.class);
-                                        i.putExtra("key", text ); //Optional parameters
-                                        startActivity(i);
+                                        Bundle bundle = new Bundle();
+                                        BottomSheetDialog bottomSheet = new BottomSheetDialog();
+                                        bundle.putString("text", text);
+                                        bottomSheet.setArguments(bundle);
+                                        bottomSheet.show(getSupportFragmentManager(),"text");
                                     }
 
 
@@ -607,14 +564,13 @@ public class BusSelect  extends AppCompatActivity {
         b15.setOnClickListener(new View.OnClickListener() {
                                    @Override
                                    public void onClick(View v) {
-                                       SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
-                                       SharedPreferences.Editor editor = sp.edit();
                                        text = "15";
-                                       SharedPreference.save(context, text);
 
-                                       Intent i = new Intent(BusSelect.this, ReportActivy.class);
-                                       i.putExtra("key", text ); //Optional parameters
-                                       startActivity(i);
+                                       Bundle bundle = new Bundle();
+                                       BottomSheetDialog bottomSheet = new BottomSheetDialog();
+                                       bundle.putString("text", text);
+                                       bottomSheet.setArguments(bundle);
+                                       bottomSheet.show(getSupportFragmentManager(),"text");
                                    }
 
 
@@ -627,14 +583,12 @@ public class BusSelect  extends AppCompatActivity {
         b15s.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View v) {
-                                        SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
-                                        SharedPreferences.Editor editor = sp.edit();
                                         text = "15S";
-                                        SharedPreference.save(context, text);
-
-                                        Intent i = new Intent(BusSelect.this, ReportActivy.class);
-                                        i.putExtra("key", text ); //Optional parameters
-                                        startActivity(i);
+                                        Bundle bundle = new Bundle();
+                                        BottomSheetDialog bottomSheet = new BottomSheetDialog();
+                                        bundle.putString("text", text);
+                                        bottomSheet.setArguments(bundle);
+                                        bottomSheet.show(getSupportFragmentManager(),"text");
                                     }
 
 
@@ -647,14 +601,12 @@ public class BusSelect  extends AppCompatActivity {
         b16.setOnClickListener(new View.OnClickListener() {
                                    @Override
                                    public void onClick(View v) {
-                                       SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
-                                       SharedPreferences.Editor editor = sp.edit();
                                        text = "16";
-                                       SharedPreference.save(context, text);
-
-                                       Intent i = new Intent(BusSelect.this, ReportActivy.class);
-                                       i.putExtra("key", text ); //Optional parameters
-                                       startActivity(i);
+                                       Bundle bundle = new Bundle();
+                                       BottomSheetDialog bottomSheet = new BottomSheetDialog();
+                                       bundle.putString("text", text);
+                                       bottomSheet.setArguments(bundle);
+                                       bottomSheet.show(getSupportFragmentManager(),"text");
                                    }
 
 
@@ -667,14 +619,12 @@ public class BusSelect  extends AppCompatActivity {
         b16s.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View v) {
-                                        SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
-                                        SharedPreferences.Editor editor = sp.edit();
                                         text = "16S";
-                                        SharedPreference.save(context, text);
-
-                                        Intent i = new Intent(BusSelect.this, ReportActivy.class);
-                                        i.putExtra("key", text ); //Optional parameters
-                                        startActivity(i);
+                                        Bundle bundle = new Bundle();
+                                        BottomSheetDialog bottomSheet = new BottomSheetDialog();
+                                        bundle.putString("text", text);
+                                        bottomSheet.setArguments(bundle);
+                                        bottomSheet.show(getSupportFragmentManager(),"text");
                                     }
 
 
@@ -687,14 +637,12 @@ public class BusSelect  extends AppCompatActivity {
         b16t.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View v) {
-                                        SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
-                                        SharedPreferences.Editor editor = sp.edit();
                                         text = "16T";
-                                        SharedPreference.save(context, text);
-
-                                        Intent i = new Intent(BusSelect.this, ReportActivy.class);
-                                        i.putExtra("key", text ); //Optional parameters
-                                        startActivity(i);
+                                        Bundle bundle = new Bundle();
+                                        BottomSheetDialog bottomSheet = new BottomSheetDialog();
+                                        bundle.putString("text", text);
+                                        bottomSheet.setArguments(bundle);
+                                        bottomSheet.show(getSupportFragmentManager(),"text");
                                     }
 
 
@@ -707,14 +655,12 @@ public class BusSelect  extends AppCompatActivity {
         b17.setOnClickListener(new View.OnClickListener() {
                                    @Override
                                    public void onClick(View v) {
-                                       SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
-                                       SharedPreferences.Editor editor = sp.edit();
                                        text = "17";
-                                       SharedPreference.save(context, text);
-
-                                       Intent i = new Intent(BusSelect.this, ReportActivy.class);
-                                       i.putExtra("key", text ); //Optional parameters
-                                       startActivity(i);
+                                       Bundle bundle = new Bundle();
+                                       BottomSheetDialog bottomSheet = new BottomSheetDialog();
+                                       bundle.putString("text", text);
+                                       bottomSheet.setArguments(bundle);
+                                       bottomSheet.show(getSupportFragmentManager(),"text");
                                    }
 
 
@@ -727,14 +673,12 @@ public class BusSelect  extends AppCompatActivity {
         b18.setOnClickListener(new View.OnClickListener() {
                                    @Override
                                    public void onClick(View v) {
-                                       SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
-                                       SharedPreferences.Editor editor = sp.edit();
                                        text = "18";
-                                       SharedPreference.save(context, text);
-
-                                       Intent i = new Intent(BusSelect.this, ReportActivy.class);
-                                       i.putExtra("key", text ); //Optional parameters
-                                       startActivity(i);
+                                       Bundle bundle = new Bundle();
+                                       BottomSheetDialog bottomSheet = new BottomSheetDialog();
+                                       bundle.putString("text", text);
+                                       bottomSheet.setArguments(bundle);
+                                       bottomSheet.show(getSupportFragmentManager(),"text");
                                    }
 
 
@@ -747,14 +691,13 @@ public class BusSelect  extends AppCompatActivity {
         b19.setOnClickListener(new View.OnClickListener() {
                                    @Override
                                    public void onClick(View v) {
-                                       SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
-                                       SharedPreferences.Editor editor = sp.edit();
-                                       text = "19";
-                                       SharedPreference.save(context, text);
 
-                                       Intent i = new Intent(BusSelect.this, ReportActivy.class);
-                                       i.putExtra("key", text ); //Optional parameters
-                                       startActivity(i);
+                                       text = "19";
+                                       Bundle bundle = new Bundle();
+                                       BottomSheetDialog bottomSheet = new BottomSheetDialog();
+                                       bundle.putString("text", text);
+                                       bottomSheet.setArguments(bundle);
+                                       bottomSheet.show(getSupportFragmentManager(),"text");
                                    }
 
 
@@ -767,14 +710,12 @@ public class BusSelect  extends AppCompatActivity {
         b20.setOnClickListener(new View.OnClickListener() {
                                    @Override
                                    public void onClick(View v) {
-                                       SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
-                                       SharedPreferences.Editor editor = sp.edit();
                                        text = "20";
-                                       SharedPreference.save(context, text);
-
-                                       Intent i = new Intent(BusSelect.this, ReportActivy.class);
-                                       i.putExtra("key", text ); //Optional parameters
-                                       startActivity(i);
+                                       Bundle bundle = new Bundle();
+                                       BottomSheetDialog bottomSheet = new BottomSheetDialog();
+                                       bundle.putString("text", text);
+                                       bottomSheet.setArguments(bundle);
+                                       bottomSheet.show(getSupportFragmentManager(),"text");
                                    }
 
 
@@ -787,14 +728,12 @@ public class BusSelect  extends AppCompatActivity {
         b21jet.setOnClickListener(new View.OnClickListener() {
                                       @Override
                                       public void onClick(View v) {
-                                          SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
-                                          SharedPreferences.Editor editor = sp.edit();
                                           text = "21Jet";
-                                          SharedPreference.save(context, text);
-
-                                          Intent i = new Intent(BusSelect.this, ReportActivy.class);
-                                          i.putExtra("key", text ); //Optional parameters
-                                          startActivity(i);
+                                          Bundle bundle = new Bundle();
+                                          BottomSheetDialog bottomSheet = new BottomSheetDialog();
+                                          bundle.putString("text", text);
+                                          bottomSheet.setArguments(bundle);
+                                          bottomSheet.show(getSupportFragmentManager(),"text");
                                       }
 
 
@@ -807,14 +746,12 @@ public class BusSelect  extends AppCompatActivity {
         b22.setOnClickListener(new View.OnClickListener() {
                                    @Override
                                    public void onClick(View v) {
-                                       SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
-                                       SharedPreferences.Editor editor = sp.edit();
                                        text = "22";
-                                       SharedPreference.save(context, text);
-
-                                       Intent i = new Intent(BusSelect.this, ReportActivy.class);
-                                       i.putExtra("key", text ); //Optional parameters
-                                       startActivity(i);
+                                       Bundle bundle = new Bundle();
+                                       BottomSheetDialog bottomSheet = new BottomSheetDialog();
+                                       bundle.putString("text", text);
+                                       bottomSheet.setArguments(bundle);
+                                       bottomSheet.show(getSupportFragmentManager(),"text");
                                    }
 
 
@@ -827,14 +764,12 @@ public class BusSelect  extends AppCompatActivity {
         b22s.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View v) {
-                                        SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
-                                        SharedPreferences.Editor editor = sp.edit();
                                         text = "22S";
-                                        SharedPreference.save(context, text);
-
-                                        Intent i = new Intent(BusSelect.this, ReportActivy.class);
-                                        i.putExtra("key", text ); //Optional parameters
-                                        startActivity(i);
+                                        Bundle bundle = new Bundle();
+                                        BottomSheetDialog bottomSheet = new BottomSheetDialog();
+                                        bundle.putString("text", text);
+                                        bottomSheet.setArguments(bundle);
+                                        bottomSheet.show(getSupportFragmentManager(),"text");
                                     }
 
 
@@ -847,14 +782,12 @@ public class BusSelect  extends AppCompatActivity {
         b23.setOnClickListener(new View.OnClickListener() {
                                    @Override
                                    public void onClick(View v) {
-                                       SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
-                                       SharedPreferences.Editor editor = sp.edit();
                                        text = "23";
-                                       SharedPreference.save(context, text);
-
-                                       Intent i = new Intent(BusSelect.this, ReportActivy.class);
-                                       i.putExtra("key", text ); //Optional parameters
-                                       startActivity(i);
+                                       Bundle bundle = new Bundle();
+                                       BottomSheetDialog bottomSheet = new BottomSheetDialog();
+                                       bundle.putString("text", text);
+                                       bottomSheet.setArguments(bundle);
+                                       bottomSheet.show(getSupportFragmentManager(),"text");
                                    }
 
 
@@ -867,14 +800,12 @@ public class BusSelect  extends AppCompatActivity {
         b24.setOnClickListener(new View.OnClickListener() {
                                    @Override
                                    public void onClick(View v) {
-                                       SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
-                                       SharedPreferences.Editor editor = sp.edit();
                                        text = "24";
-                                       SharedPreference.save(context, text);
-
-                                       Intent i = new Intent(BusSelect.this, ReportActivy.class);
-                                       i.putExtra("key", text ); //Optional parameters
-                                       startActivity(i);
+                                       Bundle bundle = new Bundle();
+                                       BottomSheetDialog bottomSheet = new BottomSheetDialog();
+                                       bundle.putString("text", text);
+                                       bottomSheet.setArguments(bundle);
+                                       bottomSheet.show(getSupportFragmentManager(),"text");
                                    }
 
 
@@ -887,14 +818,12 @@ public class BusSelect  extends AppCompatActivity {
         b24b.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View v) {
-                                        SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
-                                        SharedPreferences.Editor editor = sp.edit();
                                         text = "24B";
-                                        SharedPreference.save(context, text);
-
-                                        Intent i = new Intent(BusSelect.this, ReportActivy.class);
-                                        i.putExtra("key", text ); //Optional parameters
-                                        startActivity(i);
+                                        Bundle bundle = new Bundle();
+                                        BottomSheetDialog bottomSheet = new BottomSheetDialog();
+                                        bundle.putString("text", text);
+                                        bottomSheet.setArguments(bundle);
+                                        bottomSheet.show(getSupportFragmentManager(),"text");
                                     }
 
 
@@ -907,14 +836,12 @@ public class BusSelect  extends AppCompatActivity {
         b24t.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View v) {
-                                        SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
-                                        SharedPreferences.Editor editor = sp.edit();
                                         text = "24T";
-                                        SharedPreference.save(context, text);
-
-                                        Intent i = new Intent(BusSelect.this, ReportActivy.class);
-                                        i.putExtra("key", text ); //Optional parameters
-                                        startActivity(i);
+                                        Bundle bundle = new Bundle();
+                                        BottomSheetDialog bottomSheet = new BottomSheetDialog();
+                                        bundle.putString("text", text);
+                                        bottomSheet.setArguments(bundle);
+                                        bottomSheet.show(getSupportFragmentManager(),"text");
                                     }
 
 
@@ -927,14 +854,12 @@ public class BusSelect  extends AppCompatActivity {
         b25.setOnClickListener(new View.OnClickListener() {
                                    @Override
                                    public void onClick(View v) {
-                                       SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
-                                       SharedPreferences.Editor editor = sp.edit();
                                        text = "25";
-                                       SharedPreference.save(context, text);
-
-                                       Intent i = new Intent(BusSelect.this, ReportActivy.class);
-                                       i.putExtra("key", text ); //Optional parameters
-                                       startActivity(i);
+                                       Bundle bundle = new Bundle();
+                                       BottomSheetDialog bottomSheet = new BottomSheetDialog();
+                                       bundle.putString("text", text);
+                                       bottomSheet.setArguments(bundle);
+                                       bottomSheet.show(getSupportFragmentManager(),"text");
                                    }
 
 
@@ -947,14 +872,12 @@ public class BusSelect  extends AppCompatActivity {
         b27.setOnClickListener(new View.OnClickListener() {
                                    @Override
                                    public void onClick(View v) {
-                                       SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
-                                       SharedPreferences.Editor editor = sp.edit();
                                        text = "27";
-                                       SharedPreference.save(context, text);
-
-                                       Intent i = new Intent(BusSelect.this, ReportActivy.class);
-                                       i.putExtra("key", text ); //Optional parameters
-                                       startActivity(i);
+                                       Bundle bundle = new Bundle();
+                                       BottomSheetDialog bottomSheet = new BottomSheetDialog();
+                                       bundle.putString("text", text);
+                                       bottomSheet.setArguments(bundle);
+                                       bottomSheet.show(getSupportFragmentManager(),"text");
                                    }
 
 
@@ -967,14 +890,12 @@ public class BusSelect  extends AppCompatActivity {
         b28.setOnClickListener(new View.OnClickListener() {
                                    @Override
                                    public void onClick(View v) {
-                                       SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
-                                       SharedPreferences.Editor editor = sp.edit();
                                        text = "28";
-                                       SharedPreference.save(context, text);
-
-                                       Intent i = new Intent(BusSelect.this, ReportActivy.class);
-                                       i.putExtra("key", text ); //Optional parameters
-                                       startActivity(i);
+                                       Bundle bundle = new Bundle();
+                                       BottomSheetDialog bottomSheet = new BottomSheetDialog();
+                                       bundle.putString("text", text);
+                                       bottomSheet.setArguments(bundle);
+                                       bottomSheet.show(getSupportFragmentManager(),"text");
                                    }
 
 
@@ -987,14 +908,12 @@ public class BusSelect  extends AppCompatActivity {
         b28b.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View v) {
-                                        SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
-                                        SharedPreferences.Editor editor = sp.edit();
                                         text = "28B";
-                                        SharedPreference.save(context, text);
-
-                                        Intent i = new Intent(BusSelect.this, ReportActivy.class);
-                                        i.putExtra("key", text ); //Optional parameters
-                                        startActivity(i);
+                                        Bundle bundle = new Bundle();
+                                        BottomSheetDialog bottomSheet = new BottomSheetDialog();
+                                        bundle.putString("text", text);
+                                        bottomSheet.setArguments(bundle);
+                                        bottomSheet.show(getSupportFragmentManager(),"text");
                                     }
 
 
@@ -1007,14 +926,12 @@ public class BusSelect  extends AppCompatActivity {
         b30.setOnClickListener(new View.OnClickListener() {
                                    @Override
                                    public void onClick(View v) {
-                                       SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
-                                       SharedPreferences.Editor editor = sp.edit();
                                        text = "30";
-                                       SharedPreference.save(context, text);
-
-                                       Intent i = new Intent(BusSelect.this, ReportActivy.class);
-                                       i.putExtra("key", text ); //Optional parameters
-                                       startActivity(i);
+                                       Bundle bundle = new Bundle();
+                                       BottomSheetDialog bottomSheet = new BottomSheetDialog();
+                                       bundle.putString("text", text);
+                                       bottomSheet.setArguments(bundle);
+                                       bottomSheet.show(getSupportFragmentManager(),"text");
                                    }
 
 
@@ -1027,14 +944,12 @@ public class BusSelect  extends AppCompatActivity {
         b31.setOnClickListener(new View.OnClickListener() {
                                    @Override
                                    public void onClick(View v) {
-                                       SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
-                                       SharedPreferences.Editor editor = sp.edit();
                                        text = "31";
-                                       SharedPreference.save(context, text);
-
-                                       Intent i = new Intent(BusSelect.this, ReportActivy.class);
-                                       i.putExtra("key", text ); //Optional parameters
-                                       startActivity(i);
+                                       Bundle bundle = new Bundle();
+                                       BottomSheetDialog bottomSheet = new BottomSheetDialog();
+                                       bundle.putString("text", text);
+                                       bottomSheet.setArguments(bundle);
+                                       bottomSheet.show(getSupportFragmentManager(),"text");
                                    }
 
 
@@ -1047,14 +962,12 @@ public class BusSelect  extends AppCompatActivity {
         b32.setOnClickListener(new View.OnClickListener() {
                                    @Override
                                    public void onClick(View v) {
-                                       SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
-                                       SharedPreferences.Editor editor = sp.edit();
                                        text = "32";
-                                       SharedPreference.save(context, text);
-
-                                       Intent i = new Intent(BusSelect.this, ReportActivy.class);
-                                       i.putExtra("key", text ); //Optional parameters
-                                       startActivity(i);
+                                       Bundle bundle = new Bundle();
+                                       BottomSheetDialog bottomSheet = new BottomSheetDialog();
+                                       bundle.putString("text", text);
+                                       bottomSheet.setArguments(bundle);
+                                       bottomSheet.show(getSupportFragmentManager(),"text");
                                    }
 
 
@@ -1067,14 +980,12 @@ public class BusSelect  extends AppCompatActivity {
         b33.setOnClickListener(new View.OnClickListener() {
                                    @Override
                                    public void onClick(View v) {
-                                       SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
-                                       SharedPreferences.Editor editor = sp.edit();
                                        text = "33";
-                                       SharedPreference.save(context, text);
-
-                                       Intent i = new Intent(BusSelect.this, ReportActivy.class);
-                                       i.putExtra("key", text ); //Optional parameters
-                                       startActivity(i);
+                                       Bundle bundle = new Bundle();
+                                       BottomSheetDialog bottomSheet = new BottomSheetDialog();
+                                       bundle.putString("text", text);
+                                       bottomSheet.setArguments(bundle);
+                                       bottomSheet.show(getSupportFragmentManager(),"text");
                                    }
 
 
@@ -1087,14 +998,12 @@ public class BusSelect  extends AppCompatActivity {
         b33s.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View v) {
-                                        SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
-                                        SharedPreferences.Editor editor = sp.edit();
                                         text = "33s";
-                                        SharedPreference.save(context, text);
-
-                                        Intent i = new Intent(BusSelect.this, ReportActivy.class);
-                                        i.putExtra("key", text ); //Optional parameters
-                                        startActivity(i);
+                                        Bundle bundle = new Bundle();
+                                        BottomSheetDialog bottomSheet = new BottomSheetDialog();
+                                        bundle.putString("text", text);
+                                        bottomSheet.setArguments(bundle);
+                                        bottomSheet.show(getSupportFragmentManager(),"text");
                                     }
 
 
@@ -1107,14 +1016,12 @@ public class BusSelect  extends AppCompatActivity {
         b34.setOnClickListener(new View.OnClickListener() {
                                    @Override
                                    public void onClick(View v) {
-                                       SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
-                                       SharedPreferences.Editor editor = sp.edit();
                                        text = "34";
-                                       SharedPreference.save(context, text);
-
-                                       Intent i = new Intent(BusSelect.this, ReportActivy.class);
-                                       i.putExtra("key", text ); //Optional parameters
-                                       startActivity(i);
+                                       Bundle bundle = new Bundle();
+                                       BottomSheetDialog bottomSheet = new BottomSheetDialog();
+                                       bundle.putString("text", text);
+                                       bottomSheet.setArguments(bundle);
+                                       bottomSheet.show(getSupportFragmentManager(),"text");
                                    }
 
 
@@ -1127,14 +1034,12 @@ public class BusSelect  extends AppCompatActivity {
         b35.setOnClickListener(new View.OnClickListener() {
                                    @Override
                                    public void onClick(View v) {
-                                       SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
-                                       SharedPreferences.Editor editor = sp.edit();
                                        text = "35";
-                                       SharedPreference.save(context, text);
-
-                                       Intent i = new Intent(BusSelect.this, ReportActivy.class);
-                                       i.putExtra("key", text ); //Optional parameters
-                                       startActivity(i);
+                                       Bundle bundle = new Bundle();
+                                       BottomSheetDialog bottomSheet = new BottomSheetDialog();
+                                       bundle.putString("text", text);
+                                       bottomSheet.setArguments(bundle);
+                                       bottomSheet.show(getSupportFragmentManager(),"text");
                                    }
 
 
@@ -1147,14 +1052,12 @@ public class BusSelect  extends AppCompatActivity {
         b35s.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View v) {
-                                        SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
-                                        SharedPreferences.Editor editor = sp.edit();
                                         text = "35s";
-                                        SharedPreference.save(context, text);
-
-                                        Intent i = new Intent(BusSelect.this, ReportActivy.class);
-                                        i.putExtra("key", text ); //Optional parameters
-                                        startActivity(i);
+                                        Bundle bundle = new Bundle();
+                                        BottomSheetDialog bottomSheet = new BottomSheetDialog();
+                                        bundle.putString("text", text);
+                                        bottomSheet.setArguments(bundle);
+                                        bottomSheet.show(getSupportFragmentManager(),"text");
                                     }
 
 
@@ -1167,14 +1070,12 @@ public class BusSelect  extends AppCompatActivity {
         b35t.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View v) {
-                                        SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
-                                        SharedPreferences.Editor editor = sp.edit();
                                         text = "35t";
-                                        SharedPreference.save(context, text);
-
-                                        Intent i = new Intent(BusSelect.this, ReportActivy.class);
-                                        i.putExtra("key", text ); //Optional parameters
-                                        startActivity(i);
+                                        Bundle bundle = new Bundle();
+                                        BottomSheetDialog bottomSheet = new BottomSheetDialog();
+                                        bundle.putString("text", text);
+                                        bottomSheet.setArguments(bundle);
+                                        bottomSheet.show(getSupportFragmentManager(),"text");
                                     }
 
 
@@ -1187,14 +1088,12 @@ public class BusSelect  extends AppCompatActivity {
         b36.setOnClickListener(new View.OnClickListener() {
                                    @Override
                                    public void onClick(View v) {
-                                       SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
-                                       SharedPreferences.Editor editor = sp.edit();
                                        text = "36";
-                                       SharedPreference.save(context, text);
-
-                                       Intent i = new Intent(BusSelect.this, ReportActivy.class);
-                                       i.putExtra("key", text ); //Optional parameters
-                                       startActivity(i);
+                                       Bundle bundle = new Bundle();
+                                       BottomSheetDialog bottomSheet = new BottomSheetDialog();
+                                       bundle.putString("text", text);
+                                       bottomSheet.setArguments(bundle);
+                                       bottomSheet.show(getSupportFragmentManager(),"text");
                                    }
 
 
@@ -1207,14 +1106,12 @@ public class BusSelect  extends AppCompatActivity {
         b36b.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View v) {
-                                        SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
-                                        SharedPreferences.Editor editor = sp.edit();
                                         text = "36B";
-                                        SharedPreference.save(context, text);
-
-                                        Intent i = new Intent(BusSelect.this, ReportActivy.class);
-                                        i.putExtra("key", text ); //Optional parameters
-                                        startActivity(i);
+                                        Bundle bundle = new Bundle();
+                                        BottomSheetDialog bottomSheet = new BottomSheetDialog();
+                                        bundle.putString("text", text);
+                                        bottomSheet.setArguments(bundle);
+                                        bottomSheet.show(getSupportFragmentManager(),"text");
                                     }
 
 
@@ -1227,14 +1124,12 @@ public class BusSelect  extends AppCompatActivity {
         b37.setOnClickListener(new View.OnClickListener() {
                                    @Override
                                    public void onClick(View v) {
-                                       SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
-                                       SharedPreferences.Editor editor = sp.edit();
                                        text = "37";
-                                       SharedPreference.save(context, text);
-
-                                       Intent i = new Intent(BusSelect.this, ReportActivy.class);
-                                       i.putExtra("key", text ); //Optional parameters
-                                       startActivity(i);
+                                       Bundle bundle = new Bundle();
+                                       BottomSheetDialog bottomSheet = new BottomSheetDialog();
+                                       bundle.putString("text", text);
+                                       bottomSheet.setArguments(bundle);
+                                       bottomSheet.show(getSupportFragmentManager(),"text");
                                    }
 
 
@@ -1247,14 +1142,12 @@ public class BusSelect  extends AppCompatActivity {
         b37a.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View v) {
-                                        SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
-                                        SharedPreferences.Editor editor = sp.edit();
                                         text = "37A";
-                                        SharedPreference.save(context, text);
-
-                                        Intent i = new Intent(BusSelect.this, ReportActivy.class);
-                                        i.putExtra("key", text ); //Optional parameters
-                                        startActivity(i);
+                                        Bundle bundle = new Bundle();
+                                        BottomSheetDialog bottomSheet = new BottomSheetDialog();
+                                        bundle.putString("text", text);
+                                        bottomSheet.setArguments(bundle);
+                                        bottomSheet.show(getSupportFragmentManager(),"text");
                                     }
 
 
@@ -1267,14 +1160,12 @@ public class BusSelect  extends AppCompatActivity {
         b37s.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View v) {
-                                        SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
-                                        SharedPreferences.Editor editor = sp.edit();
                                         text = "37S";
-                                        SharedPreference.save(context, text);
-
-                                        Intent i = new Intent(BusSelect.this, ReportActivy.class);
-                                        i.putExtra("key", text ); //Optional parameters
-                                        startActivity(i);
+                                        Bundle bundle = new Bundle();
+                                        BottomSheetDialog bottomSheet = new BottomSheetDialog();
+                                        bundle.putString("text", text);
+                                        bottomSheet.setArguments(bundle);
+                                        bottomSheet.show(getSupportFragmentManager(),"text");
                                     }
 
 
@@ -1287,14 +1178,12 @@ public class BusSelect  extends AppCompatActivity {
         b38.setOnClickListener(new View.OnClickListener() {
                                    @Override
                                    public void onClick(View v) {
-                                       SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
-                                       SharedPreferences.Editor editor = sp.edit();
                                        text = "38";
-                                       SharedPreference.save(context, text);
-
-                                       Intent i = new Intent(BusSelect.this, ReportActivy.class);
-                                       i.putExtra("key", text ); //Optional parameters
-                                       startActivity(i);
+                                       Bundle bundle = new Bundle();
+                                       BottomSheetDialog bottomSheet = new BottomSheetDialog();
+                                       bundle.putString("text", text);
+                                       bottomSheet.setArguments(bundle);
+                                       bottomSheet.show(getSupportFragmentManager(),"text");
                                    }
 
 
@@ -1307,14 +1196,12 @@ public class BusSelect  extends AppCompatActivity {
         b39.setOnClickListener(new View.OnClickListener() {
                                    @Override
                                    public void onClick(View v) {
-                                       SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
-                                       SharedPreferences.Editor editor = sp.edit();
                                        text = "39";
-                                       SharedPreference.save(context, text);
-
-                                       Intent i = new Intent(BusSelect.this, ReportActivy.class);
-                                       i.putExtra("key", text ); //Optional parameters
-                                       startActivity(i);
+                                       Bundle bundle = new Bundle();
+                                       BottomSheetDialog bottomSheet = new BottomSheetDialog();
+                                       bundle.putString("text", text);
+                                       bottomSheet.setArguments(bundle);
+                                       bottomSheet.show(getSupportFragmentManager(),"text");
                                    }
 
 
@@ -1327,14 +1214,13 @@ public class BusSelect  extends AppCompatActivity {
         b40.setOnClickListener(new View.OnClickListener() {
                                    @Override
                                    public void onClick(View v) {
-                                       SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
-                                       SharedPreferences.Editor editor = sp.edit();
-                                       text = "40";
-                                       SharedPreference.save(context, text);
 
-                                       Intent i = new Intent(BusSelect.this, ReportActivy.class);
-                                       i.putExtra("key", text ); //Optional parameters
-                                       startActivity(i);
+                                       text = "40";
+                                       Bundle bundle = new Bundle();
+                                       BottomSheetDialog bottomSheet = new BottomSheetDialog();
+                                       bundle.putString("text", text);
+                                       bottomSheet.setArguments(bundle);
+                                       bottomSheet.show(getSupportFragmentManager(),"text");
                                    }
 
 
@@ -1347,14 +1233,12 @@ public class BusSelect  extends AppCompatActivity {
         b41.setOnClickListener(new View.OnClickListener() {
                                    @Override
                                    public void onClick(View v) {
-                                       SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
-                                       SharedPreferences.Editor editor = sp.edit();
                                        text = "41";
-                                       SharedPreference.save(context, text);
-
-                                       Intent i = new Intent(BusSelect.this, ReportActivy.class);
-                                       i.putExtra("key", text ); //Optional parameters
-                                       startActivity(i);
+                                       Bundle bundle = new Bundle();
+                                       BottomSheetDialog bottomSheet = new BottomSheetDialog();
+                                       bundle.putString("text", text);
+                                       bottomSheet.setArguments(bundle);
+                                       bottomSheet.show(getSupportFragmentManager(),"text");
                                    }
 
 
@@ -1367,14 +1251,12 @@ public class BusSelect  extends AppCompatActivity {
         b42.setOnClickListener(new View.OnClickListener() {
                                    @Override
                                    public void onClick(View v) {
-                                       SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
-                                       SharedPreferences.Editor editor = sp.edit();
                                        text = "42";
-                                       SharedPreference.save(context, text);
-
-                                       Intent i = new Intent(BusSelect.this, ReportActivy.class);
-                                       i.putExtra("key", text ); //Optional parameters
-                                       startActivity(i);
+                                       Bundle bundle = new Bundle();
+                                       BottomSheetDialog bottomSheet = new BottomSheetDialog();
+                                       bundle.putString("text", text);
+                                       bottomSheet.setArguments(bundle);
+                                       bottomSheet.show(getSupportFragmentManager(),"text");
                                    }
 
 
@@ -1386,15 +1268,13 @@ public class BusSelect  extends AppCompatActivity {
         );
         b42t.setOnClickListener(new View.OnClickListener() {
                                     @Override
-                                    public void onClick(View v) {
-                                        SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
-                                        SharedPreferences.Editor editor = sp.edit();
+                                    public void onClick(View v) { ;
                                         text = "42T";
-                                        SharedPreference.save(context, text);
-
-                                        Intent i = new Intent(BusSelect.this, ReportActivy.class);
-                                        i.putExtra("key", text ); //Optional parameters
-                                        startActivity(i);
+                                        Bundle bundle = new Bundle();
+                                        BottomSheetDialog bottomSheet = new BottomSheetDialog();
+                                        bundle.putString("text", text);
+                                        bottomSheet.setArguments(bundle);
+                                        bottomSheet.show(getSupportFragmentManager(),"text");
                                     }
 
 
@@ -1407,14 +1287,12 @@ public class BusSelect  extends AppCompatActivity {
         b44.setOnClickListener(new View.OnClickListener() {
                                    @Override
                                    public void onClick(View v) {
-                                       SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
-                                       SharedPreferences.Editor editor = sp.edit();
                                        text = "44";
-                                       SharedPreference.save(context, text);
-
-                                       Intent i = new Intent(BusSelect.this, ReportActivy.class);
-                                       i.putExtra("key", text ); //Optional parameters
-                                       startActivity(i);
+                                       Bundle bundle = new Bundle();
+                                       BottomSheetDialog bottomSheet = new BottomSheetDialog();
+                                       bundle.putString("text", text);
+                                       bottomSheet.setArguments(bundle);
+                                       bottomSheet.show(getSupportFragmentManager(),"text");
                                    }
 
 
@@ -1427,14 +1305,12 @@ public class BusSelect  extends AppCompatActivity {
         b45.setOnClickListener(new View.OnClickListener() {
                                    @Override
                                    public void onClick(View v) {
-                                       SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
-                                       SharedPreferences.Editor editor = sp.edit();
                                        text = "45";
-                                       SharedPreference.save(context, text);
-
-                                       Intent i = new Intent(BusSelect.this, ReportActivy.class);
-                                       i.putExtra("key", text ); //Optional parameters
-                                       startActivity(i);
+                                       Bundle bundle = new Bundle();
+                                       BottomSheetDialog bottomSheet = new BottomSheetDialog();
+                                       bundle.putString("text", text);
+                                       bottomSheet.setArguments(bundle);
+                                       bottomSheet.show(getSupportFragmentManager(),"text");
                                    }
 
 
@@ -1447,14 +1323,12 @@ public class BusSelect  extends AppCompatActivity {
         b46.setOnClickListener(new View.OnClickListener() {
                                    @Override
                                    public void onClick(View v) {
-                                       SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
-                                       SharedPreferences.Editor editor = sp.edit();
                                        text = "46";
-                                       SharedPreference.save(context, text);
-
-                                       Intent i = new Intent(BusSelect.this, ReportActivy.class);
-                                       i.putExtra("key", text ); //Optional parameters
-                                       startActivity(i);
+                                       Bundle bundle = new Bundle();
+                                       BottomSheetDialog bottomSheet = new BottomSheetDialog();
+                                       bundle.putString("text", text);
+                                       bottomSheet.setArguments(bundle);
+                                       bottomSheet.show(getSupportFragmentManager(),"text");
                                    }
 
 
@@ -1467,14 +1341,12 @@ public class BusSelect  extends AppCompatActivity {
         b46s.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View v) {
-                                        SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
-                                        SharedPreferences.Editor editor = sp.edit();
                                         text = "46S";
-                                        SharedPreference.save(context, text);
-
-                                        Intent i = new Intent(BusSelect.this, ReportActivy.class);
-                                        i.putExtra("key", text ); //Optional parameters
-                                        startActivity(i);
+                                        Bundle bundle = new Bundle();
+                                        BottomSheetDialog bottomSheet = new BottomSheetDialog();
+                                        bundle.putString("text", text);
+                                        bottomSheet.setArguments(bundle);
+                                        bottomSheet.show(getSupportFragmentManager(),"text");
                                     }
 
 
@@ -1487,14 +1359,13 @@ public class BusSelect  extends AppCompatActivity {
         b47.setOnClickListener(new View.OnClickListener() {
                                    @Override
                                    public void onClick(View v) {
-                                       SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
-                                       SharedPreferences.Editor editor = sp.edit();
-                                       text = "47";
-                                       SharedPreference.save(context, text);
 
-                                       Intent i = new Intent(BusSelect.this, ReportActivy.class);
-                                       i.putExtra("key", text ); //Optional parameters
-                                       startActivity(i);
+                                       text = "47";
+                                       Bundle bundle = new Bundle();
+                                       BottomSheetDialog bottomSheet = new BottomSheetDialog();
+                                       bundle.putString("text", text);
+                                       bottomSheet.setArguments(bundle);
+                                       bottomSheet.show(getSupportFragmentManager(),"text");
                                    }
 
 
@@ -1507,14 +1378,12 @@ public class BusSelect  extends AppCompatActivity {
         b48.setOnClickListener(new View.OnClickListener() {
                                    @Override
                                    public void onClick(View v) {
-                                       SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
-                                       SharedPreferences.Editor editor = sp.edit();
                                        text = "48";
-                                       SharedPreference.save(context, text);
-
-                                       Intent i = new Intent(BusSelect.this, ReportActivy.class);
-                                       i.putExtra("key", text ); //Optional parameters
-                                       startActivity(i);
+                                       Bundle bundle = new Bundle();
+                                       BottomSheetDialog bottomSheet = new BottomSheetDialog();
+                                       bundle.putString("text", text);
+                                       bottomSheet.setArguments(bundle);
+                                       bottomSheet.show(getSupportFragmentManager(),"text");
                                    }
 
 
@@ -1527,14 +1396,12 @@ public class BusSelect  extends AppCompatActivity {
         b48t.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View v) {
-                                        SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
-                                        SharedPreferences.Editor editor = sp.edit();
                                         text = "48T";
-                                        SharedPreference.save(context, text);
-
-                                        Intent i = new Intent(BusSelect.this, ReportActivy.class);
-                                        i.putExtra("key", text ); //Optional parameters
-                                        startActivity(i);
+                                        Bundle bundle = new Bundle();
+                                        BottomSheetDialog bottomSheet = new BottomSheetDialog();
+                                        bundle.putString("text", text);
+                                        bottomSheet.setArguments(bundle);
+                                        bottomSheet.show(getSupportFragmentManager(),"text");
                                     }
 
 
@@ -1547,14 +1414,12 @@ public class BusSelect  extends AppCompatActivity {
         b49.setOnClickListener(new View.OnClickListener() {
                                    @Override
                                    public void onClick(View v) {
-                                       SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
-                                       SharedPreferences.Editor editor = sp.edit();
                                        text = "49";
-                                       SharedPreference.save(context, text);
-
-                                       Intent i = new Intent(BusSelect.this, ReportActivy.class);
-                                       i.putExtra("key", text ); //Optional parameters
-                                       startActivity(i);
+                                       Bundle bundle = new Bundle();
+                                       BottomSheetDialog bottomSheet = new BottomSheetDialog();
+                                       bundle.putString("text", text);
+                                       bottomSheet.setArguments(bundle);
+                                       bottomSheet.show(getSupportFragmentManager(),"text");
                                    }
 
 
@@ -1567,14 +1432,12 @@ public class BusSelect  extends AppCompatActivity {
         b50.setOnClickListener(new View.OnClickListener() {
                                    @Override
                                    public void onClick(View v) {
-                                       SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
-                                       SharedPreferences.Editor editor = sp.edit();
                                        text = "50";
-                                       SharedPreference.save(context, text);
-
-                                       Intent i = new Intent(BusSelect.this, ReportActivy.class);
-                                       i.putExtra("key", text ); //Optional parameters
-                                       startActivity(i);
+                                       Bundle bundle = new Bundle();
+                                       BottomSheetDialog bottomSheet = new BottomSheetDialog();
+                                       bundle.putString("text", text);
+                                       bottomSheet.setArguments(bundle);
+                                       bottomSheet.show(getSupportFragmentManager(),"text");
                                    }
 
 
@@ -1587,14 +1450,12 @@ public class BusSelect  extends AppCompatActivity {
         b51.setOnClickListener(new View.OnClickListener() {
                                    @Override
                                    public void onClick(View v) {
-                                       SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
-                                       SharedPreferences.Editor editor = sp.edit();
                                        text = "51";
-                                       SharedPreference.save(context, text);
-
-                                       Intent i = new Intent(BusSelect.this, ReportActivy.class);
-                                       i.putExtra("key", text ); //Optional parameters
-                                       startActivity(i);
+                                       Bundle bundle = new Bundle();
+                                       BottomSheetDialog bottomSheet = new BottomSheetDialog();
+                                       bundle.putString("text", text);
+                                       bottomSheet.setArguments(bundle);
+                                       bottomSheet.show(getSupportFragmentManager(),"text");
                                    }
 
 
@@ -1607,14 +1468,12 @@ public class BusSelect  extends AppCompatActivity {
         b52.setOnClickListener(new View.OnClickListener() {
                                    @Override
                                    public void onClick(View v) {
-                                       SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
-                                       SharedPreferences.Editor editor = sp.edit();
                                        text = "52";
-                                       SharedPreference.save(context, text);
-
-                                       Intent i = new Intent(BusSelect.this, ReportActivy.class);
-                                       i.putExtra("key", text ); //Optional parameters
-                                       startActivity(i);
+                                       Bundle bundle = new Bundle();
+                                       BottomSheetDialog bottomSheet = new BottomSheetDialog();
+                                       bundle.putString("text", text);
+                                       bottomSheet.setArguments(bundle);
+                                       bottomSheet.show(getSupportFragmentManager(),"text");
                                    }
 
 
@@ -1627,14 +1486,12 @@ public class BusSelect  extends AppCompatActivity {
         b53.setOnClickListener(new View.OnClickListener() {
                                    @Override
                                    public void onClick(View v) {
-                                       SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
-                                       SharedPreferences.Editor editor = sp.edit();
                                        text = "53";
-                                       SharedPreference.save(context, text);
-
-                                       Intent i = new Intent(BusSelect.this, ReportActivy.class);
-                                       i.putExtra("key", text ); //Optional parameters
-                                       startActivity(i);
+                                       Bundle bundle = new Bundle();
+                                       BottomSheetDialog bottomSheet = new BottomSheetDialog();
+                                       bundle.putString("text", text);
+                                       bottomSheet.setArguments(bundle);
+                                       bottomSheet.show(getSupportFragmentManager(),"text");
                                    }
 
 
@@ -1647,14 +1504,12 @@ public class BusSelect  extends AppCompatActivity {
         b54.setOnClickListener(new View.OnClickListener() {
                                    @Override
                                    public void onClick(View v) {
-                                       SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
-                                       SharedPreferences.Editor editor = sp.edit();
                                        text = "54";
-                                       SharedPreference.save(context, text);
-
-                                       Intent i = new Intent(BusSelect.this, ReportActivy.class);
-                                       i.putExtra("key", text ); //Optional parameters
-                                       startActivity(i);
+                                       Bundle bundle = new Bundle();
+                                       BottomSheetDialog bottomSheet = new BottomSheetDialog();
+                                       bundle.putString("text", text);
+                                       bottomSheet.setArguments(bundle);
+                                       bottomSheet.show(getSupportFragmentManager(),"text");
                                    }
 
 
@@ -1667,14 +1522,12 @@ public class BusSelect  extends AppCompatActivity {
         b55.setOnClickListener(new View.OnClickListener() {
                                    @Override
                                    public void onClick(View v) {
-                                       SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
-                                       SharedPreferences.Editor editor = sp.edit();
                                        text = "55";
-                                       SharedPreference.save(context, text);
-
-                                       Intent i = new Intent(BusSelect.this, ReportActivy.class);
-                                       i.putExtra("key", text ); //Optional parameters
-                                       startActivity(i);
+                                       Bundle bundle = new Bundle();
+                                       BottomSheetDialog bottomSheet = new BottomSheetDialog();
+                                       bundle.putString("text", text);
+                                       bottomSheet.setArguments(bundle);
+                                       bottomSheet.show(getSupportFragmentManager(),"text");
                                    }
 
 
@@ -1687,14 +1540,12 @@ public class BusSelect  extends AppCompatActivity {
         b56.setOnClickListener(new View.OnClickListener() {
                                    @Override
                                    public void onClick(View v) {
-                                       SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
-                                       SharedPreferences.Editor editor = sp.edit();
                                        text = "56";
-                                       SharedPreference.save(context, text);
-
-                                       Intent i = new Intent(BusSelect.this, ReportActivy.class);
-                                       i.putExtra("key", text ); //Optional parameters
-                                       startActivity(i);
+                                       Bundle bundle = new Bundle();
+                                       BottomSheetDialog bottomSheet = new BottomSheetDialog();
+                                       bundle.putString("text", text);
+                                       bottomSheet.setArguments(bundle);
+                                       bottomSheet.show(getSupportFragmentManager(),"text");
                                    }
 
 
@@ -1707,14 +1558,12 @@ public class BusSelect  extends AppCompatActivity {
         b60.setOnClickListener(new View.OnClickListener() {
                                    @Override
                                    public void onClick(View v) {
-                                       SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
-                                       SharedPreferences.Editor editor = sp.edit();
                                        text = "60";
-                                       SharedPreference.save(context, text);
-
-                                       Intent i = new Intent(BusSelect.this, ReportActivy.class);
-                                       i.putExtra("key", text ); //Optional parameters
-                                       startActivity(i);
+                                       Bundle bundle = new Bundle();
+                                       BottomSheetDialog bottomSheet = new BottomSheetDialog();
+                                       bundle.putString("text", text);
+                                       bottomSheet.setArguments(bundle);
+                                       bottomSheet.show(getSupportFragmentManager(),"text");
                                    }
 
 
@@ -1727,14 +1576,12 @@ public class BusSelect  extends AppCompatActivity {
         b61.setOnClickListener(new View.OnClickListener() {
                                    @Override
                                    public void onClick(View v) {
-                                       SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
-                                       SharedPreferences.Editor editor = sp.edit();
                                        text = "61";
-                                       SharedPreference.save(context, text);
-
-                                       Intent i = new Intent(BusSelect.this, ReportActivy.class);
-                                       i.putExtra("key", text ); //Optional parameters
-                                       startActivity(i);
+                                       Bundle bundle = new Bundle();
+                                       BottomSheetDialog bottomSheet = new BottomSheetDialog();
+                                       bundle.putString("text", text);
+                                       bottomSheet.setArguments(bundle);
+                                       bottomSheet.show(getSupportFragmentManager(),"text");
                                    }
 
 
@@ -1747,14 +1594,12 @@ public class BusSelect  extends AppCompatActivity {
         b67.setOnClickListener(new View.OnClickListener() {
                                    @Override
                                    public void onClick(View v) {
-                                       SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
-                                       SharedPreferences.Editor editor = sp.edit();
                                        text = "67";
-                                       SharedPreference.save(context, text);
-
-                                       Intent i = new Intent(BusSelect.this, ReportActivy.class);
-                                       i.putExtra("key", text ); //Optional parameters
-                                       startActivity(i);
+                                       Bundle bundle = new Bundle();
+                                       BottomSheetDialog bottomSheet = new BottomSheetDialog();
+                                       bundle.putString("text", text);
+                                       bottomSheet.setArguments(bundle);
+                                       bottomSheet.show(getSupportFragmentManager(),"text");
                                    }
 
 
@@ -1767,14 +1612,12 @@ public class BusSelect  extends AppCompatActivity {
         b70.setOnClickListener(new View.OnClickListener() {
                                    @Override
                                    public void onClick(View v) {
-                                       SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
-                                       SharedPreferences.Editor editor = sp.edit();
                                        text = "70";
-                                       SharedPreference.save(context, text);
-
-                                       Intent i = new Intent(BusSelect.this, ReportActivy.class);
-                                       i.putExtra("key", text ); //Optional parameters
-                                       startActivity(i);
+                                       Bundle bundle = new Bundle();
+                                       BottomSheetDialog bottomSheet = new BottomSheetDialog();
+                                       bundle.putString("text", text);
+                                       bottomSheet.setArguments(bundle);
+                                       bottomSheet.show(getSupportFragmentManager(),"text");
                                    }
 
 
@@ -1787,14 +1630,12 @@ public class BusSelect  extends AppCompatActivity {
         b72.setOnClickListener(new View.OnClickListener() {
                                    @Override
                                    public void onClick(View v) {
-                                       SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
-                                       SharedPreferences.Editor editor = sp.edit();
                                        text = "72";
-                                       SharedPreference.save(context, text);
-
-                                       Intent i = new Intent(BusSelect.this, ReportActivy.class);
-                                       i.putExtra("key", text ); //Optional parameters
-                                       startActivity(i);
+                                       Bundle bundle = new Bundle();
+                                       BottomSheetDialog bottomSheet = new BottomSheetDialog();
+                                       bundle.putString("text", text);
+                                       bottomSheet.setArguments(bundle);
+                                       bottomSheet.show(getSupportFragmentManager(),"text");
                                    }
 
 
@@ -1807,14 +1648,12 @@ public class BusSelect  extends AppCompatActivity {
         b73.setOnClickListener(new View.OnClickListener() {
                                    @Override
                                    public void onClick(View v) {
-                                       SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
-                                       SharedPreferences.Editor editor = sp.edit();
                                        text = "73";
-                                       SharedPreference.save(context, text);
-
-                                       Intent i = new Intent(BusSelect.this, ReportActivy.class);
-                                       i.putExtra("key", text ); //Optional parameters
-                                       startActivity(i);
+                                       Bundle bundle = new Bundle();
+                                       BottomSheetDialog bottomSheet = new BottomSheetDialog();
+                                       bundle.putString("text", text);
+                                       bottomSheet.setArguments(bundle);
+                                       bottomSheet.show(getSupportFragmentManager(),"text");
                                    }
 
 
@@ -1827,14 +1666,12 @@ public class BusSelect  extends AppCompatActivity {
         b74.setOnClickListener(new View.OnClickListener() {
                                    @Override
                                    public void onClick(View v) {
-                                       SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
-                                       SharedPreferences.Editor editor = sp.edit();
                                        text = "74";
-                                       SharedPreference.save(context, text);
-
-                                       Intent i = new Intent(BusSelect.this, ReportActivy.class);
-                                       i.putExtra("key", text ); //Optional parameters
-                                       startActivity(i);
+                                       Bundle bundle = new Bundle();
+                                       BottomSheetDialog bottomSheet = new BottomSheetDialog();
+                                       bundle.putString("text", text);
+                                       bottomSheet.setArguments(bundle);
+                                       bottomSheet.show(getSupportFragmentManager(),"text");
                                    }
 
 
@@ -1847,14 +1684,12 @@ public class BusSelect  extends AppCompatActivity {
         b80.setOnClickListener(new View.OnClickListener() {
                                    @Override
                                    public void onClick(View v) {
-                                       SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
-                                       SharedPreferences.Editor editor = sp.edit();
                                        text = "80";
-                                       SharedPreference.save(context, text);
-
-                                       Intent i = new Intent(BusSelect.this, ReportActivy.class);
-                                       i.putExtra("key", text ); //Optional parameters
-                                       startActivity(i);
+                                       Bundle bundle = new Bundle();
+                                       BottomSheetDialog bottomSheet = new BottomSheetDialog();
+                                       bundle.putString("text", text);
+                                       bottomSheet.setArguments(bundle);
+                                       bottomSheet.show(getSupportFragmentManager(),"text");
                                    }
 
 
@@ -1867,14 +1702,12 @@ public class BusSelect  extends AppCompatActivity {
         b81.setOnClickListener(new View.OnClickListener() {
                                    @Override
                                    public void onClick(View v) {
-                                       SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
-                                       SharedPreferences.Editor editor = sp.edit();
                                        text = "81";
-                                       SharedPreference.save(context, text);
-
-                                       Intent i = new Intent(BusSelect.this, ReportActivy.class);
-                                       i.putExtra("key", text ); //Optional parameters
-                                       startActivity(i);
+                                       Bundle bundle = new Bundle();
+                                       BottomSheetDialog bottomSheet = new BottomSheetDialog();
+                                       bundle.putString("text", text);
+                                       bottomSheet.setArguments(bundle);
+                                       bottomSheet.show(getSupportFragmentManager(),"text");
                                    }
 
 
@@ -1887,14 +1720,12 @@ public class BusSelect  extends AppCompatActivity {
         b82.setOnClickListener(new View.OnClickListener() {
                                    @Override
                                    public void onClick(View v) {
-                                       SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
-                                       SharedPreferences.Editor editor = sp.edit();
                                        text = "82";
-                                       SharedPreference.save(context, text);
-
-                                       Intent i = new Intent(BusSelect.this, ReportActivy.class);
-                                       i.putExtra("key", text ); //Optional parameters
-                                       startActivity(i);
+                                       Bundle bundle = new Bundle();
+                                       BottomSheetDialog bottomSheet = new BottomSheetDialog();
+                                       bundle.putString("text", text);
+                                       bottomSheet.setArguments(bundle);
+                                       bottomSheet.show(getSupportFragmentManager(),"text");
                                    }
 
 
@@ -1907,14 +1738,12 @@ public class BusSelect  extends AppCompatActivity {
         b82s.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View v) {
-                                        SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
-                                        SharedPreferences.Editor editor = sp.edit();
                                         text = "82S";
-                                        SharedPreference.save(context, text);
-
-                                        Intent i = new Intent(BusSelect.this, ReportActivy.class);
-                                        i.putExtra("key", text ); //Optional parameters
-                                        startActivity(i);
+                                        Bundle bundle = new Bundle();
+                                        BottomSheetDialog bottomSheet = new BottomSheetDialog();
+                                        bundle.putString("text", text);
+                                        bottomSheet.setArguments(bundle);
+                                        bottomSheet.show(getSupportFragmentManager(),"text");
                                     }
 
 
@@ -1927,14 +1756,12 @@ public class BusSelect  extends AppCompatActivity {
         b83.setOnClickListener(new View.OnClickListener() {
                                    @Override
                                    public void onClick(View v) {
-                                       SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
-                                       SharedPreferences.Editor editor = sp.edit();
                                        text = "83";
-                                       SharedPreference.save(context, text);
-
-                                       Intent i = new Intent(BusSelect.this, ReportActivy.class);
-                                       i.putExtra("key", text ); //Optional parameters
-                                       startActivity(i);
+                                       Bundle bundle = new Bundle();
+                                       BottomSheetDialog bottomSheet = new BottomSheetDialog();
+                                       bundle.putString("text", text);
+                                       bottomSheet.setArguments(bundle);
+                                       bottomSheet.show(getSupportFragmentManager(),"text");
                                    }
 
 
@@ -1947,14 +1774,12 @@ public class BusSelect  extends AppCompatActivity {
         b84.setOnClickListener(new View.OnClickListener() {
                                    @Override
                                    public void onClick(View v) {
-                                       SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
-                                       SharedPreferences.Editor editor = sp.edit();
                                        text = "84";
-                                       SharedPreference.save(context, text);
-
-                                       Intent i = new Intent(BusSelect.this, ReportActivy.class);
-                                       i.putExtra("key", text ); //Optional parameters
-                                       startActivity(i);
+                                       Bundle bundle = new Bundle();
+                                       BottomSheetDialog bottomSheet = new BottomSheetDialog();
+                                       bundle.putString("text", text);
+                                       bottomSheet.setArguments(bundle);
+                                       bottomSheet.show(getSupportFragmentManager(),"text");
                                    }
 
 
@@ -1967,14 +1792,12 @@ public class BusSelect  extends AppCompatActivity {
         b86.setOnClickListener(new View.OnClickListener() {
                                    @Override
                                    public void onClick(View v) {
-                                       SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
-                                       SharedPreferences.Editor editor = sp.edit();
                                        text = "86";
-                                       SharedPreference.save(context, text);
-
-                                       Intent i = new Intent(BusSelect.this, ReportActivy.class);
-                                       i.putExtra("key", text ); //Optional parameters
-                                       startActivity(i);
+                                       Bundle bundle = new Bundle();
+                                       BottomSheetDialog bottomSheet = new BottomSheetDialog();
+                                       bundle.putString("text", text);
+                                       bottomSheet.setArguments(bundle);
+                                       bottomSheet.show(getSupportFragmentManager(),"text");
                                    }
 
 
@@ -1987,14 +1810,12 @@ public class BusSelect  extends AppCompatActivity {
         b88.setOnClickListener(new View.OnClickListener() {
                                    @Override
                                    public void onClick(View v) {
-                                       SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
-                                       SharedPreferences.Editor editor = sp.edit();
                                        text = "88";
-                                       SharedPreference.save(context, text);
-
-                                       Intent i = new Intent(BusSelect.this, ReportActivy.class);
-                                       i.putExtra("key", text ); //Optional parameters
-                                       startActivity(i);
+                                       Bundle bundle = new Bundle();
+                                       BottomSheetDialog bottomSheet = new BottomSheetDialog();
+                                       bundle.putString("text", text);
+                                       bottomSheet.setArguments(bundle);
+                                       bottomSheet.show(getSupportFragmentManager(),"text");
                                    }
 
 
@@ -2007,14 +1828,12 @@ public class BusSelect  extends AppCompatActivity {
         b89.setOnClickListener(new View.OnClickListener() {
                                    @Override
                                    public void onClick(View v) {
-                                       SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
-                                       SharedPreferences.Editor editor = sp.edit();
                                        text = "89";
-                                       SharedPreference.save(context, text);
-
-                                       Intent i = new Intent(BusSelect.this, ReportActivy.class);
-                                       i.putExtra("key", text ); //Optional parameters
-                                       startActivity(i);
+                                       Bundle bundle = new Bundle();
+                                       BottomSheetDialog bottomSheet = new BottomSheetDialog();
+                                       bundle.putString("text", text);
+                                       bottomSheet.setArguments(bundle);
+                                       bottomSheet.show(getSupportFragmentManager(),"text");
                                    }
 
 
@@ -2027,14 +1846,12 @@ public class BusSelect  extends AppCompatActivity {
         b91.setOnClickListener(new View.OnClickListener() {
                                    @Override
                                    public void onClick(View v) {
-                                       SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
-                                       SharedPreferences.Editor editor = sp.edit();
                                        text = "91";
-                                       SharedPreference.save(context, text);
-
-                                       Intent i = new Intent(BusSelect.this, ReportActivy.class);
-                                       i.putExtra("key", text ); //Optional parameters
-                                       startActivity(i);
+                                       Bundle bundle = new Bundle();
+                                       BottomSheetDialog bottomSheet = new BottomSheetDialog();
+                                       bundle.putString("text", text);
+                                       bottomSheet.setArguments(bundle);
+                                       bottomSheet.show(getSupportFragmentManager(),"text");
                                    }
 
 
@@ -2047,14 +1864,12 @@ public class BusSelect  extends AppCompatActivity {
         b96.setOnClickListener(new View.OnClickListener() {
                                    @Override
                                    public void onClick(View v) {
-                                       SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
-                                       SharedPreferences.Editor editor = sp.edit();
                                        text = "96";
-                                       SharedPreference.save(context, text);
-
-                                       Intent i = new Intent(BusSelect.this, ReportActivy.class);
-                                       i.putExtra("key", text ); //Optional parameters
-                                       startActivity(i);
+                                       Bundle bundle = new Bundle();
+                                       BottomSheetDialog bottomSheet = new BottomSheetDialog();
+                                       bundle.putString("text", text);
+                                       bottomSheet.setArguments(bundle);
+                                       bottomSheet.show(getSupportFragmentManager(),"text");
                                    }
 
 
@@ -2067,14 +1882,12 @@ public class BusSelect  extends AppCompatActivity {
         b97.setOnClickListener(new View.OnClickListener() {
                                    @Override
                                    public void onClick(View v) {
-                                       SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
-                                       SharedPreferences.Editor editor = sp.edit();
                                        text = "97";
-                                       SharedPreference.save(context, text);
-
-                                       Intent i = new Intent(BusSelect.this, ReportActivy.class);
-                                       i.putExtra("key", text ); //Optional parameters
-                                       startActivity(i);
+                                       Bundle bundle = new Bundle();
+                                       BottomSheetDialog bottomSheet = new BottomSheetDialog();
+                                       bundle.putString("text", text);
+                                       bottomSheet.setArguments(bundle);
+                                       bottomSheet.show(getSupportFragmentManager(),"text");
                                    }
 
 
@@ -2087,14 +1900,12 @@ public class BusSelect  extends AppCompatActivity {
         b98.setOnClickListener(new View.OnClickListener() {
                                    @Override
                                    public void onClick(View v) {
-                                       SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
-                                       SharedPreferences.Editor editor = sp.edit();
                                        text = "98";
-                                       SharedPreference.save(context, text);
-
-                                       Intent i = new Intent(BusSelect.this, ReportActivy.class);
-                                       i.putExtra("key", text ); //Optional parameters
-                                       startActivity(i);
+                                       Bundle bundle = new Bundle();
+                                       BottomSheetDialog bottomSheet = new BottomSheetDialog();
+                                       bundle.putString("text", text);
+                                       bottomSheet.setArguments(bundle);
+                                       bottomSheet.show(getSupportFragmentManager(),"text");
                                    }
 
 
@@ -2107,14 +1918,12 @@ public class BusSelect  extends AppCompatActivity {
         b121.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View v) {
-                                        SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
-                                        SharedPreferences.Editor editor = sp.edit();
                                         text = "121";
-                                        SharedPreference.save(context, text);
-
-                                        Intent i = new Intent(BusSelect.this, ReportActivy.class);
-                                        i.putExtra("key", text ); //Optional parameters
-                                        startActivity(i);
+                                        Bundle bundle = new Bundle();
+                                        BottomSheetDialog bottomSheet = new BottomSheetDialog();
+                                        bundle.putString("text", text);
+                                        bottomSheet.setArguments(bundle);
+                                        bottomSheet.show(getSupportFragmentManager(),"text");
                                     }
 
 
@@ -2127,14 +1936,12 @@ public class BusSelect  extends AppCompatActivity {
         b122.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View v) {
-                                        SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
-                                        SharedPreferences.Editor editor = sp.edit();
                                         text = "122";
-                                        SharedPreference.save(context, text);
-
-                                        Intent i = new Intent(BusSelect.this, ReportActivy.class);
-                                        i.putExtra("key", text ); //Optional parameters
-                                        startActivity(i);
+                                        Bundle bundle = new Bundle();
+                                        BottomSheetDialog bottomSheet = new BottomSheetDialog();
+                                        bundle.putString("text", text);
+                                        bottomSheet.setArguments(bundle);
+                                        bottomSheet.show(getSupportFragmentManager(),"text");
                                     }
 
 
@@ -2147,14 +1954,12 @@ public class BusSelect  extends AppCompatActivity {
         b142.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View v) {
-                                        SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
-                                        SharedPreferences.Editor editor = sp.edit();
                                         text = "142";
-                                        SharedPreference.save(context, text);
-
-                                        Intent i = new Intent(BusSelect.this, ReportActivy.class);
-                                        i.putExtra("key", text ); //Optional parameters
-                                        startActivity(i);
+                                        Bundle bundle = new Bundle();
+                                        BottomSheetDialog bottomSheet = new BottomSheetDialog();
+                                        bundle.putString("text", text);
+                                        bottomSheet.setArguments(bundle);
+                                        bottomSheet.show(getSupportFragmentManager(),"text");
                                     }
 
 
@@ -2167,14 +1972,12 @@ public class BusSelect  extends AppCompatActivity {
         b142s.setOnClickListener(new View.OnClickListener() {
                                      @Override
                                      public void onClick(View v) {
-                                         SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
-                                         SharedPreferences.Editor editor = sp.edit();
                                          text = "142S";
-                                         SharedPreference.save(context, text);
-
-                                         Intent i = new Intent(BusSelect.this, ReportActivy.class);
-                                         i.putExtra("key", text ); //Optional parameters
-                                         startActivity(i);
+                                         Bundle bundle = new Bundle();
+                                         BottomSheetDialog bottomSheet = new BottomSheetDialog();
+                                         bundle.putString("text", text);
+                                         bottomSheet.setArguments(bundle);
+                                         bottomSheet.show(getSupportFragmentManager(),"text");
                                      }
 
 
@@ -2187,14 +1990,12 @@ public class BusSelect  extends AppCompatActivity {
         b143.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View v) {
-                                        SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
-                                        SharedPreferences.Editor editor = sp.edit();
                                         text = "143";
-                                        SharedPreference.save(context, text);
-
-                                        Intent i = new Intent(BusSelect.this, ReportActivy.class);
-                                        i.putExtra("key", text ); //Optional parameters
-                                        startActivity(i);
+                                        Bundle bundle = new Bundle();
+                                        BottomSheetDialog bottomSheet = new BottomSheetDialog();
+                                        bundle.putString("text", text);
+                                        bottomSheet.setArguments(bundle);
+                                        bottomSheet.show(getSupportFragmentManager(),"text");
                                     }
 
 
@@ -2207,14 +2008,12 @@ public class BusSelect  extends AppCompatActivity {
         b144.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View v) {
-                                        SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
-                                        SharedPreferences.Editor editor = sp.edit();
                                         text = "144";
-                                        SharedPreference.save(context, text);
-
-                                        Intent i = new Intent(BusSelect.this, ReportActivy.class);
-                                        i.putExtra("key", text ); //Optional parameters
-                                        startActivity(i);
+                                        Bundle bundle = new Bundle();
+                                        BottomSheetDialog bottomSheet = new BottomSheetDialog();
+                                        bundle.putString("text", text);
+                                        bottomSheet.setArguments(bundle);
+                                        bottomSheet.show(getSupportFragmentManager(),"text");
                                     }
 
 
@@ -2227,14 +2026,12 @@ public class BusSelect  extends AppCompatActivity {
         b144s.setOnClickListener(new View.OnClickListener() {
                                      @Override
                                      public void onClick(View v) {
-                                         SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
-                                         SharedPreferences.Editor editor = sp.edit();
                                          text = "144s";
-                                         SharedPreference.save(context, text);
-
-                                         Intent i = new Intent(BusSelect.this, ReportActivy.class);
-                                         i.putExtra("key", text ); //Optional parameters
-                                         startActivity(i);
+                                         Bundle bundle = new Bundle();
+                                         BottomSheetDialog bottomSheet = new BottomSheetDialog();
+                                         bundle.putString("text", text);
+                                         bottomSheet.setArguments(bundle);
+                                         bottomSheet.show(getSupportFragmentManager(),"text");
                                      }
 
 

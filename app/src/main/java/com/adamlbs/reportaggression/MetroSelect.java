@@ -1,6 +1,7 @@
 package com.adamlbs.reportaggression;
 
 import android.content.pm.ActivityInfo;
+import android.graphics.Color;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageButton;
@@ -26,7 +27,6 @@ public class MetroSelect extends AppCompatActivity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-
         setTheme(R.style.AppTheme);
         getSupportActionBar().hide();
 
@@ -47,8 +47,14 @@ public class MetroSelect extends AppCompatActivity {
         m1.setOnClickListener(new OnClickListener() {
                                   @Override
                                   public void onClick(View v) {
+                                      text = "M1";
+                                      Bundle bundle = new Bundle();
+
                                       BottomSheetDialog bottomSheet = new BottomSheetDialog();
-                                      bottomSheet.show(getSupportFragmentManager(),"test");
+                                      bundle.putString("text", text);
+                                      bottomSheet.setArguments(bundle);
+                                      bottomSheet.show(getSupportFragmentManager(),"text");
+
                                   }
 
 
@@ -62,14 +68,12 @@ public class MetroSelect extends AppCompatActivity {
         m2.setOnClickListener(new OnClickListener() {
                                   @Override
                                   public void onClick(View v) {
-                                      SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
-                                      SharedPreferences.Editor editor = sp.edit();
                                       text = "M2";
-                                      SharedPreference.save(context, text);
-
-                                      Intent i = new Intent(MetroSelect.this, ReportActivy.class);
-                                      i.putExtra("key", text); //Optional parameters
-                                      startActivity(i);
+                                      Bundle bundle = new Bundle();
+                                      BottomSheetDialog bottomSheet = new BottomSheetDialog();
+                                      bundle.putString("text", text);
+                                      bottomSheet.setArguments(bundle);
+                                      bottomSheet.show(getSupportFragmentManager(),"text");
                                   }
 
 

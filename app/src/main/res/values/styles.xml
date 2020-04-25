@@ -21,7 +21,16 @@
     <style name="splashScreenTheme" parent="@android:style/Theme.DeviceDefault.Light.NoActionBar">
         <item name="android:windowBackground">@drawable/splash_screen</item>
     </style>
-
+        <style name="SheetDialog" parent="Theme.Design.Light.BottomSheetDialog">
+            <!--<item name="android:windowCloseOnTouchOutside">false</item>-->
+            <item name="android:windowIsTranslucent">true</item>
+            <item name="android:windowContentOverlay">@null</item>
+            <item name="android:colorBackground">     @android:color/transparent</item>
+            <item name="android:backgroundDimEnabled">true</item>
+            <item name="android:backgroundDimAmount">0.3</item>
+            <item name="android:windowFrame">@null</item>
+            <item name="android:windowIsFloating">true</item>
+        </style>
         <style name ="Animation" parent="@android:style/Animation.Activity">
             <item name="android:activityOpenEnterAnimation">@anim/slide_in_right</item>
             <item name="android:activityOpenExitAnimation">@anim/slide_out_left</item>
@@ -34,5 +43,11 @@
         <item name="android:icon">@drawable/ic_stat_name</item>
         <item name="icon">@drawable/ic_stat_name</item>
     </style>
+    <style name="CustomBottomSheetDialogTheme" parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/CustomBottomSheetStyle</item>
+    </style>
 
+    <style name="CustomBottomSheetStyle" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@android:color/transparent</item>
+    </style>
 </resources>

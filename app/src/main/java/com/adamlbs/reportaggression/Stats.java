@@ -1,12 +1,16 @@
 package com.adamlbs.reportaggression;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.text.Html;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.android.volley.Request;
@@ -44,8 +48,8 @@ public class Stats extends AppCompatActivity {
     private String description;
     private TextView welcomeText;
     private TextView welcomeText2;
-
     private String location;
+
     private String aggression;
     private SharedPreference sharedPreference;
     Activity context = this;
@@ -58,16 +62,21 @@ public class Stats extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTheme(R.style.AppTheme);
+        getSupportActionBar().hide();
+
         sharedPreference = new SharedPreference();
         setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         setContentView(R.layout.activity_stats);
         findViewsById();
-        location = sharedPreference.getValue(context);
         String aggression;
+        Intent intent = getIntent();
+         location = intent.getStringExtra("key");
+
         aggression = "sexual";
-        welcomeText.setTypeface(welcomeText.getTypeface(), Typeface.BOLD);
         showStats();
+
     }
 
     private void findViewsById() {
@@ -94,6 +103,8 @@ public class Stats extends AppCompatActivity {
 
     }
     private void showStats() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
         displayLoader();
         JSONObject request = new JSONObject();
         try {
@@ -116,18 +127,39 @@ public class Stats extends AppCompatActivity {
                             physicalAggression = response.getInt("physicalAggression");
                             totalAggression = response.getInt("totalAggression");
                             if(totalAggression == 0) {
-                                welcomeText.setText("Vous avez choisi la ligne " + location +
-                                        "\n"+
-                                        "\n"+
-                                        "\n"+
-                                        "\n Aucune agression n'a été signalé sur cette ligne. " +
-                                        "\n Veuillez revenir plus tard où signalez une agression.");
+                                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+                                    builder.setMessage(Html.fromHtml("Il n'y a "+"<b>"+"pas "+"</b>"+"d'agressions signalées sur la ligne "+location, Html.FROM_HTML_MODE_LEGACY));
+
+                                } else {
+                                    builder.setMessage(Html.fromHtml("Hello "+"<b>"+"World"+"</b>"));
+                                }
+                                AlertDialog alert = builder.create();
+                                alert.show();
                             } else {
-                                welcomeText.setText("Vous avez choisi la ligne " + location +
-                                        "\n Le nombre total d'agressions signalées sur cette ligne est " + totalAggression +
-                                        "\nVoici le nombre d'agressions signalées depuis le lancement de l'application : ");
-                            }
-                            checkStatus();
+                                if(totalAggression == 1) {
+                                    if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+                                        builder.setMessage(Html.fromHtml("Il y a actuellement " + "<b>" + totalAggression + " agression " + "</b>" + "signalées sur la ligne " + location, Html.FROM_HTML_MODE_LEGACY));
+
+                                    } else {
+                                        builder.setMessage(Html.fromHtml("Hello " + "<b>" + "World" + "</b>"));
+                                    }
+                                    AlertDialog alert = builder.create();
+                                    alert.show();
+                                    checkStatus();
+                                        {
+                                }
+                            } else {
+                                    if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+                                        builder.setMessage(Html.fromHtml("Il y a actuellement " + "<b>" + totalAggression + " agressions " + "</b>" + "signalées sur la ligne " + location, Html.FROM_HTML_MODE_LEGACY));
+
+                                    } else {
+                                        builder.setMessage(Html.fromHtml("Hello " + "<b>" + "World" + "</b>"));
+                                    }
+                                    AlertDialog alert = builder.create();
+                                    alert.show();
+                                    checkStatus();
+                                }
+                                }
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -153,22 +185,24 @@ public class Stats extends AppCompatActivity {
     private void checkStatus() {
         PieChart pieChart = (PieChart) findViewById(R.id.chart);
         PieDataSet pieDataSet = new PieDataSet(getData(),"Détail des agressions");
+        Legend legend = pieChart.getLegend();
+        legend.setEnabled(false);
         pieDataSet.setColors(ColorTemplate.COLORFUL_COLORS);
         PieData pieData = new PieData(pieDataSet);
         Description description = pieChart.getDescription();
         description.setEnabled(false);
         pieData.setValueTextSize(13f);
         pieChart.setDrawHoleEnabled(false);
-        pieData.setValueTextColor(Color.DKGRAY);
+        pieData.setValueTextColor(Color.WHITE);
         pieChart.setData(pieData);
         pieChart.animateXY(2000, 2000);
 
     }
     private ArrayList getData(){
         ArrayList<PieEntry> entries = new ArrayList<>();
-        entries.add(new PieEntry(verbalAggression, "Verbale"));
-        entries.add(new PieEntry(physicalAggression, "Physique"));
-        entries.add(new PieEntry(sexualAggression, "Sexuelle"));
+        entries.add(new PieEntry(verbalAggression));
+        entries.add(new PieEntry(physicalAggression));
+        entries.add(new PieEntry(sexualAggression));
         return entries;
     }
 }

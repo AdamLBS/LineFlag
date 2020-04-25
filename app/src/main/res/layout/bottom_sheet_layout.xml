@@ -1,36 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+
+<LinearLayout   xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
     android:layout_height="match_parent"
+    android:background="@android:color/transparent"
+    android:fitsSystemWindows="true"
+
     android:gravity="center_horizontal"
-    android:orientation="vertical"
-    android:padding="16dp">
-
-    <TextView
+    android:orientation="vertical">
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+    <ImageButton
+        android:id="@+id/sexual"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Signalez une agression"
-        android:textSize="25sp" />
-
-    <Button
-        android:id="@+id/button1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:src="@drawable/sexual_ag"
         android:text="Sexuelle" />
+</LinearLayout  >
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+    <ImageButton
+        android:id="@+id/verbal"
+        android:layout_width="wrap_content"
 
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@color/bg_blue"
+        android:src="@drawable/verbal_ag"
         android:text="Verbale" />
-    <Button
-        android:id="@+id/button3"
+    </LinearLayout  >
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+    <ImageButton
+        android:id="@+id/physical"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@color/bg_blue"
+        android:src="@drawable/phys_ag"
         android:text="Physique" />
-    <Button
-        android:id="@+id/button4"
+    </LinearLayout  >
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <ImageButton
+        android:id="@+id/stats"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@color/bg_blue"
+        android:src="@drawable/stats"
         android:text="Voir les statistiques" />
-</LinearLayout>
+</LinearLayout  >
+    </LinearLayout  >
