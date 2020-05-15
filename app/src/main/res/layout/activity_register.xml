@@ -26,7 +26,7 @@
 
     <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="60dp"
+        android:layout_height="47dp"
         android:layout_marginLeft="30dp"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="-5dp"
@@ -41,15 +41,14 @@
         android:layout_marginLeft="100dp"
         android:background="@android:color/transparent"
         android:hint="@string/full_name"
-        android:textColorHint="@android:color/white"
 
         android:inputType="textPersonName"
-        android:padding="10dp" />
+        android:padding="5dp" />
 
     </RelativeLayout>
     <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="60dp"
+        android:layout_height="47dp"
         android:layout_marginLeft="30dp"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="-5dp"
@@ -63,15 +62,14 @@
             android:layout_marginLeft="100dp"
             android:background="@android:color/transparent"
             android:hint="@string/username"
-            android:textColorHint="@android:color/white"
             android:inputType="textPersonName"
-            android:padding="10dp" />
+            android:padding="5dp" />
 
     </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="60dp"
+        android:layout_height="47dp"
         android:layout_marginLeft="30dp"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="-5dp"
@@ -86,15 +84,13 @@
             android:layout_marginLeft="100dp"
             android:background="@android:color/transparent"
             android:hint="@string/password"
-            android:textColorHint="@android:color/white"
-
             android:inputType="textPassword"
-            android:padding="10dp" />
+            android:padding="5dp" />
 
     </RelativeLayout>
     <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="60dp"
+        android:layout_height="47dp"
         android:layout_marginLeft="30dp"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="-5dp"
@@ -110,9 +106,8 @@
             android:background="@android:color/transparent"
             android:hint="@string/confirm_password"
             android:inputType="textPassword"
-            android:textColorHint="@android:color/white"
 
-            android:padding="10dp" />
+            android:padding="5dp" />
 
     </RelativeLayout>
 

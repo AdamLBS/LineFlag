@@ -29,6 +29,8 @@ import com.google.android.material.appbar.AppBarLayout;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.InstanceIdResult;
 import butterknife.BindView;
+import hotchemi.android.rate.AppRate;
+import hotchemi.android.rate.OnClickButtonListener;
 
 public class DashboardActivity extends AppCompatActivity {
     private SessionHandler session;
@@ -56,7 +58,6 @@ public class DashboardActivity extends AppCompatActivity {
         session = new SessionHandler(getApplicationContext());
         User user = session.getUserDetails();
         addListenerOnButton();;
-
 
         findViewsById();
 
@@ -127,7 +128,22 @@ public class DashboardActivity extends AppCompatActivity {
                     .putBoolean("firstrun", false)
                     .commit();
         }
+        AppRate.with(this)
+                .setInstallDays(0) // default 10, 0 means install day.
+                .setLaunchTimes(3) // default 10
+                .setRemindInterval(2) // default 1
+                .setShowLaterButton(true) // default true
+                .setDebug(false) // default false
+                .setOnClickButtonListener(new OnClickButtonListener() { // callback listener.
+                    @Override
+                    public void onClickButton(int which) {
+                        Log.d(DashboardActivity.class.getName(), Integer.toString(which));
+                    }
+                })
+                .monitor();
 
+        // Show a dialog if meets conditions
+        AppRate.showRateDialogIfMeetsConditions(this);
     }
 
 

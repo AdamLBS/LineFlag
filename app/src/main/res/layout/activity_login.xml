@@ -10,108 +10,112 @@
     tools:context="com.adamlbs.reportaggression.LoginActivity">
 
 
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/layers"
-    android:gravity="center_vertical"
-    android:orientation="vertical"
-    android:padding="50dp"
-    app:elevation="0dp"
-    tools:context="com.adamlbs.reportaggression.LoginActivity">
-
-    <ImageView
-        android:id="@+id/imageView"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="96dp"
-        android:layout_marginBottom="-5dp"
-        android:layout_gravity="center"
-        android:src="@drawable/binks" />
+        android:layout_height="match_parent"
+        android:background="@drawable/layers"
+        android:gravity="center_vertical"
+        android:orientation="vertical"
+        android:padding="50dp"
+        app:elevation="0dp"
+        tools:context="com.adamlbs.reportaggression.LoginActivity">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="-5dp"
-        android:layout_marginRight="30dp"
-        android:background="@drawable/bg_fields">
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="match_parent"
+            android:layout_height="96dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="-5dp"
+            android:src="@drawable/binks" />
 
-        <EditText
-            android:id="@+id/etLoginUsername"
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="47dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginBottom="-5dp"
+            android:background="@drawable/bg_fields">
+
+            <EditText
+                android:id="@+id/etLoginUsername"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_marginLeft="100dp"
+                android:background="@android:color/transparent"
+                android:hint="@string/username"
+                android:inputType="textPersonName"
+                android:padding="5dp" />
+
+        </RelativeLayout>
+
+
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:layout_marginLeft="100dp"
-            android:background="@android:color/transparent"
-            android:hint="@string/username"
-            android:inputType="textPersonName"
-            android:padding="10dp" />
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginBottom="-5dp"
 
-    </RelativeLayout>
+            android:background="@drawable/bg_fields"
+            android:scaleType="fitCenter">
+
+            <EditText
+                android:id="@+id/etLoginPassword"
+                android:layout_width="227dp"
+                android:layout_height="33dp"
+
+                android:layout_marginStart="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginBottom="5dp"
+                android:background="@android:color/transparent"
+                android:hint="@string/password"
+                android:inputType="textPassword"
+                android:padding="5dp" />
+
+        </RelativeLayout>
 
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="30dp"
-        android:layout_marginBottom="-5dp"
-
-        android:background="@drawable/bg_fields"
-        android:scaleType="fitCenter">
-
-        <EditText
-            android:id="@+id/etLoginPassword"
-            android:layout_width="match_parent"
+        <ImageButton
+            android:id="@+id/btnLogin"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="-5dp"
+            android:background="@drawable/sign_in_background"
+            android:text="@string/sign_in"
+            android:textColor="@android:color/white" />
 
-            android:background="@android:color/transparent"
-            android:hint="@string/password"
-            android:inputType="textPassword"
-            android:padding="10dp" />
+        <ImageButton
+            android:id="@+id/sign_in_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="-5dp"
+            android:background="@drawable/google_background"
+            android:scaleType="fitCenter"
 
-    </RelativeLayout>
-
-
-    <ImageButton
-        android:id="@+id/btnLogin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:layout_gravity="center"
-        android:background="@drawable/sign_in_background"
-        android:layout_marginBottom="-5dp"
-        android:text="@string/sign_in"
-        android:textColor="@android:color/white" />
-
-    <ImageButton
-        android:id="@+id/sign_in_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/google_background"
-        android:scaleType="fitCenter"
-        android:layout_gravity="center"
-        android:layout_marginBottom="-5dp"
-
-        android:text="@string/sign_in"
-        android:textColor="@android:color/white" />
+            android:text="@string/sign_in"
+            android:textColor="@android:color/white" />
 
 
-    <ImageButton
-        android:id="@+id/btnLoginRegister"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="-5dp"
-        android:layout_gravity="center"
-        android:background="@drawable/sign_up_background"
-        android:scaleType="fitCenter"
-        android:text="@string/sign_in"
-        android:textColor="@android:color/white" />
+        <ImageButton
+            android:id="@+id/btnLoginRegister"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="-5dp"
+            android:background="@drawable/sign_up_background"
+            android:scaleType="fitCenter"
+            android:text="@string/sign_in"
+            android:textColor="@android:color/white" />
 
 
-
-</LinearLayout>
+    </LinearLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
