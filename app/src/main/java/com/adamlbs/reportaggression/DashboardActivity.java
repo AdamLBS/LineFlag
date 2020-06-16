@@ -23,6 +23,7 @@ import android.widget.TextView;
 import android.content.SharedPreferences;
 import android.widget.Toast;
 
+import com.androidnetworking.AndroidNetworking;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.appbar.AppBarLayout;
@@ -37,8 +38,11 @@ public class DashboardActivity extends AppCompatActivity {
     public Spinner spinner1, spinner2;
     public Button btnSubmit;
     public ImageButton btnMetro, btnTram, btnBus, btnNightBus;
+    private String  SITE_KEY = "6LeXlQEVAAAAAPK43M8C4Q1yvRtGIJGbagyYZFx1";
+
     private SharedPreferences sharedPreference;
     private String text;
+
     private int city;
     private TextView welcomeText;
     Activity context = this;
@@ -49,6 +53,7 @@ public class DashboardActivity extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         setTheme(R.style.AppTheme);
+        AndroidNetworking.initialize(context);
         getSupportActionBar().hide();
         setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 

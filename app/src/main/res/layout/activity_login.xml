@@ -103,18 +103,19 @@
 
             android:text="@string/sign_in"
             android:textColor="@android:color/white" />
-
-
         <ImageButton
-            android:id="@+id/btnLoginRegister"
+            android:id="@+id/twitter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginBottom="-5dp"
-            android:background="@drawable/sign_up_background"
+            android:layout_marginBottom="15dp"
+            android:background="@drawable/twitter_button"
             android:scaleType="fitCenter"
+
             android:text="@string/sign_in"
             android:textColor="@android:color/white" />
+
+
 
 
     </LinearLayout>

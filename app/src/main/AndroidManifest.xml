@@ -56,10 +56,19 @@
         <activity
             android:name=".MetroSelect"
             android:parentActivityName=".DashboardActivity"
+
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.adamlbs.reportaggression.DashboardActivity" />
+            <intent-filter >
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <!-- Accepts URIs that begin with "example://gizmos” -->
+                <data android:scheme="aggrreport"
+                    android:host="metro" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".BusSelect"
@@ -68,6 +77,14 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.adamlbs.reportaggression.DashboardActivity" />
+            <intent-filter >
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <!-- Accepts URIs that begin with "example://gizmos” -->
+                <data android:scheme="aggrreport"
+                    android:host="bus" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".TramSelect"
@@ -76,6 +93,15 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.adamlbs.reportaggression.DashboardActivity" />
+            <intent-filter >
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <!-- Accepts URIs that begin with "example://gizmos” -->
+                <data android:scheme="https"
+                    android:host="aggressionreport.fr"
+                    android:data="/metro"/>
+            </intent-filter>
         </activity>
 
         <activity
@@ -85,6 +111,14 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.adamlbs.reportaggression.DashboardActivity" />
+            <intent-filter >
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <!-- Accepts URIs that begin with "example://gizmos” -->
+                <data android:scheme="aggrreport"
+                    android:host="nightbus" />
+            </intent-filter>
         </activity>
 
         <activity

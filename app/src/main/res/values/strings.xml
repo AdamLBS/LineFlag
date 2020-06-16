@@ -165,7 +165,7 @@
     <string name="bottom_navigation_menu_landscape">Favoris</string>
     <string name="bottom_navigation_menu_logos">Accueil</string>
 
-    <string name="twitter_consumer_key" translatable="false"> N4QRlQzTGHPnJ0fLL0zdyHlbE </string>
-    <string name="twitter_consumer_secret" translatable="false"> v20BDobVflqAc5zRlzrtfHiXQdRG6cKufRWnQszulXGSEKfEnF </string>
+    <string name="twitter_consumer_key" translatable="false">C1F0obqqyBAc9u7yR4VHV7SkI</string>
+    <string name="twitter_consumer_secret" translatable="false">QK3k0ejxUAK4yJVtEvvXmFtM5myEQMTUS7ETnlC5m65IWZ7aeM</string>
 </resources>
 

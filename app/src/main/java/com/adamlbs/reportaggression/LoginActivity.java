@@ -16,17 +16,22 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.AuthCredential;
@@ -34,9 +39,18 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.auth.OAuthProvider;
+import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
+import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import static java.nio.channels.spi.AsynchronousChannelProvider.provider;
+import static javax.crypto.Cipher.SECRET_KEY;
 
 public class LoginActivity extends AppCompatActivity {
     private static final String KEY_STATUS = "status";
@@ -49,7 +63,11 @@ public class LoginActivity extends AppCompatActivity {
     private EditText etPassword;
     private String username;
     private String password;
+    String SITE_KEY = "6LeXlQEVAAAAAPK43M8C4Q1yvRtGIJGbagyYZFx1\n";
+
+    String SECRET_KEY = "6LeXlQEVAAAAAGp4tqerbY0zUNCUf4mYT8vi_pkG";
     private GoogleSignInClient googleSignInClient;
+    private FirebaseRemoteConfig mFirebaseRemoteConfig;
     private static final int RC_SIGN_IN = 49404;
     private static final String TAG = LoginActivity.class.getSimpleName();
     private FirebaseAuth mAuth;
@@ -66,7 +84,6 @@ public class LoginActivity extends AppCompatActivity {
 
         setTheme(R.style.AppTheme);
         getSupportActionBar().hide();
-
         super.onCreate(savedInstanceState);
         session = new SessionHandler(getApplicationContext());
         // Configure sign-in to request the user's ID, email address, and basic
@@ -76,6 +93,8 @@ public class LoginActivity extends AppCompatActivity {
             loadDashboard();
         }
         setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        OAuthProvider.Builder provider = OAuthProvider.newBuilder("twitter.com");
+        provider.addCustomParameter("lang", "fr");
 
         setContentView(R.layout.activity_login);
         mAuth = FirebaseAuth.getInstance();
@@ -88,10 +107,8 @@ public class LoginActivity extends AppCompatActivity {
                 .requestEmail()
                 .build();
         googleSignInClient = GoogleSignIn.getClient(this, gso);
-        ImageButton register = findViewById(R.id.btnLoginRegister);
         ImageButton login = findViewById(R.id.btnLogin);
-
-
+        ImageButton twitter = findViewById(R.id.twitter);
         ImageButton googleButton = findViewById(R.id.sign_in_button);
         googleButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -107,17 +124,10 @@ public class LoginActivity extends AppCompatActivity {
                                         });
 
         //Launch Registration screen when Register Button is clicked
-        register.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(LoginActivity.this, RegisterActivity.class);
-                startActivity(i);
-                finish();
-            }
-        });
 
 
         login.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
                 //Retrieve the data entered in the edit texts
@@ -128,6 +138,15 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }
         });
+        twitter.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+                twitterLogin();
+            }
+        });
+
     }
 
     /**
@@ -183,6 +202,62 @@ loadDashboard();
      * Display Progress bar while Logging in
      */
 
+    private void config() {
+        mFirebaseRemoteConfig = FirebaseRemoteConfig.getInstance();
+        FirebaseRemoteConfigSettings configSettings = new FirebaseRemoteConfigSettings.Builder()
+                .build();
+        mFirebaseRemoteConfig.fetch(0);
+
+        mFirebaseRemoteConfig.setConfigSettingsAsync(configSettings);
+        mFirebaseRemoteConfig.fetchAndActivate()
+                .addOnCompleteListener(this, new OnCompleteListener<Boolean>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Boolean> task) {
+                        if (task.isSuccessful()) {
+                            boolean updated = task.getResult();
+                            Log.d(TAG, "Config params updated: " + updated);
+                            Toast.makeText(LoginActivity.this, "Fetch and activate succeeded",
+                                    Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginActivity.this, mFirebaseRemoteConfig.getString("test"),
+                                    Toast.LENGTH_SHORT).show();
+
+                        } else {
+                            Toast.makeText(LoginActivity.this, "Fetch failed",
+                                    Toast.LENGTH_SHORT).show();
+                        }
+
+                    }
+                });
+    }
+private void twitterLogin() {
+    OAuthProvider.Builder provider = OAuthProvider.newBuilder("twitter.com");
+    provider.addCustomParameter("lang", "fr");
+    mAuth
+            .startActivityForSignInWithProvider(/* activity= */ this, provider.build())
+            .addOnSuccessListener(
+                    new OnSuccessListener<AuthResult>() {
+                        @Override
+                        public void onSuccess(AuthResult authResult) {
+                            // User is signed in.
+                            // IdP data available in
+                            // authResult.getAdditionalUserInfo().getProfile().
+                            // The OAuth access token can also be retrieved:
+                            // authResult.getCredential().getAccessToken().
+                            // The OAuth secret can be retrieved by calling:
+                            // authResult.getCredential().getSecret().
+                            Log.d(TAG, "signInWithCredential:success");
+                            loadDashboard();
+                        }
+                    })
+            .addOnFailureListener(
+                    new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Log.w(TAG, "Twitter sign in failed", e);
+                        }
+                    });
+
+}
     private void displayLoader() {
         pDialog = new ProgressDialog(LoginActivity.this);
         pDialog.setMessage("Logging In.. Please wait...");
@@ -262,7 +337,7 @@ loadDashboard();
         startActivityForResult(signInIntent, RC_SIGN_IN);
     }
 
-    @Override
+        @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
