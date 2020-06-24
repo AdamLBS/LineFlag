@@ -60,6 +60,7 @@ public class LoginActivity extends AppCompatActivity {
     private static final String KEY_PASSWORD = "password";
     private static final String KEY_EMPTY = "";
     private EditText etUsername;
+    public String maintenance;
     private EditText etPassword;
     private String username;
     private String password;
@@ -89,10 +90,10 @@ public class LoginActivity extends AppCompatActivity {
         // Configure sign-in to request the user's ID, email address, and basic
 // profile. ID and basic profile are included in DEFAULT_SIGN_IN.
         // Build a GoogleSignInClient with the options specified by gso.
-        if(session.isLoggedIn()){
+        if (session.isLoggedIn()) {
             loadDashboard();
         }
-        setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         OAuthProvider.Builder provider = OAuthProvider.newBuilder("twitter.com");
         provider.addCustomParameter("lang", "fr");
 
@@ -121,7 +122,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 }
             }
-                                        });
+        });
 
         //Launch Registration screen when Register Button is clicked
 
@@ -130,12 +131,8 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                //Retrieve the data entered in the edit texts
-                username = etUsername.getText().toString().toLowerCase().trim();
-                password = etPassword.getText().toString().trim();
-                if (validateInputs()) {
-                    login();
-                }
+                config();
+
             }
         });
         twitter.setOnClickListener(new View.OnClickListener() {
@@ -161,21 +158,24 @@ public class LoginActivity extends AppCompatActivity {
             // Take user to log in screen
             Log.d("Firebase", "NOT LOGGED IN");
 
-        }
-        else {
+        } else {
             // User already logged in
-loadDashboard();
-        }  ;
+            loadDashboard();
+        }
+        ;
     }
+
     private void loadDashboard() {
         Intent i = new Intent(getApplicationContext(), DashboardActivity.class);
         startActivity(i);
         finish();
 
     }
+
     private boolean isSignedIn() {
         return GoogleSignIn.getLastSignedInAccount(context) != null;
     }
+
     private void firebaseAuthWithGoogle(GoogleSignInAccount acct) {
         Log.d(TAG, "firebaseAuthWithGoogle:" + acct.getId());
 
@@ -188,7 +188,7 @@ loadDashboard();
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithCredential:success");
                             FirebaseUser user = mAuth.getCurrentUser();
-loadDashboard();
+                            loadDashboard();
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "signInWithCredential:failure", task.getException());
@@ -198,10 +198,18 @@ loadDashboard();
                     }
                 });
     }
+
     /**
      * Display Progress bar while Logging in
      */
 
+    private void login2() {
+        username = etUsername.getText().toString().toLowerCase().trim();
+        password = etPassword.getText().toString().trim();
+        if (validateInputs()) {
+            login();
+        }
+    }
     private void config() {
         mFirebaseRemoteConfig = FirebaseRemoteConfig.getInstance();
         FirebaseRemoteConfigSettings configSettings = new FirebaseRemoteConfigSettings.Builder()
@@ -216,19 +224,30 @@ loadDashboard();
                         if (task.isSuccessful()) {
                             boolean updated = task.getResult();
                             Log.d(TAG, "Config params updated: " + updated);
-                            Toast.makeText(LoginActivity.this, "Fetch and activate succeeded",
-                                    Toast.LENGTH_SHORT).show();
-                            Toast.makeText(LoginActivity.this, mFirebaseRemoteConfig.getString("test"),
-                                    Toast.LENGTH_SHORT).show();
+                            //  Toast.makeText(LoginActivity.this, "Fetch and activate succeeded",
+                            //        Toast.LENGTH_SHORT).show();
+                            // Toast.makeText(LoginActivity.this, mFirebaseRemoteConfig.getString("maintenance"),
+                            //       Toast.LENGTH_SHORT).show();
+                            maintenance = mFirebaseRemoteConfig.getString("maintenance");
+                            if (maintenance.equals("0")) {
+                                Log.w(TAG, "0");
+                                Toast.makeText(LoginActivity.this, "La connexion via mail/mot de passe a été désactivée.",
+                                        Toast.LENGTH_SHORT).show();
+                            } else
+                                login2();
+                            Log.w(TAG, "1");
+                            //Retrieve the data entered in the edit texts
+                            }
 
-                        } else {
+
+                         else {
                             Toast.makeText(LoginActivity.this, "Fetch failed",
                                     Toast.LENGTH_SHORT).show();
                         }
-
                     }
                 });
     }
+
 private void twitterLogin() {
     OAuthProvider.Builder provider = OAuthProvider.newBuilder("twitter.com");
     provider.addCustomParameter("lang", "fr");
