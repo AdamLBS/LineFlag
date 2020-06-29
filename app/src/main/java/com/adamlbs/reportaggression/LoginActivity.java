@@ -117,7 +117,7 @@ public class LoginActivity extends AppCompatActivity {
                 switch (v.getId()) {
                     case R.id.sign_in_button:
 
-                        signIn();
+                        googleconfig();
                         break;
 
                 }
@@ -139,8 +139,7 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-
-                twitterLogin();
+                twitterconfig();
             }
         });
 
@@ -206,6 +205,7 @@ public class LoginActivity extends AppCompatActivity {
     private void login2() {
         username = etUsername.getText().toString().toLowerCase().trim();
         password = etPassword.getText().toString().trim();
+        Log.w(TAG, "1");
         if (validateInputs()) {
             login();
         }
@@ -235,12 +235,84 @@ public class LoginActivity extends AppCompatActivity {
                                         Toast.LENGTH_SHORT).show();
                             } else
                                 login2();
-                            Log.w(TAG, "1");
                             //Retrieve the data entered in the edit texts
                             }
 
 
                          else {
+                            Toast.makeText(LoginActivity.this, "Fetch failed",
+                                    Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+    }
+    private void googleconfig() {
+        mFirebaseRemoteConfig = FirebaseRemoteConfig.getInstance();
+        FirebaseRemoteConfigSettings configSettings = new FirebaseRemoteConfigSettings.Builder()
+                .build();
+        mFirebaseRemoteConfig.fetch(0);
+
+        mFirebaseRemoteConfig.setConfigSettingsAsync(configSettings);
+        mFirebaseRemoteConfig.fetchAndActivate()
+                .addOnCompleteListener(this, new OnCompleteListener<Boolean>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Boolean> task) {
+                        if (task.isSuccessful()) {
+                            boolean updated = task.getResult();
+                            Log.d(TAG, "Config params updated: " + updated);
+                            //  Toast.makeText(LoginActivity.this, "Fetch and activate succeeded",
+                            //        Toast.LENGTH_SHORT).show();
+                            // Toast.makeText(LoginActivity.this, mFirebaseRemoteConfig.getString("maintenance"),
+                            //       Toast.LENGTH_SHORT).show();
+                            maintenance = mFirebaseRemoteConfig.getString("maintenance");
+                            if (maintenance.equals("0")) {
+                                Log.w(TAG, "0");
+                                Toast.makeText(LoginActivity.this, "La connexion via Google a été désactivée.",
+                                        Toast.LENGTH_SHORT).show();
+                            } else
+
+                                signIn();
+                            //Retrieve the data entered in the edit texts
+                        }
+
+
+                        else {
+                            Toast.makeText(LoginActivity.this, "Fetch failed",
+                                    Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+    }
+    private void twitterconfig() {
+        mFirebaseRemoteConfig = FirebaseRemoteConfig.getInstance();
+        FirebaseRemoteConfigSettings configSettings = new FirebaseRemoteConfigSettings.Builder()
+                .build();
+        mFirebaseRemoteConfig.fetch(0);
+
+        mFirebaseRemoteConfig.setConfigSettingsAsync(configSettings);
+        mFirebaseRemoteConfig.fetchAndActivate()
+                .addOnCompleteListener(this, new OnCompleteListener<Boolean>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Boolean> task) {
+                        if (task.isSuccessful()) {
+                            boolean updated = task.getResult();
+                            Log.d(TAG, "Config params updated: " + updated);
+                            //  Toast.makeText(LoginActivity.this, "Fetch and activate succeeded",
+                            //        Toast.LENGTH_SHORT).show();
+                            // Toast.makeText(LoginActivity.this, mFirebaseRemoteConfig.getString("maintenance"),
+                            //       Toast.LENGTH_SHORT).show();
+                            maintenance = mFirebaseRemoteConfig.getString("maintenance");
+                            if (maintenance.equals("0")) {
+                                Log.w(TAG, "0");
+                                Toast.makeText(LoginActivity.this, "La connexion via Twitter a été désactivée.",
+                                        Toast.LENGTH_SHORT).show();
+                            } else
+                                twitterLogin();
+                            //Retrieve the data entered in the edit texts
+                        }
+
+
+                        else {
                             Toast.makeText(LoginActivity.this, "Fetch failed",
                                     Toast.LENGTH_SHORT).show();
                         }

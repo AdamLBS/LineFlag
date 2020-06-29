@@ -138,10 +138,10 @@ public class Stats extends AppCompatActivity {
                             } else {
                                 if(totalAggression == 1) {
                                     if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
-                                        builder.setMessage(Html.fromHtml("Il y a actuellement " + "<b>" + totalAggression + " agression " + "</b>" + "signalées sur la ligne " + location, Html.FROM_HTML_MODE_LEGACY));
+                                        builder.setMessage(Html.fromHtml("Il y a actuellement " + "<b>" + totalAggression + " agression " + "</b>" + "signalée sur la ligne " + location, Html.FROM_HTML_MODE_LEGACY));
 
                                     } else {
-                                        builder.setMessage(Html.fromHtml("Il n'y a "+"<b>"+"pas "+"</b>"+"d'agressions signalées sur la ligne "+location));
+                                        builder.setMessage(Html.fromHtml("Il y a actuellement "+"<b>"+totalAggression+"</b>"+" agression signalée sur la ligne "+location));
                                     }
                                     AlertDialog alert = builder.create();
                                     alert.show();
@@ -153,7 +153,7 @@ public class Stats extends AppCompatActivity {
                                         builder.setMessage(Html.fromHtml("Il y a actuellement " + "<b>" + totalAggression + " agressions " + "</b>" + "signalées sur la ligne " + location, Html.FROM_HTML_MODE_LEGACY));
 
                                     } else {
-                                        builder.setMessage(Html.fromHtml("Il n'y a "+"<b>"+"pas "+"</b>"+"d'agressions signalées sur la ligne "+location));
+                                        builder.setMessage(Html.fromHtml("Il y a actuellement "+"<b>"+totalAggression+"</b>"+" agressions signalées sur la ligne "+location));
                                     }
                                     AlertDialog alert = builder.create();
                                     alert.show();
