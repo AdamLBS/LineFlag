@@ -63,9 +63,7 @@ public class DashboardActivity extends AppCompatActivity {
         session = new SessionHandler(getApplicationContext());
         User user = session.getUserDetails();
         addListenerOnButton();;
-
-        findViewsById();
-
+        
         FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener(new OnSuccessListener<InstanceIdResult>() {
             @Override
             public void onSuccess(InstanceIdResult instanceIdResult) {
@@ -153,10 +151,6 @@ public class DashboardActivity extends AppCompatActivity {
 
 
 
-    private void findViewsById() {
-        welcomeText = (TextView) findViewById(R.id.welcomeText2);
-    }
-
 
     //get the selected dropdown list value
     public void addListenerOnButton() {
@@ -181,7 +175,7 @@ public class DashboardActivity extends AppCompatActivity {
         //       "OnClickListener : " +
         //             "\nSpinner 1 : " + String.valueOf(spinner1.getSelectedItem()),
         //   Toast.LENGTH_SHORT).show();
-        //           Intent i = new Intent(DashboardActivity.this, ReportActivy.class);
+        //           Intent i = new Intent(DashboardActivity.this, /Repo  ctivy.class);
         //         i.putExtra("key", String.valueOf(spinner1.getSelectedItem())); //Optional parameters
         //       startActivity(i);
 

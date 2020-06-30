@@ -7,7 +7,6 @@
 
     <application
         android:largeHeap="true"
-        android:hardwareAccelerated="false"
         android:allowBackup="true"
         android:icon="@mipmap/ic_2"
         android:label="@string/app_name"
@@ -48,11 +47,6 @@
         <activity
             android:name=".MainActivity111"
             android:label="@string/title_activity_main111"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".ReportActivy"
-            android:label="@string/title_activity_report_activy"
-            android:parentActivityName=".DashboardActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".MetroSelect"
