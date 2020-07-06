@@ -48,7 +48,7 @@ public class DashboardActivity extends AppCompatActivity {
     Activity context = this;
     Activity Context = this;
 
-    //TODO Lignes favorites permettant d'avoir sur le dashboard les statistiques de la ligne avec la plus récente aggression
+    //TODO Lignes favorites permettant d'avoir sur le dashboard l es statistiques de la ligne avec la plus récente aggression
     //TODO Lignes de nuit
     @Override
     public void onCreate(Bundle savedInstanceState) {
