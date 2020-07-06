@@ -76,14 +76,14 @@ public class DashboardActivity extends AppCompatActivity {
         if (firstrun) {
 
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle("AR Marseille");
+            builder.setTitle("LineFlag");
             builder.setMessage("L'application est toujours en développement. Il est possible que des bugs surviennent, n'hésitez pas à les signaler !"+
                     "\n"+
                     "\nVous pouvez aussi faire part de vos suggestions via le Play Store." +
                     "\n" +
                     "\nVous pouvez pour le moment signaler 3 types d'agression : Verbale, physique et sexuelle." +
                     "\n" +
-                    "\nN'oubliez pas de suivre notre twitter @AggrReport pour suivre le développement de l'application"
+                    "\nN'oubliez pas de suivre notre twitter @LineFlagApp pour suivre le développement de l'application."
             +"\n"
             + "\nD'autres villes (Paris, Lyon etc...) seront suportées au fil du temps.")
                     .setCancelable(false)
