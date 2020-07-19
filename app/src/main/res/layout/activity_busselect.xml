@@ -26,7 +26,7 @@
             android:layout_height="wrap_content"
             android:adjustViewBounds="true"
             android:layout_gravity="center"
-            android:src="@drawable/ar_logo_blue"
+            android:src="@drawable/if_logo_bleu"
             />
 
         <ImageButton

@@ -53,7 +53,7 @@ public class Stats extends AppCompatActivity {
     private String aggression;
     private SharedPreference sharedPreference;
     Activity context = this;
-    private String report_url = "https://api.aggressionreport.fr/getStatistics.php";
+    private String report_url = "https://api.lineflag.com/getStatistics.php";
     private static final String LOCATION = "location";
     private static final String AGGRESSION = "aggression";
     private ProgressDialog pDialog;

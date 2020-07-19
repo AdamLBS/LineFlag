@@ -8,9 +8,9 @@
     <application
         android:largeHeap="true"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_2"
+        android:icon="@mipmap/ic_3"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_2"
+        android:roundIcon="@mipmap/ic_3"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
         <activity
@@ -77,7 +77,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
                 <!-- Accepts URIs that begin with "example://gizmos” -->
-                <data android:scheme="aggrreport"
+                <data android:scheme="lineflag"
                     android:host="bus" />
             </intent-filter>
         </activity>
@@ -94,7 +94,7 @@
                 <category android:name="android.intent.category.BROWSABLE" />
                 <!-- Accepts URIs that begin with "example://gizmos” -->
                 <data android:scheme="https"
-                    android:host="aggressionreport.fr"
+                    android:host="lineflag.con"
                     android:data="/metro"/>
             </intent-filter>
         </activity>
@@ -111,7 +111,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
                 <!-- Accepts URIs that begin with "example://gizmos” -->
-                <data android:scheme="aggrreport"
+                <data android:scheme="lineflag"
                     android:host="nightbus" />
             </intent-filter>
         </activity>
@@ -134,7 +134,7 @@
             android:value="true" />
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"
-            android:resource="@drawable/ic_stat_name" />
+            android:resource="@drawable/if_logo_blanc" />
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_channel_id"
             android:value="@string/default_notification_channel_id"/>

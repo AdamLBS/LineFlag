@@ -41,7 +41,7 @@ import java.util.Objects;
 public class BottomSheetDialog extends BottomSheetDialogFragment {
     private RequestQueue mRequestQueue;
     private static Context mCtx;
-    private String report_url = "https://api.aggressionreport.fr/report.php";
+    private String report_url = "https://api.lineflag.com/report.php";
     private static final String LOCATION = "location";
     private static final String AGGRESSION = "aggression";
     private static final String AGGRESSION3 = "aggression2";

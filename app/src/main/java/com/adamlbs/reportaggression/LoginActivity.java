@@ -73,7 +73,7 @@ public class LoginActivity extends AppCompatActivity {
     private static final String TAG = LoginActivity.class.getSimpleName();
     private FirebaseAuth mAuth;
     private ProgressDialog pDialog;
-    private String login_url = "https://api.aggressionreport.fr/login.php";
+    private String login_url = "https://api.lineflag.com/login.php";
     private SessionHandler session;
     private int currentUser;
     Activity context = this;

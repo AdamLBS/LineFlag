@@ -77,9 +77,9 @@ public class DashboardActivity extends AppCompatActivity {
 
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setTitle("LineFlag");
-            builder.setMessage("L'application est toujours en développement. Il est possible que des bugs surviennent, n'hésitez pas à les signaler !"+
+            builder.setMessage("Bienvenue sur LineFlag !"+
                     "\n"+
-                    "\nVous pouvez aussi faire part de vos suggestions via le Play Store." +
+                    "\nVous pouvez faire part de vos suggestions via le Play Store." +
                     "\n" +
                     "\nVous pouvez pour le moment signaler 3 types d'agression : Verbale, physique et sexuelle." +
                     "\n" +
