@@ -26,6 +26,7 @@
             android:layout_gravity="center"
             android:src="@drawable/if_logo_bleu"
             />
+
     </LinearLayout>
 
     <LinearLayout
