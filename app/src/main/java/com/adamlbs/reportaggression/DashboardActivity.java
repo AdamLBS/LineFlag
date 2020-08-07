@@ -4,6 +4,7 @@ import android.Manifest;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
@@ -14,6 +15,7 @@ import android.location.Geocoder;
 import android.location.Location;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.MenuItem;
@@ -142,7 +144,7 @@ public class DashboardActivity extends AppCompatActivity {
                 startupMessage();
 
             } else {
-                userCountry = "Unknown";
+                userCountry = "oeoe";
                 Log.d("LOCATION DEV", "IDK " + userCountry);
                 startupMessage();
 
@@ -153,8 +155,10 @@ public class DashboardActivity extends AppCompatActivity {
         }
         String requiredPermission = Manifest.permission.ACCESS_FINE_LOCATION;
         int checkVal = DashboardActivity.this.checkCallingOrSelfPermission(requiredPermission);
-        if (checkVal==PackageManager.PERMISSION_GRANTED){                Log.d("GRANTEEEDDDDDDDDDDDDDDD", "IDK " + userCountry);
+        if (checkVal == PackageManager.PERMISSION_GRANTED) {
+            Log.d("GRANTEEEDDDDDDDDDDDDDDD", "IDK " + userCountry);
         }
+        PreferenceManager.getDefaultSharedPreferences(context).edit().putString("city", userCountry).apply();
 
         AppRate.with(this)
                 .setInstallDays(0) // default 10, 0 means install day.

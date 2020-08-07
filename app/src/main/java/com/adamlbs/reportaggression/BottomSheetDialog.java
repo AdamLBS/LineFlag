@@ -1,9 +1,19 @@
 package com.adamlbs.reportaggression;
 
+import android.Manifest;
+import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.Address;
+import android.location.Geocoder;
+import android.location.Location;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.Message;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -15,6 +25,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 
 import com.android.volley.DefaultRetryPolicy;
@@ -34,8 +45,12 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
+
+import static android.content.Context.MODE_PRIVATE;
 
 
 public class BottomSheetDialog extends BottomSheetDialogFragment {
@@ -46,7 +61,13 @@ public class BottomSheetDialog extends BottomSheetDialogFragment {
     private static final String AGGRESSION = "aggression";
     private static final String AGGRESSION3 = "aggression2";
     private String location;
+    Location gps_loc;
+    Location network_loc;
+    Location final_loc;
+    double longitude;
+    double latitude;
     private String agression;
+    private String city2;
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,6 +81,8 @@ public class BottomSheetDialog extends BottomSheetDialogFragment {
 
         String text = getArguments().getString("text");
         location = text;
+        String city = PreferenceManager.getDefaultSharedPreferences(this.getActivity()).getString("city", "null");
+
         View v = inflater.inflate(R.layout.bottom_sheet_layout, container, false);
         ImageButton sexual = (ImageButton) v.findViewById(R.id.sexual);
         ImageButton verbal = (ImageButton) v.findViewById(R.id.verbal);
@@ -69,9 +92,38 @@ public class BottomSheetDialog extends BottomSheetDialogFragment {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        agression = "Agression sexuelle";
-                        userRegister();
-                        getActivity().onBackPressed();
+                        if (city.equals("Marseille")) {
+                            agression = "Agression sexuelle";
+                            report();
+                            getActivity().onBackPressed();
+                        } else {
+                            AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                            builder.setTitle("Votre ville n'est pas compatible");
+                            builder.setMessage("LineFlag est pour l'instant seulement compatible avec la ville de Marseille" +
+                                    "\n" +
+                                    "\nNous n'avons pas pu vous localiser à Marseille." +
+                                    "\n" +
+                                    "\nIl se peut que votre GPS soit désactivé, si c'est le cas veuillez l'activer et redémarrer l'application." +
+                                    "\n" +
+                                    "\nSi vous n'habitez pas à Marseille vous pouvez demander à ce que votre ville soit ajoutée en cliquant sur le bouton ci-dessous."+
+                                    "\n" +
+                                            "\nVous pouvez aussi visualiser les statistiques des lignes mais vous ne pouvez pas signaler d'agression.")
+                                    .setCancelable(false)
+                                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int id) {
+                                        }
+                                    });
+                            builder.setNegativeButton("Suggérer une ville", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int whichButton) {
+                                    Intent i1 = new Intent(getActivity(),WebView.class);
+                                    startActivity(i1);
+                                }
+                            });
+
+
+                            AlertDialog alert = builder.create();
+                            alert.show();
+                        }
                     }
                 }
 
@@ -80,9 +132,38 @@ public class BottomSheetDialog extends BottomSheetDialogFragment {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        agression = "Agression verbale";
-                        userRegister();
-                        getActivity().onBackPressed();
+                        if (city == "Marseille") {
+                            agression = "Agression verbale";
+                            report();
+                            getActivity().onBackPressed();
+                        } else {
+                            AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                            builder.setTitle("Votre ville n'est pas compatible");
+                            builder.setMessage("LineFlag est pour l'instant seulement compatible avec la ville de Marseille" +
+                                    "\n" +
+                                    "\nNous n'avons pas pu vous localiser à Marseille." +
+                                    "\n" +
+                                    "\nIl se peut que votre GPS soit désactivé, si c'est le cas veuillez l'activer et redémarrer l'application." +
+                                    "\n" +
+                                    "\nSi vous n'habitez pas à Marseille vous pouvez demander à ce que votre ville soit ajoutée en cliquant sur le bouton ci-dessous."+
+                                    "\n" +
+                                    "\nVous pouvez aussi visualiser les statistiques des lignes mais vous ne pouvez pas signaler d'agression.")
+                                    .setCancelable(false)
+                                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int id) {
+                                        }
+                                    });
+                            builder.setNegativeButton("Suggérer une ville", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int whichButton) {
+                                    Intent i1 = new Intent(getActivity(),WebView.class);
+                                    startActivity(i1);
+                                }
+                            });
+
+
+                            AlertDialog alert = builder.create();
+                            alert.show();
+                        }
                     }
                 }
         );
@@ -90,9 +171,38 @@ public class BottomSheetDialog extends BottomSheetDialogFragment {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        agression = "Agression physique";
-                        userRegister();
-                        getActivity().onBackPressed();
+                        if (city == "Marseille") {
+                            agression = "Agression physique";
+                            report();
+                            getActivity().onBackPressed();
+                        } else {
+                            AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                            builder.setTitle("Votre ville n'est pas compatible");
+                            builder.setMessage("LineFlag est pour l'instant seulement compatible avec la ville de Marseille" +
+                                    "\n" +
+                                    "\nNous n'avons pas pu vous localiser à Marseille." +
+                                    "\n" +
+                                    "\nIl se peut que votre GPS soit désactivé, si c'est le cas veuillez l'activer et redémarrer l'application." +
+                                    "\n" +
+                                    "\nSi vous n'habitez pas à Marseille vous pouvez demander à ce que votre ville soit ajoutée en cliquant sur le bouton ci-dessous."+
+                                    "\n" +
+                                    "\nVous pouvez aussi visualiser les statistiques des lignes mais vous ne pouvez pas signaler d'agression.")
+                                    .setCancelable(false)
+                                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int id) {
+                                        }
+                                    });
+                            builder.setNegativeButton("Suggérer une ville", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int whichButton) {
+                                    Intent i1 = new Intent(getActivity(),WebView.class);
+                                    startActivity(i1);
+                                }
+                            });
+
+
+                            AlertDialog alert = builder.create();
+                            alert.show();
+                        }
                     }
                 }
         );
@@ -109,7 +219,7 @@ loadStatistics();
 
     }
 
-    private void userRegister() {
+    private void report() {
 
                 JSONObject request = new JSONObject();
         try {
@@ -152,5 +262,6 @@ loadStatistics();
         startActivity(i1);
 
     }
+
 }
 
