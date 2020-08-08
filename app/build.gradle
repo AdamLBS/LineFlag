@@ -17,8 +17,8 @@ android {
         applicationId "com.adamlbs.reportaggression"
         minSdkVersion 23
         targetSdkVersion 29
-        versionCode 29
-        versionName "0.2.20"
+        versionCode 30
+        versionName "0.2.20.1"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
 
