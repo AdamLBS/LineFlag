@@ -1,3 +1,11 @@
+/*
+ * *
+ *  * Created by Adam Elaoumari on 09/08/20 00:46
+ *  * Copyright (c) 2020 . All rights reserved.
+ *  * Last modified 02/08/20 01:19
+ *
+ */
+
 package com.adamlbs.reportaggression;
 
 import androidx.appcompat.app.AppCompatActivity;

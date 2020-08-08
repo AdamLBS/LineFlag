@@ -1,4 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ /**
+  ~  * Created by Adam Elaoumari on 09/08/20 00:46
+  ~  * Copyright (c) 2020 . All rights reserved.
+  ~  * Last modified 02/02/20 14:50
+  ~  */
+  -->
+
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
     android:width="108dp"
     android:height="108dp"

@@ -1,4 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ /**
+  ~  * Created by Adam Elaoumari on 09/08/20 00:46
+  ~  * Copyright (c) 2020 . All rights reserved.
+  ~  * Last modified 18/04/20 05:02
+  ~  */
+  -->
+
 <adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">
     <background android:drawable="@drawable/ic_2_background"/>
     <foreground android:drawable="@mipmap/ic_2_foreground"/>

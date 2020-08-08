@@ -1,3 +1,11 @@
+/*
+ * *
+ *  * Created by Adam Elaoumari on 09/08/20 00:46
+ *  * Copyright (c) 2020 . All rights reserved.
+ *  * Last modified 09/08/20 00:46
+ *
+ */
+
 package com.adamlbs.reportaggression;
 
 import android.Manifest;
@@ -133,7 +141,6 @@ public class DashboardActivity extends AppCompatActivity {
             latitude = 0.0;
             longitude = 0.0;
         }
-        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_NETWORK_STATE}, 1);
         try {
             Geocoder geocoder = new Geocoder(this, Locale.getDefault());
             List<Address> addresses = geocoder.getFromLocation(latitude, longitude, 1);
@@ -156,7 +163,7 @@ public class DashboardActivity extends AppCompatActivity {
         String requiredPermission = Manifest.permission.ACCESS_FINE_LOCATION;
         int checkVal = DashboardActivity.this.checkCallingOrSelfPermission(requiredPermission);
         if (checkVal == PackageManager.PERMISSION_GRANTED) {
-            Log.d("GRANTEEEDDDDDDDDDDDDDDD", "IDK " + userCountry);
+            Log.d("permission granted", "IDK " + userCountry);
         }
         PreferenceManager.getDefaultSharedPreferences(context).edit().putString("city", userCountry).apply();
 

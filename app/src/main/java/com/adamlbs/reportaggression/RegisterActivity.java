@@ -1,3 +1,11 @@
+/*
+ * *
+ *  * Created by Adam Elaoumari on 09/08/20 00:46
+ *  * Copyright (c) 2020 . All rights reserved.
+ *  * Last modified 21/04/20 15:13
+ *
+ */
+
 package com.adamlbs.reportaggression;
 
 import android.app.ProgressDialog;

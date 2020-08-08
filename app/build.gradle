@@ -1,3 +1,11 @@
+/*
+ * *
+ *  * Created by Adam Elaoumari on 09/08/20 00:46
+ *  * Copyright (c) 2020 . All rights reserved.
+ *  * Last modified 09/08/20 00:24
+ *
+ */
+
 apply plugin: 'com.android.application'
 apply plugin: 'com.google.gms.google-services'
 apply plugin: 'com.google.firebase.crashlytics'
@@ -9,8 +17,8 @@ android {
         applicationId "com.adamlbs.reportaggression"
         minSdkVersion 23
         targetSdkVersion 29
-        versionCode 28
-        versionName "0.2.19"
+        versionCode 29
+        versionName "0.2.20"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
 
@@ -46,6 +54,7 @@ dependencies {
     implementation 'com.google.android.material:material:1.2.0'
     implementation 'com.google.android.gms:play-services-location:17.0.0'
 
+    implementation 'com.github.BugBattle:BugBattle-Android-SDK:1.3.2'
 
     annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.1'
     implementation 'com.google.android.material:material:1.2.0'

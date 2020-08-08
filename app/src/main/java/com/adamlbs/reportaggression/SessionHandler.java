@@ -1,3 +1,11 @@
+/*
+ * *
+ *  * Created by Adam Elaoumari on 09/08/20 00:46
+ *  * Copyright (c) 2020 . All rights reserved.
+ *  * Last modified 20/01/20 17:50
+ *
+ */
+
 package com.adamlbs.reportaggression;
 
 import android.content.Context;
@@ -5,9 +13,6 @@ import android.content.SharedPreferences;
 
 import java.util.Date;
 
-/**
- * Created by Abhi on 20 Jan 2018 020.
- */
 
 public class SessionHandler {
     private static final String PREF_NAME = "UserSession";

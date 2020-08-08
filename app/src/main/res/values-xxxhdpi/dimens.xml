@@ -1,3 +1,11 @@
+<!--
+  ~ /**
+  ~  * Created by Adam Elaoumari on 09/08/20 00:46
+  ~  * Copyright (c) 2020 . All rights reserved.
+  ~  * Last modified 21/04/20 15:29
+  ~  */
+  -->
+
 <resources>
 	<dimen name="activity_vertical_margin">48dp</dimen>
 	<dimen name="layout_marginBottom">135dp</dimen>

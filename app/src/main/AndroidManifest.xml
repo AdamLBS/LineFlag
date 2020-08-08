@@ -1,4 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ /**
+  ~  * Created by Adam Elaoumari on 09/08/20 00:46
+  ~  * Copyright (c) 2020 . All rights reserved.
+  ~  * Last modified 08/08/20 04:02
+  ~  */
+  -->
+
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.adamlbs.reportaggression">
@@ -8,7 +16,8 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
-        android:allowBackup="true"
+        android:name=".App"
+    android:allowBackup="true"
         android:icon="@mipmap/ic_3"
         android:label="@string/app_name"
         android:largeHeap="true"
