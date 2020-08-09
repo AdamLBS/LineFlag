@@ -1,8 +1,8 @@
 /*
  * *
- *  * Created by Adam Elaoumari on 09/08/20 00:46
+ *  * Created by Adam Elaoumari on 09/08/20 17:28
  *  * Copyright (c) 2020 . All rights reserved.
- *  * Last modified 09/08/20 00:46
+ *  * Last modified 09/08/20 17:20
  *
  */
 
@@ -140,7 +140,7 @@ public class BottomSheetDialog extends BottomSheetDialogFragment {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        if (city == "Marseille") {
+                        if (city.equals("Marseille")) {
                             agression = "Agression verbale";
                             report();
                             getActivity().onBackPressed();
@@ -179,7 +179,7 @@ public class BottomSheetDialog extends BottomSheetDialogFragment {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        if (city == "Marseille") {
+                        if (city.equals("Marseille")) {
                             agression = "Agression physique";
                             report();
                             getActivity().onBackPressed();
