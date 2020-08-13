@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1051219485914",
+    "firebase_url": "https://aggression-report.firebaseio.com",
+    "project_id": "aggression-report",
+    "storage_bucket": "aggression-report.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1051219485914:android:8698631c0d50119a8031e3",
+        "android_client_info": {
+          "package_name": "com.adamlbs.reportaggression"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1051219485914-8gei8f4tj0vtl4vsn0nsjq1hf4cparcs.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAWPXa0ci4xQVy6KThA7E7zwy_tMCZcXSc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1051219485914-8gei8f4tj0vtl4vsn0nsjq1hf4cparcs.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
