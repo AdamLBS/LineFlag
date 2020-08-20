@@ -1,8 +1,8 @@
 /*
  * *
- *  * Created by Adam Elaoumari on 09/08/20 00:46
+ *  * Created by Adam Elaoumari on 20/08/20 23:15
  *  * Copyright (c) 2020 . All rights reserved.
- *  * Last modified 15/07/20 15:35
+ *  * Last modified 20/08/20 23:14
  *
  */
 
@@ -195,7 +195,7 @@ public class Stats extends AppCompatActivity {
         PieDataSet pieDataSet = new PieDataSet(getData(),"Détail des agressions");
         Legend legend = pieChart.getLegend();
         legend.setEnabled(false);
-        pieDataSet.setColors(ColorTemplate.COLORFUL_COLORS);
+        pieDataSet.setColors(Color.rgb(255, 102, 0), Color.rgb(193, 37, 82), Color.rgb(245, 199, 0));
         PieData pieData = new PieData(pieDataSet);
         Description description = pieChart.getDescription();
         description.setEnabled(false);
@@ -208,9 +208,9 @@ public class Stats extends AppCompatActivity {
     }
     private ArrayList getData(){
         ArrayList<PieEntry> entries = new ArrayList<>();
-        entries.add(new PieEntry(verbalAggression));
-        entries.add(new PieEntry(physicalAggression));
         entries.add(new PieEntry(sexualAggression));
+        entries.add(new PieEntry(physicalAggression));
+        entries.add(new PieEntry(verbalAggression));
         return entries;
     }
 }

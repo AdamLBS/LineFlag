@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
   ~ /**
-  ~  * Created by Adam Elaoumari on 09/08/20 00:46
+  ~  * Created by Adam Elaoumari on 20/08/20 23:15
   ~  * Copyright (c) 2020 . All rights reserved.
-  ~  * Last modified 15/07/20 15:39
+  ~  * Last modified 20/08/20 23:14
   ~  */
   -->
 
@@ -69,7 +69,6 @@
 
             android:background="@drawable/bg_fields"
             android:scaleType="fitCenter">
-
             <EditText
                 android:id="@+id/etLoginPassword"
                 android:layout_width="227dp"
@@ -123,7 +122,6 @@
 
             android:text="@string/sign_in"
             android:textColor="@android:color/white" />
-
 
 
     </LinearLayout>
