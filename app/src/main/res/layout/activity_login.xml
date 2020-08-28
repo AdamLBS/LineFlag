@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
   ~ /**
-  ~  * Created by Adam Elaoumari on 20/08/20 23:15
+  ~  * Created by Adam Elaoumari on 28/08/20 02:09
   ~  * Copyright (c) 2020 . All rights reserved.
-  ~  * Last modified 20/08/20 23:14
+  ~  * Last modified 28/08/20 00:57
   ~  */
   -->
 
@@ -110,7 +110,17 @@
 
             android:text="@string/sign_in"
             android:textColor="@android:color/white" />
+        <ImageButton
+            android:id="@+id/phone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="-5dp"
+            android:background="@drawable/phone_background"
+            android:scaleType="fitCenter"
 
+            android:text="@string/sign_in"
+            android:textColor="@android:color/white" />
         <ImageButton
             android:id="@+id/twitter"
             android:layout_width="wrap_content"

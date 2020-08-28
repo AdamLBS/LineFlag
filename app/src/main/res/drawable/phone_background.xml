@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ /**
+  ~  * Created by Adam Elaoumari on 28/08/20 02:09
+  ~  * Copyright (c) 2020 . All rights reserved.
+  ~  * Last modified 28/08/20 00:57
+  ~  */
+  -->
+
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:drawable="@drawable/sign_in_sms_active"
+        android:state_focused="true"
+
+        android:width="258dp"
+        android:height="55dp">
+    </item>
+    android:state_pressed="true"/>
+    <item android:drawable="@drawable/sign_in_sms_active"
+        android:width="258dp"
+        android:height="55dp"
+        android:state_focused="false"
+        android:state_pressed="true"/>
+    <item android:drawable="@drawable/sign_in_sms"/>
+
+</selector>

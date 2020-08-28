@@ -1,15 +1,17 @@
 /*
  * *
- *  * Created by Adam Elaoumari on 20/08/20 23:15
+ *  * Created by Adam Elaoumari on 28/08/20 02:09
  *  * Copyright (c) 2020 . All rights reserved.
- *  * Last modified 20/08/20 23:14
+ *  * Last modified 28/08/20 01:21
  *  
  */
 
 package com.adamlbs.reportaggression;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
@@ -17,6 +19,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.text.InputType;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -42,12 +45,17 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.FirebaseException;
+import com.google.firebase.FirebaseTooManyRequestsException;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.firebase.auth.OAuthProvider;
+import com.google.firebase.auth.PhoneAuthCredential;
+import com.google.firebase.auth.PhoneAuthProvider;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
 
@@ -56,6 +64,7 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 import static java.nio.channels.spi.AsynchronousChannelProvider.provider;
 import static javax.crypto.Cipher.SECRET_KEY;
@@ -71,6 +80,8 @@ public class LoginActivity extends AppCompatActivity {
     public String maintenance;
     private EditText etPassword;
     private String username;
+    private String number;
+
     private String password;
     String SITE_KEY = "6LeXlQEVAAAAAPK43M8C4Q1yvRtGIJGbagyYZFx1\n";
 
@@ -119,6 +130,8 @@ public class LoginActivity extends AppCompatActivity {
         ImageButton login = findViewById(R.id.btnLogin);
         ImageButton twitter = findViewById(R.id.twitter);
         ImageButton googleButton = findViewById(R.id.sign_in_button);
+        ImageButton phoneButton = findViewById(R.id.phone);
+
         googleButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -132,8 +145,13 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        //Launch Registration screen when Register Button is clicked
-
+        //Launch SMS screen when Register Button is clicked
+        phoneButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                config_phone();
+            }
+        });
 
         login.setOnClickListener(new View.OnClickListener() {
 
@@ -210,6 +228,105 @@ public class LoginActivity extends AppCompatActivity {
      * Display Progress bar while Logging in
      */
 
+    private void phonelogin() {
+        Log.w(TAG, "1");
+        AlertDialog.Builder alert = new AlertDialog.Builder(this);
+
+        alert.setTitle("Se connecter par SMS");
+        alert.setMessage("Veuillez entrer votre numéro de téléphone."+
+                "\n" +
+                "\nDes frais standard peuvent s'appliquer lors de la réception du SMS." );
+
+// Set an EditText view to get user input
+        final EditText input = new EditText(this);
+        input.setInputType(InputType.TYPE_CLASS_NUMBER);
+
+        alert.setView(input);
+        final String prefix = "+33";
+        input.setText(prefix);
+        alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {
+
+                number = input.getText().toString().toLowerCase().trim();;
+
+                phone();
+
+
+            }
+        });
+
+        alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {
+                // Canceled.
+            }
+        });
+
+        alert.show();
+    }
+
+    private void phone() {
+        ProgressDialog dialog = ProgressDialog.show(LoginActivity.this, "En attente du SMS de vérification",
+                "Veuillez patienter...", true);
+        PhoneAuthProvider.OnVerificationStateChangedCallbacks     mCallbacks = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
+            private PhoneAuthProvider.ForceResendingToken mResendToken;
+            String mVerificationId;
+            @Override
+            public void onVerificationCompleted(PhoneAuthCredential credential) {
+                // This callback will be invoked in two situations:
+                // 1 - Instant verification. In some cases the phone number can be instantly
+                //     verified without needing to send or enter a verification code.
+                // 2 - Auto-retrieval. On some devices Google Play services can automatically
+                //     detect the incoming verification SMS and perform verification without
+                //     user action.
+                Log.d(TAG, "onVerificationCompleted:" + credential);
+
+                signInWithPhoneAuthCredential(credential);
+            }
+            @Override
+            public void onVerificationFailed(FirebaseException e) {
+                // This callback is invoked in an invalid request for verification is made,
+                // for instance if the the phone number format is not valid.
+                Log.w(TAG, "onVerificationFailed", e);
+
+                if (e instanceof FirebaseAuthInvalidCredentialsException) {
+
+                    dialog.dismiss();
+                } else if (e instanceof FirebaseTooManyRequestsException) {
+                    Toast.makeText(LoginActivity.this, "Veuillez contacter @LineFlagApp sur Twitter où secouer votre téléphone.. ",
+                            Toast.LENGTH_SHORT).show();
+                    dialog.dismiss();
+
+                }
+
+                Toast.makeText(LoginActivity.this, "Impossible de vous connecter par téléphone. Veuillez secouer votre téléphone pour signaler un bug. ",
+                        Toast.LENGTH_SHORT).show();
+                dialog.dismiss();
+
+            }
+
+            @Override
+            public void onCodeSent(@NonNull String verificationId,
+                                   @NonNull PhoneAuthProvider.ForceResendingToken token) {
+                // The SMS verification code has been sent to the provided phone number, we
+                // now need to ask the user to enter the code and then construct a credential
+                // by combining the code with a verification ID.
+                Log.d(TAG, "onCodeSent:" + verificationId);
+
+                // Save verification ID and resending token so we can use them later
+                mVerificationId = verificationId;
+                mResendToken = token;
+            }
+        };;        // OnVerificationStateChangedCallbacks
+
+        PhoneAuthProvider.getInstance().verifyPhoneNumber(
+                number,        // Phone number to verify
+                60,                 // Timeout duration
+                TimeUnit.SECONDS,   // Unit of timeout
+                this,               // Activity (for callback binding)
+                mCallbacks);
+
+    }
+
     private void login2() {
         username = etUsername.getText().toString().toLowerCase().trim();
         password = etPassword.getText().toString().trim();
@@ -217,6 +334,66 @@ public class LoginActivity extends AppCompatActivity {
         if (validateInputs()) {
             login();
         }
+  }
+
+    private void signInWithPhoneAuthCredential(PhoneAuthCredential credential) {
+        mAuth.signInWithCredential(credential)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            Log.d(TAG, "signInWithCredential:success");
+
+                            FirebaseUser user = task.getResult().getUser();
+                            loadDashboard();
+                        } else {
+                            Toast.makeText(LoginActivity.this, "Impossible de vous connecter par téléphone. Veuillez secouer votre téléphone pour signaler ce problème.",
+                                    Toast.LENGTH_SHORT).show();
+
+                            Log.w(TAG, "signInWithCredential:failure", task.getException());
+                            if (task.getException() instanceof FirebaseAuthInvalidCredentialsException) {
+                                // The verification code entered was invalid
+                            }
+                        }
+                    }
+                });
+    }
+    private void config_phone() {
+        mFirebaseRemoteConfig = FirebaseRemoteConfig.getInstance();
+        FirebaseRemoteConfigSettings configSettings = new FirebaseRemoteConfigSettings.Builder()
+                .build();
+        mFirebaseRemoteConfig.fetch(0);
+
+        mFirebaseRemoteConfig.setConfigSettingsAsync(configSettings);
+        mFirebaseRemoteConfig.fetchAndActivate()
+                .addOnCompleteListener(this, new OnCompleteListener<Boolean>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Boolean> task) {
+                        if (task.isSuccessful()) {
+                            boolean updated = task.getResult();
+                            Log.d(TAG, "Config params updated: " + updated);
+                            //  Toast.makeText(LoginActivity.this, "Fetch and activate succeeded",
+                            //        Toast.LENGTH_SHORT).show();
+                            // Toast.makeText(LoginActivity.this, mFirebaseRemoteConfig.getString("maintenance"),
+                            //       Toast.LENGTH_SHORT).show();
+                            maintenance = mFirebaseRemoteConfig.getString("maintenance_phone");
+                            if (maintenance.equals("0")) {
+                                Log.w(TAG, "0");
+                                Toast.makeText(LoginActivity.this, "La connexion via SMS a été désactivée pour une maintenance.",
+                                        Toast.LENGTH_SHORT).show();
+                            } else
+                                phonelogin();
+                            //Retrieve the data entered in the edit texts
+                        }
+
+
+                        else {
+                            Toast.makeText(LoginActivity.this, "Erreur. Veuillez secouer votre téléphone pour signaler cette erreur.",
+                                    Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+
     }
     private void config() {
         mFirebaseRemoteConfig = FirebaseRemoteConfig.getInstance();
@@ -244,16 +421,17 @@ public class LoginActivity extends AppCompatActivity {
                             } else
                                 login2();
                             //Retrieve the data entered in the edit texts
-                            }
+                        }
 
 
-                         else {
-                            Toast.makeText(LoginActivity.this, "Fetch failed",
+                        else {
+                            Toast.makeText(LoginActivity.this, "Erreur. Veuillez secouer votre téléphone pour signaler cette erreur.",
                                     Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
     }
+
     private void googleconfig() {
         mFirebaseRemoteConfig = FirebaseRemoteConfig.getInstance();
         FirebaseRemoteConfigSettings configSettings = new FirebaseRemoteConfigSettings.Builder()
@@ -285,7 +463,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
                         else {
-                            Toast.makeText(LoginActivity.this, "Fetch failed",
+                            Toast.makeText(LoginActivity.this, "Erreur. Veuillez secouer votre téléphone pour signaler cette erreur.",
                                     Toast.LENGTH_SHORT).show();
                         }
                     }
@@ -321,7 +499,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
                         else {
-                            Toast.makeText(LoginActivity.this, "Fetch failed",
+                            Toast.makeText(LoginActivity.this, "Erreur. Veuillez secouer votre téléphone pour signaler cette erreur.",
                                     Toast.LENGTH_SHORT).show();
                         }
                     }
