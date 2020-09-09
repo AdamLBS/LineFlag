@@ -1,8 +1,8 @@
 /*
  * *
- *  * Created by Adam Elaoumari on 09/08/20 00:46
+ *  * Created by Adam Elaoumari on 09/09/20 22:20
  *  * Copyright (c) 2020 . All rights reserved.
- *  * Last modified 09/08/20 00:46
+ *  * Last modified 05/09/20 16:56
  *
  */
 
@@ -221,7 +221,7 @@ public class DashboardActivity extends AppCompatActivity {
 
                                         public void newActivity(View v) {
                                         }
-                                    }
+                                       }
 
         );
 

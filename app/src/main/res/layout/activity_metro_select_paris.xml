@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ /**
+  ~  * Created by Adam Elaoumari on 09/09/20 22:20
+  ~  * Copyright (c) 2020 . All rights reserved.
+  ~  * Last modified 09/09/20 19:19
+  ~  */
+  -->
+
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@drawable/main_layers"
+    android:layout_height="match_parent"
+    tools:context="com.adamlbs.reportaggression.MetroSelectParis">
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@null" >
+        <ImageView
+            android:id="@+id/logo"
+            android:layout_marginTop="30dp"
+
+            android:contentDescription="image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:layout_gravity="center"
+            android:src="@drawable/if_logo_bleu"
+            />
+
+        <ImageButton
+            android:id="@+id/btnM2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginTop="15dp"
+            android:background="@null"
+            android:scaleType="fitXY"
+
+            android:src="@drawable/m2"
+            android:text="@string/metro"
+            android:textColor="@android:color/white" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="match_parent">
+        <View
+            android:id="@+id/view"
+            android:layout_height="1dp"
+            android:layout_width="0dp"
+            android:layout_centerHorizontal="true"
+            />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="204dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="60dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginBottom="20dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/metro_title">
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="130dp"
+                android:src="@drawable/metro_title" />
+
+        </RelativeLayout>
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+
+            android:layout_gravity="center">
+
+            <ImageButton
+                android:id="@+id/m1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/mp1"
+                android:layout_marginRight="20dp"
+                android:background="@android:color/transparent"
+                android:foregroundGravity="center"
+                android:text="Allow"/>
+            <ImageButton
+                android:id="@+id/m2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_toRightOf="@id/m1"
+                android:layout_marginRight="20dp"
+                android:src="@drawable/mp2"
+                android:background="@android:color/transparent"
+                android:layout_alignTop="@id/m1"
+                android:text="Deny"/>
+            <ImageButton
+                android:id="@+id/m3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_toRightOf="@id/m2"
+                android:layout_marginRight="20dp"
+                android:src="@drawable/mp3"
+                android:background="@android:color/transparent"
+                android:layout_alignTop="@id/m2"
+                android:text="Deny"/>
+            <ImageButton
+                android:id="@+id/m3bis"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_toRightOf="@id/m3"
+                android:src="@drawable/mp3bis"
+                android:background="@android:color/transparent"
+                android:layout_alignTop="@id/m3"
+                android:text="Deny"/>
+        </RelativeLayout>
+
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+
+            android:layout_gravity="center">
+
+            <ImageButton
+                android:id="@+id/m4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/mp4"
+                android:layout_marginRight="20dp"
+                android:background="@android:color/transparent"
+                android:foregroundGravity="center"
+                android:text="Allow"/>
+            <ImageButton
+                android:id="@+id/m5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_toRightOf="@id/m4"
+                android:layout_marginRight="20dp"
+                android:src="@drawable/mp5"
+                android:background="@android:color/transparent"
+                android:layout_alignTop="@id/m4"
+                android:text="Deny"/>
+            <ImageButton
+                android:id="@+id/m6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_toRightOf="@id/m5"
+                android:layout_marginRight="20dp"
+                android:src="@drawable/mp6"
+                android:background="@android:color/transparent"
+                android:layout_alignTop="@id/m5"
+                android:text="Deny"/>
+            <ImageButton
+                android:id="@+id/m7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_toRightOf="@id/m6"
+                android:src="@drawable/mp7"
+                android:background="@android:color/transparent"
+                android:layout_alignTop="@id/m6"
+                android:text="Deny"/>
+        </RelativeLayout>
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+
+            android:layout_gravity="center">
+
+            <ImageButton
+                android:id="@+id/m7bis"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/mp7bis"
+                android:layout_marginRight="20dp"
+                android:background="@android:color/transparent"
+                android:foregroundGravity="center"
+                android:text="Allow"/>
+            <ImageButton
+                android:id="@+id/m8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_toRightOf="@id/m7bis"
+                android:layout_marginRight="20dp"
+                android:src="@drawable/mp8"
+                android:background="@android:color/transparent"
+                android:layout_alignTop="@id/m7bis"
+                android:text="Deny"/>
+            <ImageButton
+                android:id="@+id/m9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_toRightOf="@id/m8"
+                android:layout_marginRight="20dp"
+                android:src="@drawable/mp9"
+                android:background="@android:color/transparent"
+                android:layout_alignTop="@id/m8"
+                android:text="Deny"/>
+            <ImageButton
+                android:id="@+id/m10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_toRightOf="@id/m9"
+                android:src="@drawable/mp10"
+                android:background="@android:color/transparent"
+                android:layout_alignTop="@id/m9"
+                android:text="Deny"/>
+        </RelativeLayout>
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+
+            android:layout_gravity="center">
+
+            <ImageButton
+                android:id="@+id/m11"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/mp11"
+                android:layout_marginRight="20dp"
+                android:background="@android:color/transparent"
+                android:foregroundGravity="center"
+                android:text="Allow"/>
+            <ImageButton
+                android:id="@+id/m12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_toRightOf="@id/m11"
+                android:layout_marginRight="20dp"
+                android:src="@drawable/mp12"
+                android:background="@android:color/transparent"
+                android:layout_alignTop="@id/m11"
+                android:text="Deny"/>
+            <ImageButton
+                android:id="@+id/m13"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_toRightOf="@id/m12"
+                android:layout_marginRight="20dp"
+                android:src="@drawable/mp13"
+                android:background="@android:color/transparent"
+                android:layout_alignTop="@id/m12"
+                android:text="Deny"/>
+            <ImageButton
+                android:id="@+id/m14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_toRightOf="@id/m13"
+                android:src="@drawable/mp14"
+                android:background="@android:color/transparent"
+                android:layout_alignTop="@id/m13"
+                android:text="Deny"/>
+        </RelativeLayout>
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+
+            android:layout_gravity="center">
+
+            <ImageButton
+                android:id="@+id/orlyval"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/orlyval"
+                android:background="@android:color/transparent"
+                android:foregroundGravity="center"
+                android:text="Allow"/>
+        </RelativeLayout>
+    </LinearLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

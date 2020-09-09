@@ -1,8 +1,8 @@
 /*
  * *
- *  * Created by Adam Elaoumari on 09/08/20 17:28
+ *  * Created by Adam Elaoumari on 09/09/20 22:20
  *  * Copyright (c) 2020 . All rights reserved.
- *  * Last modified 09/08/20 17:20
+ *  * Last modified 09/09/20 21:27
  *
  */
 
@@ -107,20 +107,28 @@ public class BottomSheetDialog extends BottomSheetDialogFragment {
                         } else {
                             AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
                             builder.setTitle("Votre ville n'est pas compatible");
-                            builder.setMessage("LineFlag est pour l'instant seulement compatible avec la ville de Marseille" +
+                            builder.setMessage("LineFlag est pour l'instant seulement compatible avec la ville de Marseille et de Paris" +
                                     "\n" +
                                     "\nNous n'avons pas pu vous localiser à Marseille." +
                                     "\n" +
                                     "\nIl se peut que votre GPS soit désactivé, si c'est le cas veuillez l'activer et redémarrer l'application." +
                                     "\n" +
-                                    "\nSi vous n'habitez pas à Marseille vous pouvez demander à ce que votre ville soit ajoutée en cliquant sur le bouton ci-dessous."+
+                                    "\nSi vous le souhaitez vous pouvez changer de ville en cliquant sur le bouton ci dessous, vous pouvez aussi suggérer une ville à ajouter."+
                                     "\n" +
-                                            "\nVous pouvez aussi visualiser les statistiques des lignes mais vous ne pouvez pas signaler d'agression.")
+                                    "\nVous pouvez aussi visualiser les statistiques des lignes mais vous ne pouvez pas signaler d'agression.")
                                     .setCancelable(false)
-                                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                    .setPositiveButton("Changer de ville", new DialogInterface.OnClickListener() {
                                         public void onClick(DialogInterface dialog, int id) {
+                                            Intent i1 = new Intent(getActivity(),DashboardParis.class);
+                                            i1.putExtra("key", location); //Optional parameters
+                                            startActivity(i1);
                                         }
                                     });
+                            builder.setNeutralButton("Ok", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int whichButton) {
+
+                                }
+                            });
                             builder.setNegativeButton("Suggérer une ville", new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int whichButton) {
                                     Intent i1 = new Intent(getActivity(),WebView.class);
@@ -147,20 +155,28 @@ public class BottomSheetDialog extends BottomSheetDialogFragment {
                         } else {
                             AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
                             builder.setTitle("Votre ville n'est pas compatible");
-                            builder.setMessage("LineFlag est pour l'instant seulement compatible avec la ville de Marseille" +
+                            builder.setMessage("LineFlag est pour l'instant seulement compatible avec la ville de Marseille et de Paris" +
                                     "\n" +
                                     "\nNous n'avons pas pu vous localiser à Marseille." +
                                     "\n" +
                                     "\nIl se peut que votre GPS soit désactivé, si c'est le cas veuillez l'activer et redémarrer l'application." +
                                     "\n" +
-                                    "\nSi vous n'habitez pas à Marseille vous pouvez demander à ce que votre ville soit ajoutée en cliquant sur le bouton ci-dessous."+
+                                    "\nSi vous le souhaitez vous pouvez changer de ville en cliquant sur le bouton ci dessous, vous pouvez aussi suggérer une ville à ajouter."+
                                     "\n" +
                                     "\nVous pouvez aussi visualiser les statistiques des lignes mais vous ne pouvez pas signaler d'agression.")
                                     .setCancelable(false)
-                                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                    .setPositiveButton("Changer de ville", new DialogInterface.OnClickListener() {
                                         public void onClick(DialogInterface dialog, int id) {
+                                            Intent i1 = new Intent(getActivity(),DashboardParis.class);
+                                            i1.putExtra("key", location); //Optional parameters
+                                            startActivity(i1);
                                         }
                                     });
+                            builder.setNeutralButton("Ok", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int whichButton) {
+
+                                }
+                            });
                             builder.setNegativeButton("Suggérer une ville", new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int whichButton) {
                                     Intent i1 = new Intent(getActivity(),WebView.class);
@@ -186,20 +202,28 @@ public class BottomSheetDialog extends BottomSheetDialogFragment {
                         } else {
                             AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
                             builder.setTitle("Votre ville n'est pas compatible");
-                            builder.setMessage("LineFlag est pour l'instant seulement compatible avec la ville de Marseille" +
+                            builder.setMessage("LineFlag est pour l'instant seulement compatible avec la ville de Marseille et de Paris" +
                                     "\n" +
                                     "\nNous n'avons pas pu vous localiser à Marseille." +
                                     "\n" +
                                     "\nIl se peut que votre GPS soit désactivé, si c'est le cas veuillez l'activer et redémarrer l'application." +
                                     "\n" +
-                                    "\nSi vous n'habitez pas à Marseille vous pouvez demander à ce que votre ville soit ajoutée en cliquant sur le bouton ci-dessous."+
+                                    "\nSi vous le souhaitez vous pouvez changer de ville en cliquant sur le bouton ci dessous, vous pouvez aussi suggérer une ville à ajouter."+
                                     "\n" +
                                     "\nVous pouvez aussi visualiser les statistiques des lignes mais vous ne pouvez pas signaler d'agression.")
                                     .setCancelable(false)
-                                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                    .setPositiveButton("Changer de ville", new DialogInterface.OnClickListener() {
                                         public void onClick(DialogInterface dialog, int id) {
+                                            Intent i1 = new Intent(getActivity(),DashboardParis.class);
+                                            i1.putExtra("key", location); //Optional parameters
+                                            startActivity(i1);
                                         }
                                     });
+                            builder.setNeutralButton("Ok", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int whichButton) {
+
+                                }
+                            });
                             builder.setNegativeButton("Suggérer une ville", new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int whichButton) {
                                     Intent i1 = new Intent(getActivity(),WebView.class);

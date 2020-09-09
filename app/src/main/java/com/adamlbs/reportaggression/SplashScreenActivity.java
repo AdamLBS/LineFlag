@@ -1,8 +1,8 @@
 /*
  * *
- *  * Created by Adam Elaoumari on 09/08/20 00:46
+ *  * Created by Adam Elaoumari on 09/09/20 22:20
  *  * Copyright (c) 2020 . All rights reserved.
- *  * Last modified 09/08/20 00:28
+ *  * Last modified 09/09/20 21:14
  *
  */
 
@@ -14,10 +14,16 @@ import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
+import android.location.Address;
+import android.location.Geocoder;
+import android.location.Location;
+import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -28,9 +34,16 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 public class SplashScreenActivity extends AppCompatActivity {
+    Location gps_loc;
+    Location network_loc;
+    Location final_loc;
+    double longitude;
+    double latitude;
+    String userCountry, userAddress , userRegion;
     public static final int MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 1;
     private static final int REQUEST_CODE_ASK_MULTIPLE_PERMISSIONS = 1;
 
@@ -42,7 +55,59 @@ public class SplashScreenActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_splash_screen);
         permissioncheck();
+        LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
+                && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED
+                && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_NETWORK_STATE) != PackageManager.PERMISSION_GRANTED) {
 
+            return;
+        }
+        try {
+
+            gps_loc = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+            network_loc = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        if (gps_loc != null) {
+            final_loc = gps_loc;
+            latitude = final_loc.getLatitude();
+            longitude = final_loc.getLongitude();
+        } else if (network_loc != null) {
+            final_loc = network_loc;
+            latitude = final_loc.getLatitude();
+            longitude = final_loc.getLongitude();
+
+        } else {
+            latitude = 0.0;
+            longitude = 0.0;
+        }
+        try {
+            Geocoder geocoder = new Geocoder(this, Locale.getDefault());
+            List<Address> addresses = geocoder.getFromLocation(latitude, longitude, 1);
+            if (addresses != null && addresses.size() > 0) {
+                userCountry = addresses.get(0).getLocality();
+                userRegion = addresses.get(0).getSubAdminArea();
+                userAddress = addresses.get(0).getAdminArea();
+                Log.d("LOCATION DEV", "token " + userCountry);
+                Log.d("LOCATION DEV", "token " + userRegion);
+                Log.d("LOCATION DEV", "token " + userAddress);
+
+            } else {
+                userCountry = "none";
+                Log.d("LOCATION DEV", "IDK " + userCountry);
+
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        String requiredPermission = Manifest.permission.ACCESS_FINE_LOCATION;
+        int checkVal = SplashScreenActivity.this.checkCallingOrSelfPermission(requiredPermission);
+        if (checkVal == PackageManager.PERMISSION_GRANTED) {
+            Log.d("permission granted", "IDK " + userCountry);
+        }
         // démarrer l'app
     }
 
@@ -105,6 +170,13 @@ public class SplashScreenActivity extends AppCompatActivity {
 
             @Override
             public void run() {
+                SharedPreferences pref = getApplicationContext().getSharedPreferences("Location", MODE_PRIVATE);
+                SharedPreferences.Editor editor = pref.edit();
+                editor.putString("city", userCountry);  // Saving string
+                editor.putString("region", userAddress);  // Saving string
+
+                editor.apply();
+
                 Intent i = new Intent(SplashScreenActivity.this, LoginActivity.class);
                 startActivity(i);
                 finish();

@@ -1,8 +1,8 @@
 /*
  * *
- *  * Created by Adam Elaoumari on 28/08/20 02:09
+ *  * Created by Adam Elaoumari on 09/09/20 22:20
  *  * Copyright (c) 2020 . All rights reserved.
- *  * Last modified 28/08/20 01:21
+ *  * Last modified 09/09/20 19:07
  *  
  */
 
@@ -13,6 +13,7 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 
@@ -101,6 +102,8 @@ public class LoginActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        SharedPreferences pref = getApplicationContext().getSharedPreferences("Location", MODE_PRIVATE);
+        String city=pref.getString("city", null);         // getting String
 
         setTheme(R.style.AppTheme);
         getSupportActionBar().hide();
@@ -110,7 +113,7 @@ public class LoginActivity extends AppCompatActivity {
 // profile. ID and basic profile are included in DEFAULT_SIGN_IN.
         // Build a GoogleSignInClient with the options specified by gso.
         if (session.isLoggedIn()) {
-            loadDashboard();
+loadDashboard();
         }
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         OAuthProvider.Builder provider = OAuthProvider.newBuilder("twitter.com");
@@ -191,14 +194,25 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void loadDashboard() {
-        Intent i = new Intent(getApplicationContext(), DashboardActivity.class);
-        startActivity(i);
-        finish();
+        SharedPreferences pref = getApplicationContext().getSharedPreferences("Location", MODE_PRIVATE);
+        String city=pref.getString("city", null);         // getting String
+        if (city.equals("Marseille")) {
+            Intent i = new Intent(getApplicationContext(), DashboardActivity.class);
+            startActivity(i);
+            finish();
+        } else {
+            loadDashboardParis();
+        }
 
     }
 
     private boolean isSignedIn() {
         return GoogleSignIn.getLastSignedInAccount(context) != null;
+    }
+    private void loadDashboardParis() {
+        Intent i = new Intent(getApplicationContext(), DashboardParis.class);
+        startActivity(i);
+        finish();
     }
 
     private void firebaseAuthWithGoogle(GoogleSignInAccount acct) {
