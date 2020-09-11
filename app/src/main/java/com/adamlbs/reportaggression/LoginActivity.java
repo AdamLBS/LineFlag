@@ -65,6 +65,7 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 import static java.nio.channels.spi.AsynchronousChannelProvider.provider;
@@ -194,9 +195,10 @@ loadDashboard();
     }
 
     private void loadDashboard() {
+
         SharedPreferences pref = getApplicationContext().getSharedPreferences("Location", MODE_PRIVATE);
         String city=pref.getString("city", null);         // getting String
-        if (city.equals("Marseille")) {
+        if (Objects.equals(city, "Marseille")) {
             Intent i = new Intent(getApplicationContext(), DashboardActivity.class);
             startActivity(i);
             finish();

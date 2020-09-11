@@ -186,7 +186,7 @@ public class Stats extends AppCompatActivity {
                 });
 
 
-        // Access the RequestQueue through your singleton class.
+        // Access the RequestQueue through singleton class.
         MySingleton.getInstance(this).addToRequestQueue(jsArrayRequest);
     }
 
