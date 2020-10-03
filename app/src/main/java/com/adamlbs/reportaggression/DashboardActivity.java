@@ -1,8 +1,8 @@
 /*
  * *
- *  * Created by Adam Elaoumari on 09/09/20 22:20
+ *  * Created by Adam Elaoumari on 03/10/20 18:06
  *  * Copyright (c) 2020 . All rights reserved.
- *  * Last modified 05/09/20 16:56
+ *  * Last modified 03/10/20 17:59
  *
  */
 
@@ -167,22 +167,6 @@ public class DashboardActivity extends AppCompatActivity {
         }
         PreferenceManager.getDefaultSharedPreferences(context).edit().putString("city", userCountry).apply();
 
-        AppRate.with(this)
-                .setInstallDays(0) // default 10, 0 means install day.
-                .setLaunchTimes(3) // default 10
-                .setRemindInterval(2) // default 1
-                .setShowLaterButton(true) // default true
-                .setDebug(false) // default false
-                .setOnClickButtonListener(new OnClickButtonListener() { // callback listener.
-                    @Override
-                    public void onClickButton(int which) {
-                        Log.d(DashboardActivity.class.getName(), Integer.toString(which));
-                    }
-                })
-                .monitor();
-
-        // Show a dialog if meets conditions
-        AppRate.showRateDialogIfMeetsConditions(this);
     }
 
 
@@ -255,9 +239,9 @@ public class DashboardActivity extends AppCompatActivity {
         );
     }
     private void startupMessage() {
-        boolean firstrun2 = getSharedPreferences("PREFERENCE", MODE_PRIVATE).getBoolean("firstrun2", true);
+        boolean firstrun3 = getSharedPreferences("PREFERENCE", MODE_PRIVATE).getBoolean("firstrun3", true);
 
-        if (firstrun2) {
+        if (firstrun3) {
 
             if (userCountry.equals("Marseille")) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -320,7 +304,7 @@ public class DashboardActivity extends AppCompatActivity {
 
             getSharedPreferences("PREFERENCE", MODE_PRIVATE)
                     .edit()
-                    .putBoolean("firstrun2", false)
+                    .putBoolean("firstrun3", false)
                     .apply();
         }    }
 }

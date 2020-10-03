@@ -1,8 +1,8 @@
 /*
  * *
- *  * Created by Adam Elaoumari on 09/09/20 22:20
+ *  * Created by Adam Elaoumari on 03/10/20 18:06
  *  * Copyright (c) 2020 . All rights reserved.
- *  * Last modified 09/09/20 20:27
+ *  * Last modified 03/10/20 17:58
  *
  */
 
@@ -145,24 +145,7 @@ public class DashboardParis extends AppCompatActivity {
         }
         PreferenceManager.getDefaultSharedPreferences(context).edit().putString("city", userCountry).apply();
 
-        AppRate.with(this)
-                .setInstallDays(0) // default 10, 0 means install day.
-                .setLaunchTimes(3) // default 10
-                .setRemindInterval(2) // default 1
-                .setShowLaterButton(true) // default true
-                .setDebug(false) // default false
-                .setOnClickButtonListener(new OnClickButtonListener() { // callback listener.
-                    @Override
-                    public void onClickButton(int which) {
-                        Log.d(DashboardParis.class.getName(), Integer.toString(which));
-                    }
-                })
-                .monitor();
-
-        // Show a dialog if meets conditions
-        AppRate.showRateDialogIfMeetsConditions(this);
     }
-
 
 
     //get the selected dropdown list value
@@ -188,17 +171,17 @@ public class DashboardParis extends AppCompatActivity {
 
         );
         btnTransilien.setOnClickListener(new View.OnClickListener() {
-                                      @Override
-                                      public void onClick(View v) {
+                                             @Override
+                                             public void onClick(View v) {
 
-                                          Intent i = new Intent(DashboardParis.this, TransilienParis.class);
-                                          startActivity(i);
+                                                 Intent i = new Intent(DashboardParis.this, TransilienParis.class);
+                                                 startActivity(i);
 
-                                      }
+                                             }
 
-                                      public void newActivity(View v) {
-                                      }
-                                  }
+                                             public void newActivity(View v) {
+                                             }
+                                         }
 
         );
         btnMetro.setOnClickListener(new View.OnClickListener() {
@@ -231,38 +214,16 @@ public class DashboardParis extends AppCompatActivity {
 
         );
     }
+
     private void startupMessage() {
         boolean firstrun2 = getSharedPreferences("PREFERENCE", MODE_PRIVATE).getBoolean("firstrun2", true);
 
         if (firstrun2) {
 
             if (userCountry.equals("Marseille")) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                builder.setTitle("LineFlag");
-                builder.setMessage("Bienvenue sur LineFlag !" +
-                        "\n" +
-                        "\nNous avons détecté que vous êtes actuellement à Marseille." +
-                        "\n" +
-                        "\nCette application vous permet de signaler des agressions sur le réseau de la RTM." +
-                        "\n" +
-                        "\nVous pouvez aussi voir les statistiques de chaque lignes."
-                        + "\n"
-                        + "\nVous pouvez suggérer de nouvelles villes en cliquant sur le bouton ci-dessous.")
-                        .setCancelable(false)
-                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                            }
-                        });
-                builder.setNegativeButton("Suggérer une ville", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int whichButton) {
-                        Intent i = new Intent(DashboardParis.this, com.adamlbs.reportaggression.WebView.class);
-                        startActivity(i);
-                    }
-                });
-
-
-                AlertDialog alert = builder.create();
-                alert.show();
+                Intent i = new Intent(getApplicationContext(), DashboardActivity.class);
+                startActivity(i);
+                finish();
             } else {
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
                 builder.setTitle("LineFlag");
@@ -299,5 +260,8 @@ public class DashboardParis extends AppCompatActivity {
                     .edit()
                     .putBoolean("firstrun2", false)
                     .apply();
-        }    }
+        }
+    }
 }
+
+

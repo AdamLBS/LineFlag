@@ -1,8 +1,8 @@
 /*
  * *
- *  * Created by Adam Elaoumari on 09/09/20 22:20
+ *  * Created by Adam Elaoumari on 03/10/20 18:06
  *  * Copyright (c) 2020 . All rights reserved.
- *  * Last modified 09/09/20 21:14
+ *  * Last modified 03/10/20 17:57
  *
  */
 
@@ -51,7 +51,6 @@ public class SplashScreenActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-
 
         setContentView(R.layout.activity_splash_screen);
         permissioncheck();

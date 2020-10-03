@@ -1,8 +1,8 @@
 /*
  * *
- *  * Created by Adam Elaoumari on 09/09/20 22:20
+ *  * Created by Adam Elaoumari on 03/10/20 18:06
  *  * Copyright (c) 2020 . All rights reserved.
- *  * Last modified 09/09/20 21:18
+ *  * Last modified 03/10/20 17:50
  *
  */
 
@@ -10,14 +10,17 @@ package com.adamlbs.reportaggression;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.preference.PreferenceManager;
 import android.text.Html;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -38,6 +41,11 @@ import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.utils.ColorTemplate;
+import com.google.android.play.core.review.ReviewInfo;
+import com.google.android.play.core.review.ReviewManager;
+import com.google.android.play.core.review.ReviewManagerFactory;
+import com.google.android.play.core.review.testing.FakeReviewManager;
+import com.google.android.play.core.tasks.Task;
 
 import android.app.ProgressDialog;
 
@@ -57,7 +65,6 @@ public class StatsParis extends AppCompatActivity {
     private TextView welcomeText;
     private TextView welcomeText2;
     private String location;
-
     private String aggression;
     private SharedPreference sharedPreference;
     Activity context = this;
@@ -65,6 +72,7 @@ public class StatsParis extends AppCompatActivity {
     private static final String LOCATION = "location";
     private static final String AGGRESSION = "aggression";
     private ProgressDialog pDialog;
+    int count;
     int c;
 
     @Override
@@ -101,8 +109,44 @@ public class StatsParis extends AppCompatActivity {
         pDialog.show();
 
     }
+    private void getFromPreference() {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        count = prefs.getInt("Count", -1);
+    }
+
+    private void saveInPreference() {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putInt("Count", count);
+        editor.commit();
+    }
     public void onBackPressed() {
-        loadDashboard();
+        getFromPreference();
+        count++;
+        int ratecount = 3;
+        if (count == ratecount){
+            count = 0;
+            ReviewManager manager = ReviewManagerFactory.create(this);
+            Task<ReviewInfo> request = manager.requestReviewFlow();
+            request.addOnCompleteListener(task -> {
+                if (task.isSuccessful()) {
+                    // We can get the ReviewInfo object
+                    ReviewInfo reviewInfo = task.getResult();
+                    Task<Void> flow = manager.launchReviewFlow(this, reviewInfo);
+                    flow.addOnCompleteListener(task2 -> {
+                        loadDashboard();
+
+                    });
+
+                } else {
+                    loadDashboard();
+                }
+            });
+        } else {
+            loadDashboard();
+        }
+        saveInPreference();
+
     }
     private void loadDashboard() {
         Intent i = new Intent(getApplicationContext(), DashboardParis.class);
