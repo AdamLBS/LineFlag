@@ -1,8 +1,8 @@
 /*
  * *
- *  * Created by Adam Elaoumari on 03/10/20 18:06
+ *  * Created by Adam Elaoumari on 24/10/20 03:32
  *  * Copyright (c) 2020 . All rights reserved.
- *  * Last modified 03/10/20 17:57
+ *  * Last modified 24/10/20 02:12
  *
  */
 
@@ -17,6 +17,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentSender;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
@@ -31,6 +32,13 @@ import android.os.Handler;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.google.android.play.core.appupdate.AppUpdateInfo;
+import com.google.android.play.core.appupdate.AppUpdateManager;
+import com.google.android.play.core.appupdate.AppUpdateManagerFactory;
+import com.google.android.play.core.install.model.AppUpdateType;
+import com.google.android.play.core.install.model.UpdateAvailability;
+import com.google.android.play.core.tasks.Task;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -38,6 +46,7 @@ import java.util.Locale;
 import java.util.Map;
 
 public class SplashScreenActivity extends AppCompatActivity {
+    private static final int MY_REQUEST_CODE = 1;
     Location gps_loc;
     Location network_loc;
     Location final_loc;
@@ -51,7 +60,6 @@ public class SplashScreenActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-
         setContentView(R.layout.activity_splash_screen);
         permissioncheck();
         LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
@@ -108,6 +116,10 @@ public class SplashScreenActivity extends AppCompatActivity {
             Log.d("permission granted", "IDK " + userCountry);
         }
         // démarrer l'app
+
+
+
+
     }
 
     // handler post del

@@ -1,8 +1,8 @@
 /*
  * *
- *  * Created by Adam Elaoumari on 03/10/20 18:06
+ *  * Created by Adam Elaoumari on 24/10/20 03:32
  *  * Copyright (c) 2020 . All rights reserved.
- *  * Last modified 03/10/20 17:58
+ *  * Last modified 24/10/20 03:08
  *
  */
 
@@ -13,6 +13,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentSender;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
@@ -28,15 +29,30 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 import com.androidnetworking.AndroidNetworking;
 import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.snackbar.Snackbar;
+import com.google.android.play.core.appupdate.AppUpdateInfo;
+import com.google.android.play.core.appupdate.AppUpdateManager;
+import com.google.android.play.core.appupdate.AppUpdateManagerFactory;
+import com.google.android.play.core.install.InstallState;
+import com.google.android.play.core.install.InstallStateUpdatedListener;
+import com.google.android.play.core.install.model.AppUpdateType;
+import com.google.android.play.core.install.model.InstallStatus;
+import com.google.android.play.core.install.model.UpdateAvailability;
+import com.google.android.play.core.tasks.Task;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.InstanceIdResult;
+import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
+import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
 
 import java.util.List;
 import java.util.Locale;
@@ -61,7 +77,12 @@ public class DashboardParis extends AppCompatActivity {
     private String location;
     private int city;
     private TextView welcomeText;
+    private int firebaseMinimumCode;
+    private FirebaseRemoteConfig mFirebaseRemoteConfig;
+    private String firebaseLatestCode;
+
     Location gps_loc;
+    private static final int MY_REQUEST_CODE = 1;
     Location network_loc;
     Location final_loc;
     double longitude;
@@ -69,12 +90,16 @@ public class DashboardParis extends AppCompatActivity {
     String userCountry, userAddress;
     Activity context = this;
     Activity Context = this;
+    AppUpdateManager appUpdateManager;
 
     //TODO Lignes favorites permettant d'avoir sur le dashboard l es statistiques de la ligne avec la plus récente aggression
     //TODO Lignes de nuit
     @Override
     public void onCreate(Bundle savedInstanceState) {
         setTheme(R.style.AppTheme);
+        appUpdateManager = AppUpdateManagerFactory.create(context);
+        Log.d("Updater", "592029");
+        enable_update();
         AndroidNetworking.initialize(context);
         getSupportActionBar().hide();
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
@@ -147,7 +172,176 @@ public class DashboardParis extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == MY_REQUEST_CODE) {
+            if (resultCode != RESULT_OK) {
+                Log.d("1", "Update flow failed! Result code: " + resultCode);
+                // If the update is cancelled or fails,
+                // you can request to start the update again.
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setTitle("Mise à jour de l'application");
+                builder.setMessage(
+                                "\nL'application doit être mise à jour pour être utilisée." +
+                                "\n" +
+                                "\nCette mise à jour est importante car elle résout des bugs majeurs présents dans votre version de l'application." +
+                                "\n"+
+                        "\nLa mise à jour sera rapide et vous n'aurez pas besoin de quitter l'application pendant la mise à jour.")
+                        .setCancelable(false)
+                        .setPositiveButton("Mettre à jour l'application", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                checkforupdate_high_priority();
+                            }
+                        });
+                AlertDialog alert = builder.create();
+                alert.show();
+            }
+        }
+    }
+    public void enable_update () {
+        int versionCode = BuildConfig.VERSION_CODE;
+        String versionName = BuildConfig.VERSION_NAME;
+        mFirebaseRemoteConfig = FirebaseRemoteConfig.getInstance();
+        FirebaseRemoteConfigSettings configSettings = new FirebaseRemoteConfigSettings.Builder()
+                .build();
+        mFirebaseRemoteConfig.fetch(0);
 
+        mFirebaseRemoteConfig.setConfigSettingsAsync(configSettings);
+        mFirebaseRemoteConfig.fetchAndActivate()
+                    .addOnCompleteListener(this, new OnCompleteListener<Boolean>() {
+                        @Override
+                        public void onComplete(@NonNull com.google.android.gms.tasks.Task<Boolean> task) {
+                            if (task.isSuccessful()) {
+                                boolean updated = task.getResult();
+                                mFirebaseRemoteConfig.getString("maintenance_phone");
+                                Log.d("TAG", "Config params updated: " + updated);
+                                Log.d("TAG", "Config params A: " + updated);
+
+                                firebaseMinimumCode = (int) mFirebaseRemoteConfig.getLong("MinimumVersionCode");
+                                if (firebaseMinimumCode == versionCode) {
+                                    Log.w("TAG", "no update");
+                                    Log.w("UpdaterService","No major update has been found, the user should check google play for minor updates");
+                                } else {
+                                    //Retrieve the data entered in the edit texts
+                                        checkforupdate_high_priority();
+                                    Log.w("UpdaterService","Major update found (< MinimumVersion code) starting update flow");
+
+                                }
+                            }
+
+                            else {
+                                Toast.makeText(DashboardParis.this, "Impossible de vérifier les mises à jour de l'application.",
+                                        Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+
+        }
+private void checkforupdate_flexible () {
+    // Creates instance of the manager.
+    AppUpdateManager appUpdateManager = AppUpdateManagerFactory.create(context);
+
+// Returns an intent object that you use to check for an update.
+    Task<AppUpdateInfo> appUpdateInfoTask = appUpdateManager.getAppUpdateInfo();
+//TODO : Supprimer le checkforupdate_flexible pcq ça sert à rien pour les maj pas importantes
+// Checks that the platform will allow the specified type of update.
+    appUpdateInfoTask.addOnSuccessListener(appUpdateInfo -> {
+        if (appUpdateInfo.updateAvailability() == UpdateAvailability.UPDATE_AVAILABLE
+                // For a flexible update, use AppUpdateType.FLEXIBLE
+                && appUpdateInfo.isUpdateTypeAllowed(AppUpdateType.FLEXIBLE)) {
+            // Request the update.
+        }
+
+        try {
+            appUpdateManager.startUpdateFlowForResult(
+                    // Pass the intent that is returned by 'getAppUpdateInfo()'.
+                    appUpdateInfo,
+                    // Or 'AppUpdateType.FLEXIBLE' for flexible updates.
+                    AppUpdateType.FLEXIBLE,
+                    // The current activity making the update request.
+                    this,
+                    // Include a request code to later monitor this update request.
+                    MY_REQUEST_CODE);
+        } catch (IntentSender.SendIntentException e) {
+            e.printStackTrace();
+        }
+
+    });
+    // Create a listener to track request state updates.
+    InstallStateUpdatedListener listener = state -> {
+        // (Optional) Provide a download progress bar.
+        if (state.installStatus() == InstallStatus.DOWNLOADING) {
+            long bytesDownloaded = state.bytesDownloaded();
+            long totalBytesToDownload = state.totalBytesToDownload();
+        }
+        onStateUpdate(state);
+    };
+
+// Before starting an update, register a listener for updates.
+    appUpdateManager.registerListener(listener);
+
+
+// When status updates are no longer needed, unregister the listener.
+    appUpdateManager.unregisterListener(listener);
+
+}
+
+    public void onStateUpdate(InstallState state) {
+        if (state.installStatus() == InstallStatus.DOWNLOADED) {
+            // After the update is downloaded, show a notification
+            // and request user confirmation to restart the app.
+            popupSnackbarForCompleteUpdate();
+        }
+    }
+
+    /* Displays the snackbar notification and call to action. */
+    private void popupSnackbarForCompleteUpdate() {
+        Snackbar snackbar =
+                Snackbar.make(
+                        findViewById(R.id.content),
+                        "An update has just been downloaded.",
+                        Snackbar.LENGTH_INDEFINITE);
+        snackbar.setAction("RESTART", view -> appUpdateManager.completeUpdate());
+        snackbar.setActionTextColor(
+                getResources().getColor(R.color.grey));
+        snackbar.show();
+    }
+    private void checkforupdate_high_priority() {
+// Creates instance of the manager.
+
+
+        AppUpdateManager appUpdateManager = AppUpdateManagerFactory.create(this);
+
+// Returns an intent object that you use to check for an update.
+        Task<AppUpdateInfo> appUpdateInfoTask = appUpdateManager.getAppUpdateInfo();
+
+// Checks that the platform will allow the specified type of update.
+        appUpdateInfoTask.addOnSuccessListener(appUpdateInfo -> {
+            if (appUpdateInfo.updateAvailability() == UpdateAvailability.UPDATE_AVAILABLE
+                    // For a flexible update, use AppUpdateType.FLEXIBLE
+                    && appUpdateInfo.isUpdateTypeAllowed(AppUpdateType.IMMEDIATE)) {
+                // Request the update.
+            }
+
+            try {
+                appUpdateManager.startUpdateFlowForResult(
+                        // Pass the intent that is returned by 'getAppUpdateInfo()'.
+                        appUpdateInfo,
+                        // Or 'AppUpdateType.FLEXIBLE' for flexible updates.
+                        AppUpdateType.IMMEDIATE,
+                        // The current activity making the update request.
+                        this,
+                        // Include a request code to later monitor this update request.
+                        MY_REQUEST_CODE);
+            } catch (IntentSender.SendIntentException e) {
+                e.printStackTrace();
+            }
+
+        });
+
+
+    }
     //get the selected dropdown list value
     public void addListenerOnButton() {
 
@@ -262,6 +456,7 @@ public class DashboardParis extends AppCompatActivity {
                     .apply();
         }
     }
+
 }
 
 

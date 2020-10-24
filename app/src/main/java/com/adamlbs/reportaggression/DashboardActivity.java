@@ -1,21 +1,25 @@
 /*
  * *
- *  * Created by Adam Elaoumari on 03/10/20 18:06
+ *  * Created by Adam Elaoumari on 24/10/20 03:32
  *  * Copyright (c) 2020 . All rights reserved.
- *  * Last modified 03/10/20 17:59
+ *  * Last modified 24/10/20 03:08
  *
  */
 
 package com.adamlbs.reportaggression;
 
 import android.Manifest;
+import com.adamlbs.reportaggression.BuildConfig;
+
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentSender;
 import android.content.pm.ActivityInfo;
+import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Typeface;
 import android.location.Address;
@@ -50,9 +54,20 @@ import android.content.SharedPreferences;
 import android.widget.Toast;
 
 import com.androidnetworking.AndroidNetworking;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.appbar.AppBarLayout;
+import com.google.android.material.snackbar.Snackbar;
+import com.google.android.play.core.appupdate.AppUpdateInfo;
+import com.google.android.play.core.appupdate.AppUpdateManager;
+import com.google.android.play.core.appupdate.AppUpdateManagerFactory;
+import com.google.android.play.core.install.InstallState;
+import com.google.android.play.core.install.InstallStateUpdatedListener;
+import com.google.android.play.core.install.model.AppUpdateType;
+import com.google.android.play.core.install.model.InstallStatus;
+import com.google.android.play.core.install.model.UpdateAvailability;
+import com.google.android.play.core.tasks.Task;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.InstanceIdResult;
 
@@ -62,12 +77,15 @@ import hotchemi.android.rate.OnClickButtonListener;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
+import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
+import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
 
 import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 
 public class DashboardActivity extends AppCompatActivity {
+    private static final int HIGH_PRIORITY_UPDATE = 5;
     private SessionHandler session;
     public Spinner spinner1, spinner2;
     public Button btnSubmit;
@@ -82,10 +100,14 @@ public class DashboardActivity extends AppCompatActivity {
     private FusedLocationProviderClient fusedLocationClient;
     private String location;
     private int city;
+    private String maintenance;
     private TextView welcomeText;
+    private FirebaseRemoteConfig mFirebaseRemoteConfig;
+    private int firebaseMinimumCode;
     Location gps_loc;
     Location network_loc;
     Location final_loc;
+    private static final int MY_REQUEST_CODE = 1;
     double longitude;
     double latitude;
     String userCountry, userAddress;
@@ -96,6 +118,9 @@ public class DashboardActivity extends AppCompatActivity {
     //TODO Lignes de nuit
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        enable_update();
+        Log.d("Updater", "592029");
+
         setTheme(R.style.AppTheme);
         AndroidNetworking.initialize(context);
         getSupportActionBar().hide();
@@ -166,10 +191,109 @@ public class DashboardActivity extends AppCompatActivity {
             Log.d("permission granted", "IDK " + userCountry);
         }
         PreferenceManager.getDefaultSharedPreferences(context).edit().putString("city", userCountry).apply();
-
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == MY_REQUEST_CODE) {
+            if (resultCode != RESULT_OK) {
+                Log.d("1", "Update flow failed! Result code: " + resultCode);
+                // If the update is cancelled or fails,
+                // you can request to start the update again.
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setTitle("Mise à jour de l'application");
+                builder.setMessage(
+                        "\nL'application doit être mise à jour pour être utilisée." +
+                                "\n" +
+                                "\nCette mise à jour est importante car elle résout des bugs majeurs présents dans votre version de l'application." +
+                                "\n"+
+                                "\nLa mise à jour sera rapide et vous n'aurez pas besoin de quitter l'application pendant la mise à jour.")
+                        .setCancelable(false)
+                        .setPositiveButton("Mettre à jour l'application", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                checkforupdate_high_priority();
+                            }
+                        });
+                AlertDialog alert = builder.create();
+                alert.show();
+            }
+        }
+    }
+    public void enable_update () {
+        int versionCode = BuildConfig.VERSION_CODE;
+        String versionName = BuildConfig.VERSION_NAME;
+        mFirebaseRemoteConfig = FirebaseRemoteConfig.getInstance();
+        FirebaseRemoteConfigSettings configSettings = new FirebaseRemoteConfigSettings.Builder()
+                .build();
+        mFirebaseRemoteConfig.fetch(0);
 
+        mFirebaseRemoteConfig.setConfigSettingsAsync(configSettings);
+        mFirebaseRemoteConfig.fetchAndActivate()
+                .addOnCompleteListener(this, new OnCompleteListener<Boolean>() {
+                    @Override
+                    public void onComplete(@NonNull com.google.android.gms.tasks.Task<Boolean> task) {
+                        if (task.isSuccessful()) {
+                            boolean updated = task.getResult();
+                            mFirebaseRemoteConfig.getString("maintenance_phone");
+                            Log.d("TAG", "Config params updated: " + updated);
+                            Log.d("TAG", "Config params A: " + updated);
+
+                            firebaseMinimumCode = (int) mFirebaseRemoteConfig.getLong("MinimumVersionCode");
+                            if (firebaseMinimumCode == versionCode) {
+                                Log.w("TAG", "no update");
+                                Log.w("UpdaterService","No major update has been found, the user should check google play for minor updates");
+                            } else {
+                                //Retrieve the data entered in the edit texts
+                                checkforupdate_high_priority();
+                                Log.w("UpdaterService","Major update found (< MinimumVersion code) starting update flow");
+
+                            }
+                        }
+
+                        else {
+                            Toast.makeText(DashboardActivity.this, "Impossible de vérifier les mises à jour de l'application.",
+                                    Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+
+    }
+    private void checkforupdate_high_priority() {
+// Creates instance of the manager.
+
+
+        AppUpdateManager appUpdateManager = AppUpdateManagerFactory.create(this);
+
+// Returns an intent object that you use to check for an update.
+        Task<AppUpdateInfo> appUpdateInfoTask = appUpdateManager.getAppUpdateInfo();
+
+// Checks that the platform will allow the specified type of update.
+        appUpdateInfoTask.addOnSuccessListener(appUpdateInfo -> {
+            if (appUpdateInfo.updateAvailability() == UpdateAvailability.UPDATE_AVAILABLE
+                    // For a flexible update, use AppUpdateType.FLEXIBLE
+                    && appUpdateInfo.isUpdateTypeAllowed(AppUpdateType.IMMEDIATE)) {
+                // Request the update.
+            }
+
+            try {
+                appUpdateManager.startUpdateFlowForResult(
+                        // Pass the intent that is returned by 'getAppUpdateInfo()'.
+                        appUpdateInfo,
+                        // Or 'AppUpdateType.FLEXIBLE' for flexible updates.
+                        AppUpdateType.IMMEDIATE,
+                        // The current activity making the update request.
+                        this,
+                        // Include a request code to later monitor this update request.
+                        MY_REQUEST_CODE);
+            } catch (IntentSender.SendIntentException e) {
+                e.printStackTrace();
+            }
+
+        });
+
+
+    }
 
     //get the selected dropdown list value
     public void addListenerOnButton() {
