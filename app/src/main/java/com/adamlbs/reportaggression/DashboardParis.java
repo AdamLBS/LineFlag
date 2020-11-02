@@ -1,8 +1,8 @@
 /*
  * *
- *  * Created by Adam Elaoumari on 02/11/20 02:03
+ *  * Created by Adam Elaoumari on 02/11/20 02:45
  *  * Copyright (c) 2020 . All rights reserved.
- *  * Last modified 02/11/20 00:43
+ *  * Last modified 02/11/20 02:42
  *
  */
 
@@ -147,7 +147,7 @@ public class DashboardParis extends AppCompatActivity {
             Geocoder geocoder = new Geocoder(this, Locale.getDefault());
             List<Address> addresses = geocoder.getFromLocation(latitude, longitude, 1);
             if (addresses != null && addresses.size() > 0) {
-                userCountry = addresses.get(0).getLocality();
+                userCountry = addresses.get(0).getAdminArea();
                 userAddress = addresses.get(0).getAddressLine(0);
                 Log.d("LOCATION DEV", "token " + userCountry);
                 startupMessage();
@@ -409,22 +409,53 @@ private void checkforupdate_flexible () {
     }
 
     private void startupMessage() {
+
+        SharedPreferences pref = getApplicationContext().getSharedPreferences("LocationSheet", MODE_PRIVATE);
+        SharedPreferences.Editor editor = pref.edit();
+        editor.putString("city", userCountry);  // Saving string
+        editor.putString("region", userCountry);  // Saving string
+
+        editor.apply();
+
         boolean firstrun2 = getSharedPreferences("PREFERENCE", MODE_PRIVATE).getBoolean("firstrun2", true);
 
         if (firstrun2) {
 
-            if (userCountry.equals("Marseille")) {
-                Intent i = new Intent(getApplicationContext(), DashboardActivity.class);
-                startActivity(i);
-                finish();
+            if (userCountry.equals("Île-de-France")) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setTitle("LineFlag");
+                builder.setMessage("Bienvenue sur LineFlag !" +
+                        "\n" +
+                        "\nNous avons détecté que vous êtes actuellement à Paris." +
+                        "\n" +
+                        "\nCette application vous permet de signaler des agressions sur le réseau de la RATP." +
+                        "\n" +
+                        "\nVous pouvez aussi voir les statistiques de chaque lignes."
+                        + "\n"
+                        + "\nVous pouvez suggérer de nouvelles villes en cliquant sur le bouton ci-dessous.")
+                        .setCancelable(false)
+                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                            }
+                        });
+                builder.setNegativeButton("Suggérer une ville", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        Intent i = new Intent(DashboardParis.this, com.adamlbs.reportaggression.WebView.class);
+                        startActivity(i);
+                    }
+                });
+
+
+                AlertDialog alert = builder.create();
+                alert.show();
             } else {
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
                 builder.setTitle("LineFlag");
                 builder.setMessage("Bienvenue sur LineFlag !" +
                         "\n" +
-                        "\nNous avons détecté que vous n'êtes pas localisé à Marseille." +
+                        "\nNous avons détecté que vous n'êtes pas localisé à Paris où Marseille." +
                         "\n" +
-                        "\nLineFlag est pour l'instant seulement compatible avec la ville de Marseille." +
+                        "\nLineFlag est pour l'instant seulement compatible avec les villes de Paris & Marseille." +
                         "\n" +
                         "\nVous pouvez cependant utiliser l'application afin d'étudier son fonctionnement."
                         + "\n"

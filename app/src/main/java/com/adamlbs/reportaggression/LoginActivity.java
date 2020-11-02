@@ -1,22 +1,30 @@
 /*
  * *
- *  * Created by Adam Elaoumari on 02/11/20 02:03
+ *  * Created by Adam Elaoumari on 02/11/20 02:45
  *  * Copyright (c) 2020 . All rights reserved.
- *  * Last modified 02/11/20 00:43
+ *  * Last modified 02/11/20 02:39
  *  
  */
 
 package com.adamlbs.reportaggression;
 
+import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentSender;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
+import android.content.pm.PackageManager;
+import android.location.Address;
+import android.location.Geocoder;
+import android.location.Location;
+import android.location.LocationManager;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.text.InputType;
 import android.util.Log;
 import android.view.View;
@@ -26,6 +34,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -62,6 +71,8 @@ import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.List;
+import java.util.Locale;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
@@ -93,13 +104,69 @@ public class LoginActivity extends AppCompatActivity {
     private SessionHandler session;
     private int currentUser;
     Activity context = this;
-
+    Location gps_loc;
+    Location network_loc;
+    Location final_loc;
+    double longitude;
+    double latitude;
+    String userCountry, userAddress;
 //TODO Tout fini ici
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         SharedPreferences pref = getApplicationContext().getSharedPreferences("Location", MODE_PRIVATE);
-        String city=pref.getString("city", null);         // getting String
+        String city = pref.getString("city", null);         // getting String
+        LocationManager locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
+                && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED
+                && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_NETWORK_STATE) != PackageManager.PERMISSION_GRANTED) {
+
+            return;
+        }
+        try {
+
+            gps_loc = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+            network_loc = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        if (gps_loc != null) {
+            final_loc = gps_loc;
+            latitude = final_loc.getLatitude();
+            longitude = final_loc.getLongitude();
+        } else if (network_loc != null) {
+            final_loc = network_loc;
+            latitude = final_loc.getLatitude();
+            longitude = final_loc.getLongitude();
+        } else {
+            latitude = 0.0;
+            longitude = 0.0;
+        }
+        try {
+            Geocoder geocoder = new Geocoder(this, Locale.getDefault());
+            List<Address> addresses = geocoder.getFromLocation(latitude, longitude, 1);
+            if (addresses != null && addresses.size() > 0) {
+                userCountry = addresses.get(0).getLocality();
+                userAddress = addresses.get(0).getAdminArea();
+                Log.d("LOCATION DEV", "token " + userCountry);
+
+            } else {
+                userCountry = "oeoe";
+                Log.d("LOCATION DEV", "IDK " + userCountry);
+
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        String requiredPermission = Manifest.permission.ACCESS_FINE_LOCATION;
+        int checkVal = LoginActivity.this.checkCallingOrSelfPermission(requiredPermission);
+        if (checkVal == PackageManager.PERMISSION_GRANTED) {
+            Log.d("permission granted", "IDK " + userCountry);
+        }
+        PreferenceManager.getDefaultSharedPreferences(context).edit().putString("city", userCountry).apply();
+
 
         setTheme(R.style.AppTheme);
         getSupportActionBar().hide();
@@ -226,10 +293,7 @@ loadDashboard();
     }
 
     private void loadDashboard() {
-
-        SharedPreferences pref = getApplicationContext().getSharedPreferences("Location", MODE_PRIVATE);
-        String city=pref.getString("city", null);         // getting String
-        if (Objects.equals(city, "Marseille")) {
+        if (Objects.equals(userCountry, "Marseille")) {
             Intent i = new Intent(getApplicationContext(), DashboardActivity.class);
             startActivity(i);
             finish();

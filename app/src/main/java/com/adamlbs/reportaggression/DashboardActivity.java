@@ -1,8 +1,8 @@
 /*
  * *
- *  * Created by Adam Elaoumari on 02/11/20 02:03
+ *  * Created by Adam Elaoumari on 02/11/20 02:45
  *  * Copyright (c) 2020 . All rights reserved.
- *  * Last modified 02/11/20 00:43
+ *  * Last modified 02/11/20 02:40
  *
  */
 
@@ -54,6 +54,7 @@ import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
 
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 
 public class DashboardActivity extends AppCompatActivity {
 
@@ -338,7 +339,7 @@ public class DashboardActivity extends AppCompatActivity {
 
         if (firstrun3) {
 
-            if (userCountry.equals("Marseille")) {
+            if (Objects.equals(userCountry, "Marseille")) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
                 builder.setTitle("LineFlag");
                 builder.setMessage("Bienvenue sur LineFlag !" +

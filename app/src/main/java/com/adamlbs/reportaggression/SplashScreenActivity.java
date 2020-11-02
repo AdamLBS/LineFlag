@@ -1,8 +1,8 @@
 /*
  * *
- *  * Created by Adam Elaoumari on 02/11/20 02:03
+ *  * Created by Adam Elaoumari on 02/11/20 02:45
  *  * Copyright (c) 2020 . All rights reserved.
- *  * Last modified 02/11/20 00:43
+ *  * Last modified 02/11/20 02:15
  *
  */
 
@@ -56,7 +56,6 @@ public class SplashScreenActivity extends AppCompatActivity {
         LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
                 && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED
-                && ActivityCompat.checkSelfPermission(this, Manifest.permission.SEND_SMS) != PackageManager.PERMISSION_GRANTED
                 && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_NETWORK_STATE) != PackageManager.PERMISSION_GRANTED) {
 
             return;
@@ -125,8 +124,6 @@ public class SplashScreenActivity extends AppCompatActivity {
             permissionsNeeded.add("COURLOC");
         if (!addPermission(permissionsList, Manifest.permission.ACCESS_NETWORK_STATE))
             permissionsNeeded.add("NETWORK");
-        if (!addPermission(permissionsList, Manifest.permission.SEND_SMS))
-            permissionsNeeded.add("SMS");
         if (permissionsList.size() > 0) {
             if (permissionsNeeded.size() > 0) {
                 // Need Rationale
@@ -245,16 +242,13 @@ public class SplashScreenActivity extends AppCompatActivity {
             perms.put(Manifest.permission.ACCESS_NETWORK_STATE, PackageManager.PERMISSION_GRANTED);
             perms.put(Manifest.permission.ACCESS_COARSE_LOCATION, PackageManager.PERMISSION_GRANTED);
             perms.put(Manifest.permission.ACCESS_FINE_LOCATION, PackageManager.PERMISSION_GRANTED);
-            perms.put(Manifest.permission.SEND_SMS, PackageManager.PERMISSION_GRANTED);
             //Toast.makeText(SplashScreen.this, " Permissions are jddddd", Toast.LENGTH_SHORT).show();
             // Fill with results
             for (int i = 0; i < permissions.length; i++)
                 perms.put(permissions[i], grantResults[i]);
             // Check for ACCESS_FINE_LOCATION
             if (perms.get(Manifest.permission.ACCESS_NETWORK_STATE) == PackageManager.PERMISSION_GRANTED
-                    && perms.get(Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED
-                    && perms.get(Manifest.permission.SEND_SMS) == PackageManager.PERMISSION_GRANTED &&
-
+                    && perms.get(Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED &&
                     perms.get(Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
                 // All Permissions Granted
                 // Here start the activity
@@ -274,18 +268,15 @@ public class SplashScreenActivity extends AppCompatActivity {
             } else {
                 // Permission Denied
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                builder.setTitle("Accès à la localisation et à l'envoi de SMS.");
+                builder.setTitle("Accès à la localisation");
                 builder.setMessage(
                         "\n" +
-                        "\nLineFlag a besoin d'accéder à votre localisation afin de savoir dans quelle ville vous vous situez." +
-                        "\n" +
-                        "\nCela permet à l'application d'afficher le réseau de transport de votre ville et d'éviter les abus." +
-                        "\n" +
-                        "\nLineFlag a aussi besoin d'envoyer des SMS pour signaler les agressions aux opérateurs de transports."+
-                                "\n"+
-                        "\nLineFlag vous préviendra TOUJOURS avant d'envoyer le SMS de signalement aux opérateurs de transports.")
+                                "\nLineFlag a besoin d'accéder à votre localisation afin de savoir dans quelle ville vous vous situez." +
+                                "\n" +
+                                "\nCela permet à l'application d'afficher le réseau de transport de votre ville et d'éviter les abus." +
+                                "\n")
                         .setCancelable(false)
-                        .setPositiveButton("Autoriser l'accès au GPS et l'envoi de SMS", new DialogInterface.OnClickListener() {
+                        .setPositiveButton("Autoriser l'accès au GPS", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
                                 permissioncheck();
                             }

@@ -1,8 +1,8 @@
 /*
  * *
- *  * Created by Adam Elaoumari on 02/11/20 02:03
+ *  * Created by Adam Elaoumari on 02/11/20 02:45
  *  * Copyright (c) 2020 . All rights reserved.
- *  * Last modified 02/11/20 01:57
+ *  * Last modified 02/11/20 02:30
  *
  */
 
@@ -15,6 +15,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.icu.util.Calendar;
 import android.location.Location;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.telephony.SmsManager;
@@ -75,7 +76,7 @@ public class BottomSheetDialogParis extends BottomSheetDialogFragment {
 
         String text = getArguments().getString("text");
         location = text;
-        SharedPreferences pref = this.getActivity().getSharedPreferences("Location", MODE_PRIVATE);
+        SharedPreferences pref = this.getActivity().getSharedPreferences("LocationSheet", MODE_PRIVATE);
         String city=pref.getString("region", null);         // getting String
         Calendar rightNow = Calendar.getInstance();
         int currentHourIn24Format = rightNow.get(Calendar.HOUR_OF_DAY); // return the hour in 24 hrs format (ranging from 0-23)
@@ -101,15 +102,18 @@ public class BottomSheetDialogParis extends BottomSheetDialogFragment {
                                     "\n" +
                                     "\nPour ce faire, cliquez sur le bouton ci-dessous." +
                                     "\n"+
-                                    "\nL'application enverra votre signalement à la plateforme de signalement de la RATP (31177). "+
+                                    "\nL'application ouvrira votre application d'SMS avec un message pré-composé au 31177. "+
                                     "\n" +
                                     "\nVous pouvez aussi choisir de ne pas faire remonter le signalement à la RATP.")
                                     .setCancelable(false)
                                     .setPositiveButton("Signaler à la RATP", new DialogInterface.OnClickListener() {
                                         public void onClick(DialogInterface dialog, int id) {
-                                            SmsManager smsManager = SmsManager.getDefault();
-                                            smsManager.sendTextMessage(number, null, "Bonjour, j'aimerai signaler une " + agression+" sur votre réseau sur la ligne " + text + " à " + currentHourIn24Format +"h" +minutes , null, null);
+                                            Uri uri = Uri.parse("smsto:31177");
+                                            Intent intent = new Intent(Intent.ACTION_SENDTO, uri);
+                                            intent.putExtra("sms_body", "Bonjour, j'aimerai signaler une " + agression+" sur votre réseau sur la ligne " + text + " à " + currentHourIn24Format +"h" +minutes);
+                                            startActivity(intent);
                                             getActivity().onBackPressed();
+
 
                                         }
                                     });
@@ -179,15 +183,18 @@ public class BottomSheetDialogParis extends BottomSheetDialogFragment {
                                     "\n" +
                                     "\nPour ce faire, cliquez sur le bouton ci-dessous." +
                                     "\n"+
-                                    "\nL'application enverra votre signalement à la plateforme de signalement de la RATP (31177). "+
+                                    "\nL'application ouvrira votre application d'SMS avec un message pré-composé au 31177. "+
                                     "\n" +
                                     "\nVous pouvez aussi choisir de ne pas faire remonter le signalement à la RATP.")
                                     .setCancelable(false)
                                     .setPositiveButton("Signaler à la RATP", new DialogInterface.OnClickListener() {
                                         public void onClick(DialogInterface dialog, int id) {
-                                            SmsManager smsManager = SmsManager.getDefault();
-                                            smsManager.sendTextMessage(number, null, "Bonjour, j'aimerai signaler une " + agression+" sur votre réseau sur la ligne " + text + " à " + currentHourIn24Format +"h" +minutes , null, null);
+                                            Uri uri = Uri.parse("smsto:31177");
+                                            Intent intent = new Intent(Intent.ACTION_SENDTO, uri);
+                                            intent.putExtra("sms_body", "Bonjour, j'aimerai signaler une " + agression+" sur votre réseau sur la ligne " + text + " à " + currentHourIn24Format +"h" +minutes);
+                                            startActivity(intent);
                                             getActivity().onBackPressed();
+
 
                                         }
                                     });
@@ -255,15 +262,18 @@ public class BottomSheetDialogParis extends BottomSheetDialogFragment {
                                     "\n" +
                                     "\nPour ce faire, cliquez sur le bouton ci-dessous." +
                                     "\n"+
-                                    "\nL'application enverra votre signalement à la plateforme de signalement de la RATP (31177). "+
+                                    "\nL'application ouvrira votre application d'SMS avec un message pré-composé au 31177. "+
                                     "\n" +
                                     "\nVous pouvez aussi choisir de ne pas faire remonter le signalement à la RATP.")
                                     .setCancelable(false)
                                     .setPositiveButton("Signaler à la RATP", new DialogInterface.OnClickListener() {
                                         public void onClick(DialogInterface dialog, int id) {
-                                            SmsManager smsManager = SmsManager.getDefault();
-                                            smsManager.sendTextMessage(number, null, "Bonjour, j'aimerai signaler une " + agression+" sur votre réseau sur la ligne " + text + " à " + currentHourIn24Format +"h" +minutes , null, null);
+                                            Uri uri = Uri.parse("smsto:31177");
+                                            Intent intent = new Intent(Intent.ACTION_SENDTO, uri);
+                                            intent.putExtra("sms_body", "Bonjour, j'aimerai signaler une " + agression+" sur votre réseau sur la ligne " + text + " à " + currentHourIn24Format +"h" +minutes);
+                                            startActivity(intent);
                                             getActivity().onBackPressed();
+
 
                                         }
                                     });
