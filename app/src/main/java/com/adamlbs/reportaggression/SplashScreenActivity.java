@@ -1,23 +1,18 @@
 /*
  * *
- *  * Created by Adam Elaoumari on 24/10/20 03:32
+ *  * Created by Adam Elaoumari on 02/11/20 02:03
  *  * Copyright (c) 2020 . All rights reserved.
- *  * Last modified 24/10/20 02:12
+ *  * Last modified 02/11/20 00:43
  *
  */
 
 package com.adamlbs.reportaggression;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.IntentSender;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
@@ -25,19 +20,15 @@ import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationManager;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.google.android.play.core.appupdate.AppUpdateInfo;
-import com.google.android.play.core.appupdate.AppUpdateManager;
-import com.google.android.play.core.appupdate.AppUpdateManagerFactory;
-import com.google.android.play.core.install.model.AppUpdateType;
-import com.google.android.play.core.install.model.UpdateAvailability;
-import com.google.android.play.core.tasks.Task;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -65,6 +56,7 @@ public class SplashScreenActivity extends AppCompatActivity {
         LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
                 && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED
+                && ActivityCompat.checkSelfPermission(this, Manifest.permission.SEND_SMS) != PackageManager.PERMISSION_GRANTED
                 && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_NETWORK_STATE) != PackageManager.PERMISSION_GRANTED) {
 
             return;
@@ -133,7 +125,8 @@ public class SplashScreenActivity extends AppCompatActivity {
             permissionsNeeded.add("COURLOC");
         if (!addPermission(permissionsList, Manifest.permission.ACCESS_NETWORK_STATE))
             permissionsNeeded.add("NETWORK");
-
+        if (!addPermission(permissionsList, Manifest.permission.SEND_SMS))
+            permissionsNeeded.add("SMS");
         if (permissionsList.size() > 0) {
             if (permissionsNeeded.size() > 0) {
                 // Need Rationale
@@ -194,7 +187,7 @@ public class SplashScreenActivity extends AppCompatActivity {
 
             }
 
-        }, 1500);
+        }, 100);
     }
     private void showMessageOKCancel(String message, DialogInterface.OnClickListener okListener) {
         new AlertDialog.Builder(SplashScreenActivity.this)
@@ -252,13 +245,16 @@ public class SplashScreenActivity extends AppCompatActivity {
             perms.put(Manifest.permission.ACCESS_NETWORK_STATE, PackageManager.PERMISSION_GRANTED);
             perms.put(Manifest.permission.ACCESS_COARSE_LOCATION, PackageManager.PERMISSION_GRANTED);
             perms.put(Manifest.permission.ACCESS_FINE_LOCATION, PackageManager.PERMISSION_GRANTED);
+            perms.put(Manifest.permission.SEND_SMS, PackageManager.PERMISSION_GRANTED);
             //Toast.makeText(SplashScreen.this, " Permissions are jddddd", Toast.LENGTH_SHORT).show();
             // Fill with results
             for (int i = 0; i < permissions.length; i++)
                 perms.put(permissions[i], grantResults[i]);
             // Check for ACCESS_FINE_LOCATION
             if (perms.get(Manifest.permission.ACCESS_NETWORK_STATE) == PackageManager.PERMISSION_GRANTED
-                    && perms.get(Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED &&
+                    && perms.get(Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED
+                    && perms.get(Manifest.permission.SEND_SMS) == PackageManager.PERMISSION_GRANTED &&
+
                     perms.get(Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
                 // All Permissions Granted
                 // Here start the activity
@@ -278,15 +274,18 @@ public class SplashScreenActivity extends AppCompatActivity {
             } else {
                 // Permission Denied
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                builder.setTitle("Accès à la localisation");
+                builder.setTitle("Accès à la localisation et à l'envoi de SMS.");
                 builder.setMessage(
                         "\n" +
                         "\nLineFlag a besoin d'accéder à votre localisation afin de savoir dans quelle ville vous vous situez." +
                         "\n" +
                         "\nCela permet à l'application d'afficher le réseau de transport de votre ville et d'éviter les abus." +
-                        "\n")
+                        "\n" +
+                        "\nLineFlag a aussi besoin d'envoyer des SMS pour signaler les agressions aux opérateurs de transports."+
+                                "\n"+
+                        "\nLineFlag vous préviendra TOUJOURS avant d'envoyer le SMS de signalement aux opérateurs de transports.")
                         .setCancelable(false)
-                        .setPositiveButton("Autoriser l'accès au GPS", new DialogInterface.OnClickListener() {
+                        .setPositiveButton("Autoriser l'accès au GPS et l'envoi de SMS", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
                                 permissioncheck();
                             }

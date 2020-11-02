@@ -1,22 +1,21 @@
 /*
  * *
- *  * Created by Adam Elaoumari on 09/09/20 22:20
+ *  * Created by Adam Elaoumari on 02/11/20 02:03
  *  * Copyright (c) 2020 . All rights reserved.
- *  * Last modified 09/09/20 20:27
+ *  * Last modified 02/11/20 00:43
  *
  */
 
 package com.adamlbs.reportaggression;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.Activity;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class TransilienParis extends AppCompatActivity {
 

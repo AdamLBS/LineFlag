@@ -1,8 +1,8 @@
 /*
  * *
- *  * Created by Adam Elaoumari on 03/10/20 18:06
+ *  * Created by Adam Elaoumari on 02/11/20 02:03
  *  * Copyright (c) 2020 . All rights reserved.
- *  * Last modified 03/10/20 17:50
+ *  * Last modified 02/11/20 00:43
  *
  */
 
@@ -10,50 +10,38 @@ package com.adamlbs.reportaggression;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.Context;
-import android.content.DialogInterface;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
-import android.graphics.Typeface;
 import android.os.Bundle;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.preference.PreferenceManager;
 import android.text.Html;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.github.mikephil.charting.charts.BarChart;
-import com.github.mikephil.charting.charts.PieChart;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.components.Legend;
-import com.github.mikephil.charting.data.BarData;
-import com.github.mikephil.charting.data.BarDataSet;
-import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
-import com.github.mikephil.charting.charts.PieChart;
-import com.github.mikephil.charting.utils.ColorTemplate;
 import com.google.android.play.core.review.ReviewInfo;
 import com.google.android.play.core.review.ReviewManager;
 import com.google.android.play.core.review.ReviewManagerFactory;
-import com.google.android.play.core.review.testing.FakeReviewManager;
 import com.google.android.play.core.tasks.Task;
-
-import android.app.ProgressDialog;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class StatsParis extends AppCompatActivity {
     private int sexualAggression;
@@ -97,7 +85,6 @@ public class StatsParis extends AppCompatActivity {
 
     private void findViewsById() {
         welcomeText = (TextView) findViewById(R.id.Stats);
-        welcomeText2 = (TextView) findViewById(R.id.Stats2);
 
     }
 
@@ -250,7 +237,7 @@ public class StatsParis extends AppCompatActivity {
         pieChart.animateXY(2000, 2000);
 
     }
-    private ArrayList getData(){
+    private ArrayList<PieEntry> getData(){
         ArrayList<PieEntry> entries = new ArrayList<>();
         entries.add(new PieEntry(sexualAggression));
         entries.add(new PieEntry(physicalAggression));

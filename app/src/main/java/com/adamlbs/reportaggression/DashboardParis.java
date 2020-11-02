@@ -1,8 +1,8 @@
 /*
  * *
- *  * Created by Adam Elaoumari on 24/10/20 03:32
+ *  * Created by Adam Elaoumari on 02/11/20 02:03
  *  * Copyright (c) 2020 . All rights reserved.
- *  * Last modified 24/10/20 03:08
+ *  * Last modified 02/11/20 00:43
  *
  */
 
@@ -51,14 +51,12 @@ import com.google.android.play.core.install.model.UpdateAvailability;
 import com.google.android.play.core.tasks.Task;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.InstanceIdResult;
+import com.google.firebase.perf.metrics.AddTrace;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
 
 import java.util.List;
 import java.util.Locale;
-
-import hotchemi.android.rate.AppRate;
-import hotchemi.android.rate.OnClickButtonListener;
 
 public class DashboardParis extends AppCompatActivity {
 
@@ -95,6 +93,7 @@ public class DashboardParis extends AppCompatActivity {
     //TODO Lignes favorites permettant d'avoir sur le dashboard l es statistiques de la ligne avec la plus récente aggression
     //TODO Lignes de nuit
     @Override
+    @AddTrace(name = "onCreateTrace_Paris", enabled = true /* optional */)
     public void onCreate(Bundle savedInstanceState) {
         setTheme(R.style.AppTheme);
         appUpdateManager = AppUpdateManagerFactory.create(context);

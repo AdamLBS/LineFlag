@@ -1,97 +1,67 @@
 /*
  * *
- *  * Created by Adam Elaoumari on 24/10/20 03:32
+ *  * Created by Adam Elaoumari on 02/11/20 02:03
  *  * Copyright (c) 2020 . All rights reserved.
- *  * Last modified 24/10/20 03:08
+ *  * Last modified 02/11/20 00:43
  *
  */
 
 package com.adamlbs.reportaggression;
 
 import android.Manifest;
-import com.adamlbs.reportaggression.BuildConfig;
-
-import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentSender;
+import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
-import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
-import android.graphics.Typeface;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
-import android.net.Uri;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
-import android.view.Gravity;
-import android.view.MenuItem;
-import android.location.Criteria;
-import android.location.Location;
-import android.location.LocationListener;
-import android.location.LocationManager;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-
-import android.widget.TextView;
-import android.content.SharedPreferences;
-import android.widget.Toast;
 
 import com.androidnetworking.AndroidNetworking;
+import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.appbar.AppBarLayout;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.android.play.core.appupdate.AppUpdateInfo;
 import com.google.android.play.core.appupdate.AppUpdateManager;
 import com.google.android.play.core.appupdate.AppUpdateManagerFactory;
-import com.google.android.play.core.install.InstallState;
-import com.google.android.play.core.install.InstallStateUpdatedListener;
 import com.google.android.play.core.install.model.AppUpdateType;
-import com.google.android.play.core.install.model.InstallStatus;
 import com.google.android.play.core.install.model.UpdateAvailability;
 import com.google.android.play.core.tasks.Task;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.InstanceIdResult;
-
-import butterknife.BindView;
-import hotchemi.android.rate.AppRate;
-import hotchemi.android.rate.OnClickButtonListener;
-
-import com.google.android.gms.location.FusedLocationProviderClient;
-import com.google.android.gms.location.LocationServices;
+import com.google.firebase.perf.metrics.AddTrace;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
 
-import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 
 public class DashboardActivity extends AppCompatActivity {
+
     private static final int HIGH_PRIORITY_UPDATE = 5;
     private SessionHandler session;
     public Spinner spinner1, spinner2;
     public Button btnSubmit;
     public ImageButton btnMetro, btnTram, btnBus, btnNightBus;
-    private String SITE_KEY = "6LeXlQEVAAAAAPK43M8C4Q1yvRtGIJGbagyYZFx1";
-    private TextView latituteField;
     private TextView longitudeField;
     private LocationManager locationManager;
     private String provider;
@@ -117,6 +87,7 @@ public class DashboardActivity extends AppCompatActivity {
     //TODO Lignes favorites permettant d'avoir sur le dashboard l es statistiques de la ligne avec la plus récente aggression
     //TODO Lignes de nuit
     @Override
+    @AddTrace(name = "onCreateTrace_Marseille", enabled = true /* optional */)
     public void onCreate(Bundle savedInstanceState) {
         enable_update();
         Log.d("Updater", "592029");
@@ -139,7 +110,7 @@ public class DashboardActivity extends AppCompatActivity {
 
             }
         });
-        LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        LocationManager locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
                 && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED
                 && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_NETWORK_STATE) != PackageManager.PERMISSION_GRANTED) {
@@ -431,4 +402,5 @@ public class DashboardActivity extends AppCompatActivity {
                     .putBoolean("firstrun3", false)
                     .apply();
         }    }
+
 }

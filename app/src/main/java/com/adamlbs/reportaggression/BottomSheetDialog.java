@@ -1,40 +1,36 @@
 /*
  * *
- *  * Created by Adam Elaoumari on 09/09/20 22:20
+ *  * Created by Adam Elaoumari on 02/11/20 02:03
  *  * Copyright (c) 2020 . All rights reserved.
- *  * Last modified 09/09/20 21:27
+ *  * Last modified 02/11/20 01:57
  *
  */
 
 package com.adamlbs.reportaggression;
 
 import android.Manifest;
-import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.location.Address;
-import android.location.Geocoder;
+import android.icu.util.Calendar;
 import android.location.Location;
-import android.location.LocationManager;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
-import android.os.Message;
 import android.preference.PreferenceManager;
-import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.core.app.ActivityCompat;
-import androidx.fragment.app.Fragment;
+import androidx.core.content.ContextCompat;
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
@@ -42,23 +38,13 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
 import java.util.Objects;
-
-import static android.content.Context.MODE_PRIVATE;
 
 
 public class BottomSheetDialog extends BottomSheetDialogFragment {
@@ -73,6 +59,9 @@ public class BottomSheetDialog extends BottomSheetDialogFragment {
     Location network_loc;
     Location final_loc;
     double longitude;
+    String phoneNo;
+    private static final int MY_PERMISSIONS_REQUEST_SEND_SMS =0 ;
+    String message;
     double latitude;
     private String agression;
     private String city2;
@@ -82,10 +71,14 @@ public class BottomSheetDialog extends BottomSheetDialogFragment {
         setStyle(BottomSheetDialogFragment.STYLE_NORMAL, R.style.SheetDialog);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
+        Calendar rightNow = Calendar.getInstance();
+        int currentHourIn24Format = rightNow.get(Calendar.HOUR_OF_DAY); // return the hour in 24 hrs format (ranging from 0-23)
+        int minutes = rightNow.get(Calendar.MINUTE);
 
         String text = getArguments().getString("text");
         location = text;
@@ -100,10 +93,42 @@ public class BottomSheetDialog extends BottomSheetDialogFragment {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        if (city.equals("Marseille")) {
+                        if (Objects.equals(city, "Marseille")) {
                             agression = "Agression sexuelle";
-                            report();
-                            getActivity().onBackPressed();
+//                            report();
+            agression = "Agression sexuelle";
+      report();
+                            Intent intent = new Intent(Intent.ACTION_DIAL);
+                            AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                            builder.setTitle("Voulez vous contacter la RTM pour signaler l'agression ?");
+                            builder.setMessage("Votre signalement a bien été pris en compte."
+                                    +"\n"
+                                    +"\n"
+                                    +"\nLineFlag peut aussi vous mettre en contact avec la RTM pour signaler l'agression." +
+                                    "\n" +
+                                    "\nPour ce faire, cliquez sur le bouton ci-dessous." +
+                                    "\n"+
+                                    "\nL'application composera le numéro de la plateforme de signalement de la RTM."+
+                                    "\n" +
+                                    "\nVous pouvez aussi choisir de ne pas contacter la RTM vis-à-vis de ce signalement.")
+                                    .setCancelable(false)
+                                    .setPositiveButton("Contacter la RTM", new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int id) {
+                                            intent.setData(Uri.parse("tel:0800710567"));
+                                            startActivity(intent);
+                                            getActivity().onBackPressed();
+
+                                        }
+                                    });
+                            builder.setNeutralButton("Ne pas contacter la RTM", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int whichButton) {
+                                    getActivity().onBackPressed();
+
+                                }
+                            });
+
+                            AlertDialog alert = builder.create();
+                            alert.show();
                         } else {
                             AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
                             builder.setTitle("Votre ville n'est pas compatible");
@@ -148,10 +173,40 @@ public class BottomSheetDialog extends BottomSheetDialogFragment {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        if (city.equals("Marseille")) {
+                        if (Objects.equals(city, "Marseille")) {
                             agression = "Agression verbale";
                             report();
-                            getActivity().onBackPressed();
+                            Intent intent = new Intent(Intent.ACTION_DIAL);
+                            AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                            builder.setTitle("Voulez vous contacter la RTM pour signaler l'agression ?");
+                            builder.setMessage("Votre signalement a bien été pris en compte."
+                                    +"\n"
+                                    +"\n"
+                                    +"\nLineFlag peut aussi vous mettre en contact avec la RTM pour signaler l'agression." +
+                                    "\n" +
+                                    "\nPour ce faire, cliquez sur le bouton ci-dessous." +
+                                    "\n"+
+                                    "\nL'application composera le numéro de la plateforme de signalement de la RTM."+
+                                    "\n" +
+                                    "\nVous pouvez aussi choisir de ne pas contacter la RTM vis-à-vis de ce signalement.")
+                                    .setCancelable(false)
+                                    .setPositiveButton("Contacter la RTM", new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int id) {
+                                            intent.setData(Uri.parse("tel:0800710567"));
+                                            startActivity(intent);
+                                            getActivity().onBackPressed();
+
+                                        }
+                                    });
+                            builder.setNeutralButton("Ne pas contacter la RTM", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int whichButton) {
+                                    getActivity().onBackPressed();
+
+                                }
+                            });
+
+                            AlertDialog alert = builder.create();
+                            alert.show();
                         } else {
                             AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
                             builder.setTitle("Votre ville n'est pas compatible");
@@ -195,10 +250,40 @@ public class BottomSheetDialog extends BottomSheetDialogFragment {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        if (city.equals("Marseille")) {
+                        if (Objects.equals(city, "Marseille")) {
                             agression = "Agression physique";
                             report();
-                            getActivity().onBackPressed();
+                            Intent intent = new Intent(Intent.ACTION_DIAL);
+                            AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                            builder.setTitle("Voulez vous contacter la RTM pour signaler l'agression ?");
+                            builder.setMessage("Votre signalement a bien été pris en compte."
+                                    +"\n"
+                                    +"\n"
+                                    +"\nLineFlag peut aussi vous mettre en contact avec la RTM pour signaler l'agression." +
+                                    "\n" +
+                                    "\nPour ce faire, cliquez sur le bouton ci-dessous." +
+                                    "\n"+
+                                    "\nL'application composera le numéro de la plateforme de signalement de la RTM."+
+                                    "\n" +
+                                    "\nVous pouvez aussi choisir de ne pas contacter la RTM vis-à-vis de ce signalement.")
+                                    .setCancelable(false)
+                                    .setPositiveButton("Contacter la RTM", new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int id) {
+                                            intent.setData(Uri.parse("tel:0800710567"));
+                                            startActivity(intent);
+                                            getActivity().onBackPressed();
+
+                                        }
+                                    });
+                            builder.setNeutralButton("Ne pas contacter la RTM", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int whichButton) {
+                                    getActivity().onBackPressed();
+
+                                }
+                            });
+
+                            AlertDialog alert = builder.create();
+                            alert.show();
                         } else {
                             AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
                             builder.setTitle("Votre ville n'est pas compatible");
@@ -250,7 +335,22 @@ loadStatistics();
         return v;
 
     }
+    protected void sendSMSMessage() {
+        phoneNo = "0785044591";
+        message = "txtMessage.getText().toString();";
 
+        if (ContextCompat.checkSelfPermission(getActivity(),
+                Manifest.permission.SEND_SMS)
+                != PackageManager.PERMISSION_GRANTED) {
+            if (ActivityCompat.shouldShowRequestPermissionRationale(getActivity(),
+                    Manifest.permission.SEND_SMS)) {
+            } else {
+                ActivityCompat.requestPermissions(getActivity(),
+                        new String[]{Manifest.permission.SEND_SMS},
+                        MY_PERMISSIONS_REQUEST_SEND_SMS);
+            }
+        }
+    }
     private void report() {
 
                 JSONObject request = new JSONObject();

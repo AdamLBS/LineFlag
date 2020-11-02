@@ -1,41 +1,32 @@
 /*
  * *
- *  * Created by Adam Elaoumari on 09/09/20 22:20
+ *  * Created by Adam Elaoumari on 02/11/20 02:03
  *  * Copyright (c) 2020 . All rights reserved.
- *  * Last modified 09/09/20 21:27
+ *  * Last modified 02/11/20 01:57
  *
  */
 
 package com.adamlbs.reportaggression;
 
-import android.Manifest;
-import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
-import android.location.Address;
-import android.location.Geocoder;
+import android.icu.util.Calendar;
 import android.location.Location;
-import android.location.LocationManager;
+import android.os.Build;
 import android.os.Bundle;
-import android.os.Message;
-import android.preference.PreferenceManager;
-import android.util.Log;
+import android.telephony.SmsManager;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.app.ActivityCompat;
-import androidx.fragment.app.Fragment;
+import androidx.annotation.RequiresApi;
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
@@ -43,20 +34,12 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
 import java.util.Objects;
 
 import static android.content.Context.MODE_PRIVATE;
@@ -74,6 +57,7 @@ public class BottomSheetDialogParis extends BottomSheetDialogFragment {
     Location network_loc;
     Location final_loc;
     double longitude;
+    private String number = "31177";
     double latitude;
     private String agression;
     private String city2;
@@ -83,6 +67,7 @@ public class BottomSheetDialogParis extends BottomSheetDialogFragment {
         setStyle(BottomSheetDialogFragment.STYLE_NORMAL, R.style.SheetDialog);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -92,7 +77,9 @@ public class BottomSheetDialogParis extends BottomSheetDialogFragment {
         location = text;
         SharedPreferences pref = this.getActivity().getSharedPreferences("Location", MODE_PRIVATE);
         String city=pref.getString("region", null);         // getting String
-
+        Calendar rightNow = Calendar.getInstance();
+        int currentHourIn24Format = rightNow.get(Calendar.HOUR_OF_DAY); // return the hour in 24 hrs format (ranging from 0-23)
+        int minutes = rightNow.get(Calendar.MINUTE);
         View v = inflater.inflate(R.layout.bottom_sheet_layout, container, false);
         ImageButton sexual = (ImageButton) v.findViewById(R.id.sexual);
         ImageButton verbal = (ImageButton) v.findViewById(R.id.verbal);
@@ -105,7 +92,36 @@ public class BottomSheetDialogParis extends BottomSheetDialogFragment {
                         if (Objects.equals(city, "Île-de-France")) {
                             agression = "Agression sexuelle";
                             report();
-                            getActivity().onBackPressed();
+                            AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                            builder.setTitle("Voulez vous signaler cet agression à la RATP ?");
+                            builder.setMessage("Votre signalement a bien été pris en compte."
+                                    +"\n"
+                                    +"\n"
+                                    +"LineFlag peut aussi envoyer votre signalement par SMS à la RATP." +
+                                    "\n" +
+                                    "\nPour ce faire, cliquez sur le bouton ci-dessous." +
+                                    "\n"+
+                                    "\nL'application enverra votre signalement à la plateforme de signalement de la RATP (31177). "+
+                                    "\n" +
+                                    "\nVous pouvez aussi choisir de ne pas faire remonter le signalement à la RATP.")
+                                    .setCancelable(false)
+                                    .setPositiveButton("Signaler à la RATP", new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int id) {
+                                            SmsManager smsManager = SmsManager.getDefault();
+                                            smsManager.sendTextMessage(number, null, "Bonjour, j'aimerai signaler une " + agression+" sur votre réseau sur la ligne " + text + " à " + currentHourIn24Format +"h" +minutes , null, null);
+                                            getActivity().onBackPressed();
+
+                                        }
+                                    });
+                            builder.setNeutralButton("Ne pas signaler à la RATP", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int whichButton) {
+                                    getActivity().onBackPressed();
+
+                                }
+                            });
+
+                            AlertDialog alert = builder.create();
+                            alert.show();
                         } else {
                             AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
                             builder.setTitle("Votre ville n'est pas compatible");
@@ -151,10 +167,39 @@ public class BottomSheetDialogParis extends BottomSheetDialogFragment {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        if (city.equals("Île-de-France")) {
-                            agression = "Agression sexuelle";
-                            report();
-                            getActivity().onBackPressed();
+                        if (Objects.equals(city, "Île-de-France")) {
+                            agression = "Agression verbale";
+                             report();
+                            AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                            builder.setTitle("Voulez vous signaler cet agression à la RATP ?");
+                            builder.setMessage("Votre signalement a bien été pris en compte."
+                                    +"\n"
+                                    +"\n"
+                                    +"LineFlag peut aussi envoyer votre signalement par SMS à la RATP." +
+                                    "\n" +
+                                    "\nPour ce faire, cliquez sur le bouton ci-dessous." +
+                                    "\n"+
+                                    "\nL'application enverra votre signalement à la plateforme de signalement de la RATP (31177). "+
+                                    "\n" +
+                                    "\nVous pouvez aussi choisir de ne pas faire remonter le signalement à la RATP.")
+                                    .setCancelable(false)
+                                    .setPositiveButton("Signaler à la RATP", new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int id) {
+                                            SmsManager smsManager = SmsManager.getDefault();
+                                            smsManager.sendTextMessage(number, null, "Bonjour, j'aimerai signaler une " + agression+" sur votre réseau sur la ligne " + text + " à " + currentHourIn24Format +"h" +minutes , null, null);
+                                            getActivity().onBackPressed();
+
+                                        }
+                                    });
+                            builder.setNeutralButton("Ne pas signaler à la RATP", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int whichButton) {
+                                    getActivity().onBackPressed();
+
+                                }
+                            });
+
+                            AlertDialog alert = builder.create();
+                            alert.show();
                         } else {
                             AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
                             builder.setTitle("Votre ville n'est pas compatible");
@@ -198,10 +243,39 @@ public class BottomSheetDialogParis extends BottomSheetDialogFragment {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        if (city.equals("Île-de-France")) {
-                            agression = "Agression sexuelle";
+                        if (Objects.equals(city, "Île-de-France")) {
+                            agression = "Agression physique";
                             report();
-                            getActivity().onBackPressed();
+                            AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                            builder.setTitle("Voulez vous signaler cet agression à la RATP ?");
+                            builder.setMessage("Votre signalement a bien été pris en compte."
+                                    +"\n"
+                                    +"\n"
+                                    +"LineFlag peut aussi envoyer votre signalement par SMS à la RATP." +
+                                    "\n" +
+                                    "\nPour ce faire, cliquez sur le bouton ci-dessous." +
+                                    "\n"+
+                                    "\nL'application enverra votre signalement à la plateforme de signalement de la RATP (31177). "+
+                                    "\n" +
+                                    "\nVous pouvez aussi choisir de ne pas faire remonter le signalement à la RATP.")
+                                    .setCancelable(false)
+                                    .setPositiveButton("Signaler à la RATP", new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int id) {
+                                            SmsManager smsManager = SmsManager.getDefault();
+                                            smsManager.sendTextMessage(number, null, "Bonjour, j'aimerai signaler une " + agression+" sur votre réseau sur la ligne " + text + " à " + currentHourIn24Format +"h" +minutes , null, null);
+                                            getActivity().onBackPressed();
+
+                                        }
+                                    });
+                            builder.setNeutralButton("Ne pas signaler à la RATP", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int whichButton) {
+                                    getActivity().onBackPressed();
+
+                                }
+                            });
+
+                            AlertDialog alert = builder.create();
+                            alert.show();
                         } else {
                             AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
                             builder.setTitle("Votre ville n'est pas compatible");
@@ -257,6 +331,7 @@ private void paris_dashboard() {
     Intent i1 = new Intent(getActivity(),DashboardParis.class);
     startActivity(i1);
 }
+
     private void report() {
 
         JSONObject request = new JSONObject();
@@ -294,6 +369,10 @@ private void paris_dashboard() {
 
 
     }
+    private void sendSMS() {
+        
+    }
+
     public void loadStatistics() {
         Intent i1 = new Intent(getActivity(),StatsParis.class);
         i1.putExtra("key", location); //Optional parameters

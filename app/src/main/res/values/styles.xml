@@ -1,8 +1,8 @@
 <!--
   ~ /**
-  ~  * Created by Adam Elaoumari on 09/08/20 00:46
+  ~  * Created by Adam Elaoumari on 02/11/20 02:03
   ~  * Copyright (c) 2020 . All rights reserved.
-  ~  * Last modified 25/04/20 22:44
+  ~  * Last modified 02/11/20 00:42
   ~  */
   -->
 
@@ -26,27 +26,16 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
-    <style name="splashScreenTheme" parent="@android:style/Theme.DeviceDefault.Light.NoActionBar">
-        <item name="android:windowBackground">@drawable/splash_screen</item>
-    </style>
-        <style name ="Animation" parent="@android:style/Animation.Activity">
-            <item name="android:activityOpenEnterAnimation">@anim/slide_in_right</item>
-            <item name="android:activityOpenExitAnimation">@anim/slide_out_left</item>
-            <item name="android:activityCloseEnterAnimation">@anim/slide_in_left</item>
-            <item name="android:activityCloseExitAnimation">@anim/slide_out_right</item>
-        </style>
-    <style name="thin_ab_style">
-        <item name="android:height">60dp</item>
-        <item name="android:background">@color/colorPrimary</item>
-        <item name="android:icon">@drawable/ic_stat_name</item>
-        <item name="icon">@drawable/ic_stat_name</item>
-    </style>
-    <style name="CustomBottomSheetDialogTheme" parent="Theme.Design.Light.BottomSheetDialog">
-        <item name="bottomSheetStyle">@style/CustomBottomSheetStyle</item>
-    </style>
-
-    <style name="CustomBottomSheetStyle" parent="Widget.Design.BottomSheet.Modal">
-        <item name="android:background">@android:color/transparent</item>
+    <style name="Animation"
+        parent="@android:style/Animation.Activity">
+        <item name="android:activityOpenEnterAnimation">
+            @anim/slide_in_right</item>
+        <item name="android:activityOpenExitAnimation">
+            @anim/slide_out_left</item>
+        <item name="android:activityCloseEnterAnimation">
+            @anim/slide_in_left</item>
+        <item name="android:activityCloseExitAnimation">
+            @anim/slide_out_right</item>
     </style>
 
     <style name="SheetDialog" parent="Theme.Design.Light.BottomSheetDialog">

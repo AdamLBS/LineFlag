@@ -1,22 +1,31 @@
 /*
  * *
- *  * Created by Adam Elaoumari on 09/08/20 00:46
+ *  * Created by Adam Elaoumari on 02/11/20 02:03
  *  * Copyright (c) 2020 . All rights reserved.
- *  * Last modified 09/08/20 00:46
+ *  * Last modified 02/11/20 00:43
  *
  */
 
 package com.adamlbs.reportaggression;
-import java.net.HttpURLConnection;
 
 import android.content.Context;
 import android.os.AsyncTask;
-import java.io.OutputStream;
-import java.net.*;
-import java.io.*;
-import java.util.*;
+import android.util.Log;
 import android.util.Pair;
-import android.util.*;
+
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.io.UnsupportedEncodingException;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLEncoder;
+import java.util.List;
 
 
 public class APIResponseObject {

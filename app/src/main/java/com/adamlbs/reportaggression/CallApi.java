@@ -1,17 +1,21 @@
 /*
  * *
- *  * Created by Adam Elaoumari on 09/08/20 00:46
+ *  * Created by Adam Elaoumari on 02/11/20 02:03
  *  * Copyright (c) 2020 . All rights reserved.
- *  * Last modified 09/08/20 00:46
+ *  * Last modified 02/11/20 00:43
  *
  */
 
 package com.adamlbs.reportaggression;
-import java.net.HttpURLConnection;
+
 import android.os.AsyncTask;
+
+import java.io.BufferedOutputStream;
+import java.io.BufferedWriter;
 import java.io.OutputStream;
-import java.net.*;
-import java.io.*;
+import java.io.OutputStreamWriter;
+import java.net.HttpURLConnection;
+import java.net.URL;
 public class CallApi extends AsyncTask<String, String, String> {
 
     public CallApi(){

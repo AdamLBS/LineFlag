@@ -1,8 +1,8 @@
 /*
  * *
- *  * Created by Adam Elaoumari on 24/10/20 03:32
+ *  * Created by Adam Elaoumari on 02/11/20 02:03
  *  * Copyright (c) 2020 . All rights reserved.
- *  * Last modified 24/10/20 03:09
+ *  * Last modified 02/11/20 00:52
  *
  */
 
@@ -17,8 +17,8 @@ android {
         applicationId "com.adamlbs.reportaggression"
         minSdkVersion 23
         targetSdkVersion 30
-        versionCode 65
-        versionName "0.3.4"
+        versionCode 66
+        versionName "0.4"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
 
@@ -49,17 +49,12 @@ dependencies {
     implementation 'com.google.firebase:firebase-perf:19.0.9'
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
     implementation 'com.google.firebase:firebase-messaging:21.0.0'
-    implementation 'com.jakewharton:butterknife:10.2.3'
     implementation 'com.google.android.material:material:1.2.1'
     implementation 'com.google.android.gms:play-services-location:17.1.0'
     implementation 'com.google.android.play:core:1.8.3'
-
-    annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.3'
     implementation 'com.google.android.material:material:1.2.1'
     implementation 'com.google.android.gms:play-services-auth:18.1.0'
     implementation 'com.google.firebase:firebase-auth:20.0.0'
-    implementation 'org.greenrobot:eventbus:3.1.1'
-    implementation 'com.github.hotchemi:android-rate:1.0.1'
     implementation 'com.google.android.gms:play-services-safetynet:17.0.0'
     implementation 'com.amitshekhar.android:android-networking:1.0.2'
     implementation 'com.google.firebase:firebase-config:20.0.0'

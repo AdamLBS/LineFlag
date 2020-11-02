@@ -1,16 +1,11 @@
 <!--
   ~ /**
-  ~  * Created by Adam Elaoumari on 09/08/20 00:46
+  ~  * Created by Adam Elaoumari on 02/11/20 02:03
   ~  * Copyright (c) 2020 . All rights reserved.
-  ~  * Last modified 21/04/20 03:37
+  ~  * Last modified 02/11/20 00:42
   ~  */
   -->
 
 <resources>
-	<dimen name="activity_vertical_margin">28.8dp</dimen>
-	<dimen name="layout_marginBottom">10dp</dimen>
-	<dimen name="fab_margin">28.8dp</dimen>
-	<dimen name="layout_maginTop">15dp</dimen>
-	<dimen name="layout_marseille_top">10dp</dimen>
-	<dimen name="layout_button_top">144dp</dimen>
+    <dimen name="fab_margin">28.8dp</dimen>
 </resources>
