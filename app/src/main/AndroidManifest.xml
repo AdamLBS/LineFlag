@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
   ~ /**
-  ~  * Created by Adam Elaoumari on 02/11/20 02:45
+  ~  * Created by Adam Elaoumari on 20/11/20 18:20
   ~  * Copyright (c) 2020 . All rights reserved.
-  ~  * Last modified 02/11/20 02:15
+  ~  * Last modified 20/11/20 14:46
   ~  */
   -->
 
@@ -17,10 +17,21 @@
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_3"
+        android:name="com.adamlbs.reportaggression.Application"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_3"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
         <activity android:name=".TransilienParis"></activity>
         <activity android:name=".RerSelectParis" />
         <activity android:name=".StatsParis"></activity>
@@ -29,7 +40,6 @@
         <activity android:name=".MetroSelectParis" />
         <activity android:name=".WebView" />
         <activity android:name=".DashboardParis" />
-
         <activity
             android:name=".SplashScreenActivity"
             android:label="@string/app_name"

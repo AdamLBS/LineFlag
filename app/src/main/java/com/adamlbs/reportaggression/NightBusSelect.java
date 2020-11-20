@@ -1,8 +1,8 @@
 /*
  * *
- *  * Created by Adam Elaoumari on 02/11/20 02:03
+ *  * Created by Adam Elaoumari on 20/11/20 18:20
  *  * Copyright (c) 2020 . All rights reserved.
- *  * Last modified 02/11/20 00:42
+ *  * Last modified 20/11/20 16:04
  *
  */
 
@@ -18,6 +18,8 @@ import android.widget.ImageButton;
 import android.widget.Spinner;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class NightBusSelect extends AppCompatActivity {
     private SessionHandler session;
@@ -39,6 +41,16 @@ public class NightBusSelect extends AppCompatActivity {
         session = new SessionHandler(getApplicationContext());
         User user = session.getUserDetails();
         addListenerOnButton();
+        final FloatingActionButton fab = findViewById(R.id.fab);
+        if (fab != null) {
+            fab.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    ((Application) getApplication()).getShaky().startFeedbackFlow();
+
+                }
+            });
+        }
     }
 
     //get the selected dropdown list value

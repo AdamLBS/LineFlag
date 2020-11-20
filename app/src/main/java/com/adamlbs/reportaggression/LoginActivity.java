@@ -1,8 +1,8 @@
 /*
  * *
- *  * Created by Adam Elaoumari on 02/11/20 02:45
+ *  * Created by Adam Elaoumari on 20/11/20 18:20
  *  * Copyright (c) 2020 . All rights reserved.
- *  * Last modified 02/11/20 02:39
+ *  * Last modified 20/11/20 16:04
  *  
  */
 
@@ -49,6 +49,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.play.core.appupdate.AppUpdateInfo;
 import com.google.android.play.core.appupdate.AppUpdateManager;
 import com.google.android.play.core.appupdate.AppUpdateManagerFactory;
@@ -234,7 +235,16 @@ loadDashboard();
                 twitterconfig();
             }
         });
+        final FloatingActionButton fab = findViewById(R.id.fab);
+        if (fab != null) {
+            fab.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    ((Application) getApplication()).getShaky().startFeedbackFlow();
 
+                }
+            });
+        }
     }
 
     /**

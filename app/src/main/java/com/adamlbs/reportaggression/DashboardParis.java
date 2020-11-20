@@ -1,8 +1,8 @@
 /*
  * *
- *  * Created by Adam Elaoumari on 02/11/20 02:45
+ *  * Created by Adam Elaoumari on 20/11/20 18:20
  *  * Copyright (c) 2020 . All rights reserved.
- *  * Last modified 02/11/20 02:42
+ *  * Last modified 20/11/20 15:01
  *
  */
 
@@ -39,6 +39,7 @@ import com.androidnetworking.AndroidNetworking;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.play.core.appupdate.AppUpdateInfo;
 import com.google.android.play.core.appupdate.AppUpdateManager;
@@ -54,6 +55,8 @@ import com.google.firebase.iid.InstanceIdResult;
 import com.google.firebase.perf.metrics.AddTrace;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
+import com.linkedin.android.shaky.Shaky;
+
 
 import java.util.List;
 import java.util.Locale;
@@ -168,8 +171,18 @@ public class DashboardParis extends AppCompatActivity {
             Log.d("permission granted", "IDK " + userCountry);
         }
         PreferenceManager.getDefaultSharedPreferences(context).edit().putString("city", userCountry).apply();
+        final FloatingActionButton fab = findViewById(R.id.fab);
+        if (fab != null) {
+            fab.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    ((Application) getApplication()).getShaky().startFeedbackFlow();
 
+                }
+            });
+        }
     }
+
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {

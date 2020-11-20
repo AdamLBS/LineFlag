@@ -1,8 +1,8 @@
 /*
  * *
- *  * Created by Adam Elaoumari on 02/11/20 02:03
+ *  * Created by Adam Elaoumari on 20/11/20 18:20
  *  * Copyright (c) 2020 . All rights reserved.
- *  * Last modified 02/11/20 00:43
+ *  * Last modified 20/11/20 16:04
  *
  */
 
@@ -18,6 +18,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.text.Html;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,6 +34,7 @@ import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.play.core.review.ReviewInfo;
 import com.google.android.play.core.review.ReviewManager;
 import com.google.android.play.core.review.ReviewManagerFactory;
@@ -80,7 +82,16 @@ public class StatsParis extends AppCompatActivity {
 
         aggression = "sexual";
         showStats();
+        final FloatingActionButton fab = findViewById(R.id.fab);
+        if (fab != null) {
+            fab.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    ((Application) getApplication()).getShaky().startFeedbackFlow();
 
+                }
+            });
+        }
     }
 
     private void findViewsById() {
