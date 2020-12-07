@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
   ~ /**
-  ~  * Created by Adam Elaoumari on 20/11/20 18:20
+  ~  * Created by Adam Elaoumari on 07/12/20 17:14
   ~  * Copyright (c) 2020 . All rights reserved.
-  ~  * Last modified 20/11/20 14:46
+  ~  * Last modified 22/11/20 20:21
   ~  */
   -->
 
@@ -11,17 +11,40 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.adamlbs.reportaggression">
 
+    <!--
+         The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
+         Google Maps Android API v2, but you must specify either coarse or fine
+         location permissions for the "MyLocation" functionality.
+    -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
     <application
+        android:name=".Application"
         android:allowBackup="true"
         android:icon="@mipmap/ic_3"
-        android:name="com.adamlbs.reportaggression.Application"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_3"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
+
+        <!--
+             The API key for Google Maps-based APIs is defined as a string resource.
+             (See the file "res/values/google_maps_api.xml").
+             Note that the API key is linked to the encryption key used to sign the APK.
+             You need a different API key for each encryption key, including the release key that is used to
+             sign the APK for publishing.
+             You can define the keys for the debug and release targets in src/debug/ and src/release/.
+        -->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
+
+        <activity
+            android:name=".MapsActivity"
+            android:exported="true"
+            android:label="@string/title_activity_maps"></activity>
 
         <provider
             android:name="androidx.core.content.FileProvider"
@@ -32,10 +55,10 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
         </provider>
-        <activity android:name=".TransilienParis"></activity>
-        <activity android:name=".RerSelectParis" />
-        <activity android:name=".StatsParis"></activity>
 
+        <activity android:name=".TransilienParis" />
+        <activity android:name=".RerSelectParis" />
+        <activity android:name=".StatsParis" />
         <activity android:name=".TramSelectParis" />
         <activity android:name=".MetroSelectParis" />
         <activity android:name=".WebView" />
