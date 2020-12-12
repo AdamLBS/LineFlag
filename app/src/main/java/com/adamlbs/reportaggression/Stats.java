@@ -1,8 +1,8 @@
 /*
  * *
- *  * Created by Adam Elaoumari on 20/11/20 18:20
+ *  * Created by Adam Elaoumari on 13/12/20 00:23
  *  * Copyright (c) 2020 . All rights reserved.
- *  * Last modified 20/11/20 16:04
+ *  * Last modified 13/12/20 00:08
  *
  */
 
@@ -24,6 +24,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -44,6 +45,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Stats extends AppCompatActivity {
     private int sexualAggression;
@@ -166,6 +169,7 @@ public class Stats extends AppCompatActivity {
         }
         JsonObjectRequest jsArrayRequest = new JsonObjectRequest
                 (Request.Method.POST, report_url, request, new Response.Listener<JSONObject>() {
+
                     @Override
                     public void onResponse(JSONObject response) {
                         pDialog.dismiss();
@@ -223,8 +227,17 @@ public class Stats extends AppCompatActivity {
                         Toast toast = Toast.makeText(getApplicationContext(), "Error.", Toast.LENGTH_SHORT);
                         toast.show();
                     }
+                }) {
 
-                });
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("User-Agent", "LineFlag-App");
+                params.put("language", "fr");
+
+                return params;
+            }
+        };
 
 
         // Access the RequestQueue through singleton class.

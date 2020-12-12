@@ -1,8 +1,8 @@
 /*
  * *
- *  * Created by Adam Elaoumari on 20/11/20 18:20
+ *  * Created by Adam Elaoumari on 13/12/20 00:23
  *  * Copyright (c) 2020 . All rights reserved.
- *  * Last modified 20/11/20 17:32
+ *  * Last modified 13/12/20 00:15
  *
  */
 
@@ -17,8 +17,8 @@ android {
         applicationId "com.adamlbs.reportaggression"
         minSdkVersion 23
         targetSdkVersion 30
-        versionCode 68
-        versionName "0.4.2"
+        versionCode 70
+        versionName "0.4.3"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
 

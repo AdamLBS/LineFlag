@@ -1,8 +1,8 @@
 /*
  * *
- *  * Created by Adam Elaoumari on 02/11/20 02:45
+ *  * Created by Adam Elaoumari on 13/12/20 00:23
  *  * Copyright (c) 2020 . All rights reserved.
- *  * Last modified 02/11/20 02:30
+ *  * Last modified 13/12/20 00:23
  *
  */
 
@@ -18,7 +18,6 @@ import android.location.Location;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.telephony.SmsManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,6 +28,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -41,6 +41,8 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
 import static android.content.Context.MODE_PRIVATE;
@@ -366,7 +368,19 @@ private void paris_dashboard() {
 
                         //Display error message whenever an error occurs
                     }
-                });
+                }) {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("User-Agent", "LineFlag-App");
+                params.put("language", "fr");
+
+                return params;
+            }
+
+            ;
+
+        };
 
         jsArrayRequest.setRetryPolicy(new DefaultRetryPolicy(
                 20000,

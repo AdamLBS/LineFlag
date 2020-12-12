@@ -1,8 +1,8 @@
 /*
  * *
- *  * Created by Adam Elaoumari on 20/11/20 18:20
+ *  * Created by Adam Elaoumari on 13/12/20 00:23
  *  * Copyright (c) 2020 . All rights reserved.
- *  * Last modified 20/11/20 15:00
+ *  * Last modified 13/12/20 00:23
  *
  */
 
@@ -16,7 +16,6 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.icu.util.Calendar;
 import android.location.Location;
-import android.media.AudioMetadataMap;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -33,6 +32,7 @@ import androidx.annotation.RequiresApi;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -41,11 +41,12 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
-import com.linkedin.android.shaky.Shaky;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
 
@@ -377,7 +378,19 @@ loadStatistics();
 
                         //Display error message whenever an error occurs
                     }
-                });
+                }) {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("User-Agent", "LineFlag-App");
+                params.put("language", "fr");
+
+                return params;
+            }
+
+            ;
+
+        };
 
         jsArrayRequest.setRetryPolicy(new DefaultRetryPolicy(
                 20000,

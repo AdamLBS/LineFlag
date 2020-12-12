@@ -1,8 +1,8 @@
 /*
  * *
- *  * Created by Adam Elaoumari on 20/11/20 18:20
+ *  * Created by Adam Elaoumari on 13/12/20 00:23
  *  * Copyright (c) 2020 . All rights reserved.
- *  * Last modified 20/11/20 16:04
+ *  * Last modified 13/12/20 00:23
  *  
  */
 
@@ -12,7 +12,6 @@ import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentSender;
@@ -36,6 +35,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -72,8 +72,10 @@ import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
@@ -455,6 +457,7 @@ loadDashboard();
         if (validateInputs()) {
             login();
         }
+
   }
 
     private void signInWithPhoneAuthCredential(PhoneAuthCredential credential) {
@@ -546,7 +549,7 @@ loadDashboard();
 
 
                         else {
-                            Toast.makeText(LoginActivity.this, "Erreur. Veuillez secouer votre téléphone pour signaler cette erreur.",
+                            Toast.makeText(LoginActivity.this, "Erreur. Veuillez réessayer ultérieurement..",
                                     Toast.LENGTH_SHORT).show();
                         }
                     }
@@ -703,11 +706,20 @@ private void twitterLogin() {
                         pDialog.dismiss();
 
                         //Display error message whenever an error occurs
-                        Toast.makeText(getApplicationContext(),
-                                error.getMessage(), Toast.LENGTH_SHORT).show();
-
+                        Toast.makeText(LoginActivity.this, "Impossible de contacter le serveur d'authentification... Veuillez réssayer ultérieurement. ",
+                                Toast.LENGTH_SHORT).show();
                     }
-                });
+                    }) {
+
+                    @Override
+                    public Map<String, String> getHeaders() throws AuthFailureError {
+                        Map<String, String> params = new HashMap<String, String>();
+                        params.put("User-Agent", "LineFlag-App");
+                        params.put("language", "fr");
+
+                        return params;
+                    }
+                };
 
         // Access the RequestQueue through your singleton class.
         MySingleton.getInstance(this).addToRequestQueue(jsArrayRequest);
