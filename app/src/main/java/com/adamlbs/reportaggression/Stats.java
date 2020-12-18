@@ -86,13 +86,7 @@ public class Stats extends AppCompatActivity {
         showStats();
         final FloatingActionButton fab = findViewById(R.id.fab);
         if (fab != null) {
-            fab.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    ((Application) getApplication()).getShaky().startFeedbackFlow();
-
-                }
-            });
+            fab.setOnClickListener(view -> ((Application) getApplication()).getShaky().startFeedbackFlow());
         }
     }
 
@@ -168,65 +162,57 @@ public class Stats extends AppCompatActivity {
             e.printStackTrace();
         }
         JsonObjectRequest jsArrayRequest = new JsonObjectRequest
-                (Request.Method.POST, report_url, request, new Response.Listener<JSONObject>() {
+                (Request.Method.POST, report_url, request, response -> {
+                    pDialog.dismiss();
+                    try {
+                        sexualAggression = response.getInt("sexualAggression");// ** STATUS IS 1 HERE **
+                        verbalAggression = response.getInt("verbalAggression");
+                        moralAggression = response.getInt("moralAggression");
+                        physicalAggression = response.getInt("physicalAggression");
+                        totalAggression = response.getInt("totalAggression");
+                        if(totalAggression == 0) {
+                            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+                                builder.setMessage(Html.fromHtml("Il n'y a "+"<b>"+"pas "+"</b>"+"d'agressions signalées sur la ligne "+location, Html.FROM_HTML_MODE_LEGACY));
 
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        pDialog.dismiss();
-                        try {
-                            sexualAggression = response.getInt("sexualAggression");// ** STATUS IS 1 HERE **
-                            verbalAggression = response.getInt("verbalAggression");
-                            moralAggression = response.getInt("moralAggression");
-                            physicalAggression = response.getInt("physicalAggression");
-                            totalAggression = response.getInt("totalAggression");
-                            if(totalAggression == 0) {
+                            } else {
+                                builder.setMessage(Html.fromHtml("Il n'y a "+"<b>"+"pas "+"</b>"+"d'agressions signalées sur la ligne "+location));
+                            }
+                            AlertDialog alert = builder.create();
+                            alert.show();
+                        } else {
+                            if(totalAggression == 1) {
                                 if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
-                                    builder.setMessage(Html.fromHtml("Il n'y a "+"<b>"+"pas "+"</b>"+"d'agressions signalées sur la ligne "+location, Html.FROM_HTML_MODE_LEGACY));
+                                    builder.setMessage(Html.fromHtml("Il y a actuellement " + "<b>" + totalAggression + " agression " + "</b>" + "signalée sur la ligne " + location, Html.FROM_HTML_MODE_LEGACY));
 
                                 } else {
-                                    builder.setMessage(Html.fromHtml("Il n'y a "+"<b>"+"pas "+"</b>"+"d'agressions signalées sur la ligne "+location));
+                                    builder.setMessage(Html.fromHtml("Il y a actuellement "+"<b>"+totalAggression+"</b>"+" agression signalée sur la ligne "+location));
                                 }
                                 AlertDialog alert = builder.create();
                                 alert.show();
-                            } else {
-                                if(totalAggression == 1) {
-                                    if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
-                                        builder.setMessage(Html.fromHtml("Il y a actuellement " + "<b>" + totalAggression + " agression " + "</b>" + "signalée sur la ligne " + location, Html.FROM_HTML_MODE_LEGACY));
+                                checkStatus();
+                                    {
+                            }
+                        } else {
+                                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+                                    builder.setMessage(Html.fromHtml("Il y a actuellement " + "<b>" + totalAggression + " agressions " + "</b>" + "signalées sur la ligne " + location, Html.FROM_HTML_MODE_LEGACY));
 
-                                    } else {
-                                        builder.setMessage(Html.fromHtml("Il y a actuellement "+"<b>"+totalAggression+"</b>"+" agression signalée sur la ligne "+location));
-                                    }
-                                    AlertDialog alert = builder.create();
-                                    alert.show();
-                                    checkStatus();
-                                        {
+                                } else {
+                                    builder.setMessage(Html.fromHtml("Il y a actuellement "+"<b>"+totalAggression+"</b>"+" agressions signalées sur la ligne "+location));
                                 }
-                            } else {
-                                    if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
-                                        builder.setMessage(Html.fromHtml("Il y a actuellement " + "<b>" + totalAggression + " agressions " + "</b>" + "signalées sur la ligne " + location, Html.FROM_HTML_MODE_LEGACY));
-
-                                    } else {
-                                        builder.setMessage(Html.fromHtml("Il y a actuellement "+"<b>"+totalAggression+"</b>"+" agressions signalées sur la ligne "+location));
-                                    }
-                                    AlertDialog alert = builder.create();
-                                    alert.show();
-                                    checkStatus();
-                                }
-                                }
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
+                                AlertDialog alert = builder.create();
+                                alert.show();
+                                checkStatus();
+                            }
+                            }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
                     }
-                }, new Response.ErrorListener() {
+                }, error -> {
+                    pDialog.dismiss();
 
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        pDialog.dismiss();
-
-                        //Display error message whenever an error occurs
-                        Toast toast = Toast.makeText(getApplicationContext(), "Error.", Toast.LENGTH_SHORT);
-                        toast.show();
-                    }
+                    //Display error message whenever an error occurs
+                    Toast toast = Toast.makeText(getApplicationContext(), "Error.", Toast.LENGTH_SHORT);
+                    toast.show();
                 }) {
 
             @Override

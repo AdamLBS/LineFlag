@@ -131,21 +131,18 @@ public class SplashScreenActivity extends AppCompatActivity {
                 for (int i = 1; i < permissionsNeeded.size(); i++)
                     message = message + ", " + permissionsNeeded.get(i);
                 showMessageOKCancel(message,
-                        new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
+                        (dialog, which) -> {
 
-                                if (Build.VERSION.SDK_INT >= 23) {
-                                    // Marshmallow+
-                                    requestPermissions(permissionsList.toArray(new String[permissionsList.size()]),
-                                            REQUEST_CODE_ASK_MULTIPLE_PERMISSIONS);
+                            if (Build.VERSION.SDK_INT >= 23) {
+                                // Marshmallow+
+                                requestPermissions(permissionsList.toArray(new String[permissionsList.size()]),
+                                        REQUEST_CODE_ASK_MULTIPLE_PERMISSIONS);
 
 
-                                } else {
-                                    // Pre-Marshmallow
-                                }
-
+                            } else {
+                                // Pre-Marshmallow
                             }
+
                         });
                 return;
             }
@@ -167,22 +164,17 @@ public class SplashScreenActivity extends AppCompatActivity {
             // Toast.makeText(this,"Permission",Toast.LENGTH_LONG).show();
         }
         final Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
+        handler.postDelayed(() -> {
+            SharedPreferences pref = getApplicationContext().getSharedPreferences("Location", MODE_PRIVATE);
+            SharedPreferences.Editor editor = pref.edit();
+            editor.putString("city", userCountry);  // Saving string
+            editor.putString("region", userAddress);  // Saving string
 
-            @Override
-            public void run() {
-                SharedPreferences pref = getApplicationContext().getSharedPreferences("Location", MODE_PRIVATE);
-                SharedPreferences.Editor editor = pref.edit();
-                editor.putString("city", userCountry);  // Saving string
-                editor.putString("region", userAddress);  // Saving string
+            editor.apply();
 
-                editor.apply();
-
-                Intent i = new Intent(SplashScreenActivity.this, LoginActivity.class);
-                startActivity(i);
-                finish();
-
-            }
+            Intent i = new Intent(SplashScreenActivity.this, LoginActivity.class);
+            startActivity(i);
+            finish();
 
         }, 100);
     }
@@ -253,15 +245,10 @@ public class SplashScreenActivity extends AppCompatActivity {
                 // All Permissions Granted
                 // Here start the activity
                 final Handler handler = new Handler();
-                handler.postDelayed(new Runnable() {
-
-                    @Override
-                    public void run() {
-                        Intent i = new Intent(SplashScreenActivity.this, LoginActivity.class);
-                        startActivity(i);
-                        finish();
-
-                    }
+                handler.postDelayed(() -> {
+                    Intent i = new Intent(SplashScreenActivity.this, LoginActivity.class);
+                    startActivity(i);
+                    finish();
 
                 }, 3000);
 
@@ -276,11 +263,7 @@ public class SplashScreenActivity extends AppCompatActivity {
                                 "\nCela permet à l'application d'afficher le réseau de transport de votre ville et d'éviter les abus." +
                                 "\n")
                         .setCancelable(false)
-                        .setPositiveButton("Autoriser l'accès au GPS", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                permissioncheck();
-                            }
-                        });
+                        .setPositiveButton("Autoriser l'accès au GPS", (dialog, id) -> permissioncheck());
 
 
                 AlertDialog alert = builder.create();

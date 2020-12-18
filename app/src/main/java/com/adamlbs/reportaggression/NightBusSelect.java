@@ -43,13 +43,7 @@ public class NightBusSelect extends AppCompatActivity {
         addListenerOnButton();
         final FloatingActionButton fab = findViewById(R.id.fab);
         if (fab != null) {
-            fab.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    ((Application) getApplication()).getShaky().startFeedbackFlow();
-
-                }
-            });
+            fab.setOnClickListener(view -> ((Application) getApplication()).getShaky().startFeedbackFlow());
         }
     }
 
@@ -81,7 +75,7 @@ public class NightBusSelect extends AppCompatActivity {
 
 
 
-                                  public void newActivity(View v) {
+                                  public void newActivity() {
                                   }
                               }
 
@@ -101,7 +95,7 @@ public class NightBusSelect extends AppCompatActivity {
 
 
 
-                                  public void newActivity(View v) {
+                                  public void newActivity() {
                                   }
                               }
 
@@ -119,7 +113,7 @@ public class NightBusSelect extends AppCompatActivity {
 
 
 
-                                  public void newActivity(View v) {
+                                  public void newActivity() {
                                   }
                               }
 
@@ -137,7 +131,7 @@ public class NightBusSelect extends AppCompatActivity {
 
 
 
-                                  public void newActivity(View v) {
+                                  public void newActivity() {
                                   }
                               }
 
@@ -155,7 +149,7 @@ public class NightBusSelect extends AppCompatActivity {
 
 
 
-                                  public void newActivity(View v) {
+                                  public void newActivity() {
                                   }
                               }
 
@@ -173,7 +167,7 @@ public class NightBusSelect extends AppCompatActivity {
 
 
 
-                                  public void newActivity(View v) {
+                                  public void newActivity() {
                                   }
                               }
 
@@ -191,7 +185,7 @@ public class NightBusSelect extends AppCompatActivity {
 
 
 
-                                  public void newActivity(View v) {
+                                  public void newActivity() {
                                   }
                               }
 
@@ -209,7 +203,7 @@ public class NightBusSelect extends AppCompatActivity {
 
 
 
-                                  public void newActivity(View v) {
+                                  public void newActivity() {
                                   }
                               }
 
@@ -227,7 +221,7 @@ public class NightBusSelect extends AppCompatActivity {
 
 
 
-                                  public void newActivity(View v) {
+                                  public void newActivity() {
                                   }
                               }
 
@@ -245,7 +239,7 @@ public class NightBusSelect extends AppCompatActivity {
 
 
 
-                                  public void newActivity(View v) {
+                                  public void newActivity() {
                                   }
                               }
 
@@ -263,7 +257,7 @@ public class NightBusSelect extends AppCompatActivity {
 
 
 
-                                  public void newActivity(View v) {
+                                  public void newActivity() {
                                   }
                               }
 
@@ -281,7 +275,7 @@ public class NightBusSelect extends AppCompatActivity {
 
 
 
-                                  public void newActivity(View v) {
+                                  public void newActivity() {
                                   }
                               }
 

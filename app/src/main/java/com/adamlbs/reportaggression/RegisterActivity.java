@@ -63,28 +63,22 @@ public class RegisterActivity extends AppCompatActivity {
         ImageButton register = findViewById(R.id.btnRegister);
 
         //Launch Login screen when Login Button is clicked
-        login.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(RegisterActivity.this, LoginActivity.class);
-                startActivity(i);
-                finish();
-            }
+        login.setOnClickListener(v -> {
+            Intent i = new Intent(RegisterActivity.this, LoginActivity.class);
+            startActivity(i);
+            finish();
         });
 
-        register.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //Retrieve the data entered in the edit texts
-                username = etUsername.getText().toString().toLowerCase().trim();
-                password = etPassword.getText().toString().trim();
-                confirmPassword = etConfirmPassword.getText().toString().trim();
-                fullName = etFullName.getText().toString().trim();
-                if (validateInputs()) {
-                    registerUser();
-                }
-
+        register.setOnClickListener(v -> {
+            //Retrieve the data entered in the edit texts
+            username = etUsername.getText().toString().toLowerCase().trim();
+            password = etPassword.getText().toString().trim();
+            confirmPassword = etConfirmPassword.getText().toString().trim();
+            fullName = etFullName.getText().toString().trim();
+            if (validateInputs()) {
+                registerUser();
             }
+
         });
 
     }
@@ -124,42 +118,35 @@ public class RegisterActivity extends AppCompatActivity {
             e.printStackTrace();
         }
         JsonObjectRequest jsArrayRequest = new JsonObjectRequest
-                (Request.Method.POST, register_url, request, new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        pDialog.dismiss();
-                        try {
-                            //Check if user got registered successfully
-                            if (response.getInt(KEY_STATUS) == 0) {
-                                //Set the user session
-                                session.loginUser(username,fullName);
-                                loadDashboard();
+                (Request.Method.POST, register_url, request, response -> {
+                    pDialog.dismiss();
+                    try {
+                        //Check if user got registered successfully
+                        if (response.getInt(KEY_STATUS) == 0) {
+                            //Set the user session
+                            session.loginUser(username,fullName);
+                            loadDashboard();
 
-                            }else if(response.getInt(KEY_STATUS) == 1){
-                                //Display error message if username is already existsing
-                                etUsername.setError("Username already taken!");
-                                etUsername.requestFocus();
+                        }else if(response.getInt(KEY_STATUS) == 1){
+                            //Display error message if username is already existsing
+                            etUsername.setError("Username already taken!");
+                            etUsername.requestFocus();
 
-                            }else{
-                                Toast.makeText(getApplicationContext(),
-                                        response.getString(KEY_MESSAGE), Toast.LENGTH_SHORT).show();
+                        }else{
+                            Toast.makeText(getApplicationContext(),
+                                    response.getString(KEY_MESSAGE), Toast.LENGTH_SHORT).show();
 
-                            }
-                        } catch (JSONException e) {
-                            e.printStackTrace();
                         }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
                     }
-                }, new Response.ErrorListener() {
+                }, error -> {
+                    pDialog.dismiss();
 
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        pDialog.dismiss();
+                    //Display error message whenever an error occurs
+                    Toast.makeText(getApplicationContext(),
+                            error.getMessage(), Toast.LENGTH_SHORT).show();
 
-                        //Display error message whenever an error occurs
-                        Toast.makeText(getApplicationContext(),
-                                error.getMessage(), Toast.LENGTH_SHORT).show();
-
-                    }
                 });
 
         // Access the RequestQueue through your singleton class.

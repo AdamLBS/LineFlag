@@ -19,18 +19,18 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.Objects;
+
 public class MetroSelectParis extends AppCompatActivity {
 
     private SessionHandler session;
-    public ImageButton m1, m2, m3, m3bis, m4, m5, m6, m7, m7bis, m8, m9, m10, m11, m12, m13, m14, orlyval;
-    private SharedPreferences sharedPreference;
+    public ImageButton m1;
     private String text;
-    Activity context = this;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         setTheme(R.style.AppTheme);
-        getSupportActionBar().hide();
+        Objects.requireNonNull(getSupportActionBar()).hide();
 
         super.onCreate(savedInstanceState);
 
@@ -42,13 +42,7 @@ public class MetroSelectParis extends AppCompatActivity {
         addListenerOnButton();
         final FloatingActionButton fab = findViewById(R.id.fab);
         if (fab != null) {
-            fab.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    ((Application) getApplication()).getShaky().startFeedbackFlow();
-
-                }
-            });
+            fab.setOnClickListener(view -> ((Application) getApplication()).getShaky().startFeedbackFlow());
         }
     }
 
@@ -88,7 +82,7 @@ public class MetroSelectParis extends AppCompatActivity {
                                   }
 
 
-                                  public void newActivity(View v) {
+                                  public void newActivity() {
                                   }
                               }
 
@@ -107,7 +101,7 @@ public class MetroSelectParis extends AppCompatActivity {
                                   }
 
 
-                                  public void newActivity(View v) {
+                                  public void newActivity() {
                                   }
                               }
 
@@ -124,7 +118,7 @@ public class MetroSelectParis extends AppCompatActivity {
                                   }
 
 
-                                  public void newActivity(View v) {
+                                  public void newActivity() {
                                   }
                               }
 
@@ -142,7 +136,7 @@ public class MetroSelectParis extends AppCompatActivity {
             }
 
 
-            public void newActivity(View v) {
+            public void newActivity() {
             }
         }
         );
@@ -158,7 +152,7 @@ public class MetroSelectParis extends AppCompatActivity {
                                      }
 
 
-                                     public void newActivity(View v) {
+                                     public void newActivity() {
                                      }
                                  }
         );
@@ -174,7 +168,7 @@ public class MetroSelectParis extends AppCompatActivity {
                                      }
 
 
-                                     public void newActivity(View v) {
+                                     public void newActivity() {
                                      }
                                  }
         );
@@ -190,7 +184,7 @@ public class MetroSelectParis extends AppCompatActivity {
                                      }
 
 
-                                     public void newActivity(View v) {
+                                     public void newActivity() {
                                      }
                                  }
         );
@@ -206,7 +200,7 @@ public class MetroSelectParis extends AppCompatActivity {
                                      }
 
 
-                                     public void newActivity(View v) {
+                                     public void newActivity() {
                                      }
                                  }
         );
@@ -222,7 +216,7 @@ public class MetroSelectParis extends AppCompatActivity {
                                      }
 
 
-                                     public void newActivity(View v) {
+                                     public void newActivity() {
                                      }
                                  }
         );
@@ -238,7 +232,7 @@ public class MetroSelectParis extends AppCompatActivity {
                                      }
 
 
-                                     public void newActivity(View v) {
+                                     public void newActivity() {
                                      }
                                  }
         );
@@ -254,7 +248,7 @@ public class MetroSelectParis extends AppCompatActivity {
                                      }
 
 
-                                     public void newActivity(View v) {
+                                     public void newActivity() {
                                      }
                                  }
         );
@@ -270,7 +264,7 @@ public class MetroSelectParis extends AppCompatActivity {
                                      }
 
 
-                                     public void newActivity(View v) {
+                                     public void newActivity() {
                                      }
                                  }
         );
@@ -286,7 +280,7 @@ public class MetroSelectParis extends AppCompatActivity {
                                      }
 
 
-                                     public void newActivity(View v) {
+                                     public void newActivity() {
                                      }
                                  }
         );
@@ -302,7 +296,7 @@ public class MetroSelectParis extends AppCompatActivity {
                                      }
 
 
-                                     public void newActivity(View v) {
+                                     public void newActivity() {
                                      }
                                  }
         );
@@ -318,7 +312,7 @@ public class MetroSelectParis extends AppCompatActivity {
                                      }
 
 
-                                     public void newActivity(View v) {
+                                     public void newActivity() {
                                      }
                                  }
         );
@@ -334,7 +328,7 @@ public class MetroSelectParis extends AppCompatActivity {
                                      }
 
 
-                                     public void newActivity(View v) {
+                                     public void newActivity() {
                                      }
                                  }
         );
@@ -350,7 +344,7 @@ public class MetroSelectParis extends AppCompatActivity {
                                      }
 
 
-                                     public void newActivity(View v) {
+                                     public void newActivity() {
                                      }
                                  }
         );

@@ -11,8 +11,6 @@ package com.adamlbs.reportaggression;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.annotation.StyleRes;
 
 import com.linkedin.android.shaky.EmailShakeDelegate;
 import com.linkedin.android.shaky.Shaky;
@@ -62,10 +60,10 @@ public class Application extends android.app.Application {
         return shaky;
     }
 
-    public void setShakyTheme(@StyleRes Integer theme) {
+    public void setShakyTheme() {
     }
 
-    public void setShakyPopupTheme(@StyleRes Integer theme) {
+    public void setShakyPopupTheme() {
 
     }
 }

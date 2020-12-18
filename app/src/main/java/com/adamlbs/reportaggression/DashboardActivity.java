@@ -11,10 +11,8 @@ package com.adamlbs.reportaggression;
 import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentSender;
-import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.location.Address;
@@ -24,22 +22,13 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 import com.androidnetworking.AndroidNetworking;
-import com.google.android.gms.location.FusedLocationProviderClient;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.play.core.appupdate.AppUpdateInfo;
 import com.google.android.play.core.appupdate.AppUpdateManager;
@@ -47,8 +36,6 @@ import com.google.android.play.core.appupdate.AppUpdateManagerFactory;
 import com.google.android.play.core.install.model.AppUpdateType;
 import com.google.android.play.core.install.model.UpdateAvailability;
 import com.google.android.play.core.tasks.Task;
-import com.google.firebase.iid.FirebaseInstanceId;
-import com.google.firebase.iid.InstanceIdResult;
 import com.google.firebase.perf.metrics.AddTrace;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
@@ -59,21 +46,6 @@ import java.util.Objects;
 
 public class DashboardActivity extends AppCompatActivity {
 
-    private static final int HIGH_PRIORITY_UPDATE = 5;
-    private SessionHandler session;
-    public Spinner spinner1, spinner2;
-    public Button btnSubmit;
-    public ImageButton btnMetro, btnTram, btnBus, btnNightBus;
-    private TextView longitudeField;
-    private LocationManager locationManager;
-    private String provider;
-    private SharedPreferences sharedPreference;
-    private String text;
-    private FusedLocationProviderClient fusedLocationClient;
-    private String location;
-    private int city;
-    private String maintenance;
-    private TextView welcomeText;
     private FirebaseRemoteConfig mFirebaseRemoteConfig;
     private int firebaseMinimumCode;
     Location gps_loc;
@@ -84,34 +56,21 @@ public class DashboardActivity extends AppCompatActivity {
     double latitude;
     String userCountry, userAddress;
     Activity context = this;
-    Activity Context = this;
 
-    //TODO Lignes favorites permettant d'avoir sur le dashboard l es statistiques de la ligne avec la plus récente aggression
-    //TODO Lignes de nuit
     @Override
-    @AddTrace(name = "onCreateTrace_Marseille", enabled = true /* optional */)
+    @AddTrace(name = "onCreateTrace_Marseille" )
     public void onCreate(Bundle savedInstanceState) {
         enable_update();
         Log.d("Updater", "592029");
 
         setTheme(R.style.AppTheme);
         AndroidNetworking.initialize(context);
-        getSupportActionBar().hide();
+        Objects.requireNonNull(getSupportActionBar()).hide();
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
-        session = new SessionHandler(getApplicationContext());
-        User user = session.getUserDetails();
         addListenerOnButton();
-        FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener(new OnSuccessListener<InstanceIdResult>() {
-            @Override
-            public void onSuccess(InstanceIdResult instanceIdResult) {
-                String token = instanceIdResult.getToken();
-                // send it to server
-                Log.d("Firebase", "token " + token);
 
-            }
-        });
         LocationManager locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
                 && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED
@@ -146,14 +105,13 @@ public class DashboardActivity extends AppCompatActivity {
                 userCountry = addresses.get(0).getLocality();
                 userAddress = addresses.get(0).getAddressLine(0);
                 Log.d("LOCATION DEV", "token " + userCountry);
-                startupMessage();
 
             } else {
                 userCountry = "oeoe";
                 Log.d("LOCATION DEV", "IDK " + userCountry);
-                startupMessage();
 
             }
+            startupMessage();
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -166,13 +124,7 @@ public class DashboardActivity extends AppCompatActivity {
         PreferenceManager.getDefaultSharedPreferences(context).edit().putString("city", userCountry).apply();
         final FloatingActionButton fab = findViewById(R.id.fab);
         if (fab != null) {
-            fab.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    ((Application) getApplication()).getShaky().startFeedbackFlow();
-
-                }
-            });
+            fab.setOnClickListener(view -> ((Application) getApplication()).getShaky().startFeedbackFlow());
         }
     }
 
@@ -193,11 +145,7 @@ public class DashboardActivity extends AppCompatActivity {
                                 "\n"+
                                 "\nLa mise à jour sera rapide et vous n'aurez pas besoin de quitter l'application pendant la mise à jour.")
                         .setCancelable(false)
-                        .setPositiveButton("Mettre à jour l'application", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                checkforupdate_high_priority();
-                            }
-                        });
+                        .setPositiveButton("Mettre à jour l'application", (dialog, id) -> checkforupdate_high_priority());
                 AlertDialog alert = builder.create();
                 alert.show();
             }
@@ -205,7 +153,6 @@ public class DashboardActivity extends AppCompatActivity {
     }
     public void enable_update () {
         int versionCode = BuildConfig.VERSION_CODE;
-        String versionName = BuildConfig.VERSION_NAME;
         mFirebaseRemoteConfig = FirebaseRemoteConfig.getInstance();
         FirebaseRemoteConfigSettings configSettings = new FirebaseRemoteConfigSettings.Builder()
                 .build();
@@ -213,31 +160,28 @@ public class DashboardActivity extends AppCompatActivity {
 
         mFirebaseRemoteConfig.setConfigSettingsAsync(configSettings);
         mFirebaseRemoteConfig.fetchAndActivate()
-                .addOnCompleteListener(this, new OnCompleteListener<Boolean>() {
-                    @Override
-                    public void onComplete(@NonNull com.google.android.gms.tasks.Task<Boolean> task) {
-                        if (task.isSuccessful()) {
-                            boolean updated = task.getResult();
-                            mFirebaseRemoteConfig.getString("maintenance_phone");
-                            Log.d("TAG", "Config params updated: " + updated);
-                            Log.d("TAG", "Config params A: " + updated);
+                .addOnCompleteListener(this, task -> {
+                    if (task.isSuccessful()) {
+                        boolean updated = task.getResult();
+                        mFirebaseRemoteConfig.getString("maintenance_phone");
+                        Log.d("TAG", "Config params updated: " + updated);
+                        Log.d("TAG", "Config params A: " + updated);
 
-                            firebaseMinimumCode = (int) mFirebaseRemoteConfig.getLong("MinimumVersionCode");
-                            if (firebaseMinimumCode == versionCode) {
-                                Log.w("TAG", "no update");
-                                Log.w("UpdaterService","No major update has been found, the user should check google play for minor updates");
-                            } else {
-                                //Retrieve the data entered in the edit texts
-                                checkforupdate_high_priority();
-                                Log.w("UpdaterService","Major update found (< MinimumVersion code) starting update flow");
+                        firebaseMinimumCode = (int) mFirebaseRemoteConfig.getLong("MinimumVersionCode");
+                        if (firebaseMinimumCode == versionCode) {
+                            Log.w("TAG", "no update");
+                            Log.w("UpdaterService","No major update has been found, the user should check google play for minor updates");
+                        } else {
+                            //Retrieve the data entered in the edit texts
+                            checkforupdate_high_priority();
+                            Log.w("UpdaterService","Major update found (< MinimumVersion code) starting update flow");
 
-                            }
                         }
+                    }
 
-                        else {
-                            Toast.makeText(DashboardActivity.this, "Impossible de vérifier les mises à jour de l'application.",
-                                    Toast.LENGTH_SHORT).show();
-                        }
+                    else {
+                        Toast.makeText(DashboardActivity.this, "Impossible de vérifier les mises à jour de l'application.",
+                                Toast.LENGTH_SHORT).show();
                     }
                 });
 
@@ -253,11 +197,10 @@ public class DashboardActivity extends AppCompatActivity {
 
 // Checks that the platform will allow the specified type of update.
         appUpdateInfoTask.addOnSuccessListener(appUpdateInfo -> {
-            if (appUpdateInfo.updateAvailability() == UpdateAvailability.UPDATE_AVAILABLE
-                    // For a flexible update, use AppUpdateType.FLEXIBLE
-                    && appUpdateInfo.isUpdateTypeAllowed(AppUpdateType.IMMEDIATE)) {
-                // Request the update.
-            }
+            if (appUpdateInfo.updateAvailability() == UpdateAvailability.UPDATE_AVAILABLE) {
+                appUpdateInfo.isUpdateTypeAllowed(AppUpdateType.IMMEDIATE);
+            }// For a flexible update, use AppUpdateType.FLEXIBLE
+// Request the update.
 
             try {
                 appUpdateManager.startUpdateFlowForResult(
@@ -286,62 +229,38 @@ public class DashboardActivity extends AppCompatActivity {
         ImageButton btnBus = findViewById(R.id.btnBus);
         ImageButton btnNightBus = findViewById(R.id.btnNightBus);
 
-        btnBus.setOnClickListener(new OnClickListener() {
-                                      @Override
-                                      public void onClick(View v) {
+        btnBus.setOnClickListener(v -> {
 
-                                          Intent i = new Intent(DashboardActivity.this, BusSelect.class);
-                                          startActivity(i);
+            Intent i = new Intent(DashboardActivity.this, BusSelect.class);
+            startActivity(i);
 
-                                      }
-
-                                      public void newActivity(View v) {
-                                      }
-                                  }
+        }
 
         );
 
-        btnMetro.setOnClickListener(new OnClickListener() {
-                                        @Override
-                                        public void onClick(View v) {
+        btnMetro.setOnClickListener(v -> {
 
-                                            Intent i = new Intent(DashboardActivity.this, MetroSelect.class);
-                                            startActivity(i);
+            Intent i = new Intent(DashboardActivity.this, MetroSelect.class);
+            startActivity(i);
 
-                                        }
-
-                                        public void newActivity(View v) {
-                                        }
-                                       }
+        }
 
         );
 
-        btnNightBus.setOnClickListener(new OnClickListener() {
-                                           @Override
-                                           public void onClick(View v) {
+        btnNightBus.setOnClickListener(v -> {
 
-                                               Intent i = new Intent(DashboardActivity.this, NightBusSelect.class);
-                                               startActivity(i);
+            Intent i = new Intent(DashboardActivity.this, NightBusSelect.class);
+            startActivity(i);
 
-                                           }
-
-                                           public void newActivity(View v) {
-                                           }
-                                       }
+        }
 
         );
-        btnTram.setOnClickListener(new OnClickListener() {
-                                       @Override
-                                       public void onClick(View v) {
+        btnTram.setOnClickListener(v -> {
 
-                                           Intent i = new Intent(DashboardActivity.this, TramSelect.class);
-                                           startActivity(i);
+            Intent i = new Intent(DashboardActivity.this, TramSelect.class);
+            startActivity(i);
 
-                                       }
-
-                                       public void newActivity(View v) {
-                                       }
-                                   }
+        }
 
         );
     }
@@ -363,15 +282,11 @@ public class DashboardActivity extends AppCompatActivity {
                         + "\n"
                         + "\nVous pouvez suggérer de nouvelles villes en cliquant sur le bouton ci-dessous.")
                         .setCancelable(false)
-                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                            }
+                        .setPositiveButton("OK", (dialog, id) -> {
                         });
-                builder.setNegativeButton("Suggérer une ville", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int whichButton) {
-                        Intent i = new Intent(DashboardActivity.this, com.adamlbs.reportaggression.WebView.class);
-                        startActivity(i);
-                    }
+                builder.setNegativeButton("Suggérer une ville", (dialog, whichButton) -> {
+                    Intent i = new Intent(DashboardActivity.this, WebView.class);
+                    startActivity(i);
                 });
 
 
@@ -392,15 +307,11 @@ public class DashboardActivity extends AppCompatActivity {
                         + "\n"
                         + "\nN'hésitez pas à suivre l'évolution de l'application sur notre page Twitter @LineFlagApp.")
                         .setCancelable(false)
-                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                            }
+                        .setPositiveButton("OK", (dialog, id) -> {
                         });
-                builder.setNegativeButton("Suggérer une ville", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int whichButton) {
-                        Intent i = new Intent(DashboardActivity.this, com.adamlbs.reportaggression.WebView.class);
-                        startActivity(i);
-                    }
+                builder.setNegativeButton("Suggérer une ville", (dialog, whichButton) -> {
+                    Intent i = new Intent(DashboardActivity.this, WebView.class);
+                    startActivity(i);
                 });
 
 
