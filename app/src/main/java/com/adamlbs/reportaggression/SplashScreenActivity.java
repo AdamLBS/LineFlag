@@ -1,8 +1,8 @@
 /*
  * *
- *  * Created by Adam Elaoumari on 02/11/20 02:45
+ *  * Created by Adam Elaoumari on 26/12/20 00:59
  *  * Copyright (c) 2020 . All rights reserved.
- *  * Last modified 02/11/20 02:15
+ *  * Last modified 19/12/20 21:54
  *
  */
 
@@ -37,14 +37,12 @@ import java.util.Locale;
 import java.util.Map;
 
 public class SplashScreenActivity extends AppCompatActivity {
-    private static final int MY_REQUEST_CODE = 1;
     Location gps_loc;
     Location network_loc;
     Location final_loc;
     double longitude;
     double latitude;
     String userCountry, userAddress , userRegion;
-    public static final int MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 1;
     private static final int REQUEST_CODE_ASK_MULTIPLE_PERMISSIONS = 1;
 
     @Override
@@ -115,33 +113,34 @@ public class SplashScreenActivity extends AppCompatActivity {
 
     // handler post del
     private void permissioncheck() {
-        List<String> permissionsNeeded = new ArrayList<String>();
+        List<String> permissionsNeeded = new ArrayList<>();
 
-        final List<String> permissionsList = new ArrayList<String>();
-        if (!addPermission(permissionsList, Manifest.permission.ACCESS_FINE_LOCATION))
+        final List<String> permissionsList = new ArrayList<>();
+        if (addPermission(permissionsList, Manifest.permission.ACCESS_FINE_LOCATION))
             permissionsNeeded.add("FINELOC");
-        if (!addPermission(permissionsList, Manifest.permission.ACCESS_COARSE_LOCATION))
+        if (addPermission(permissionsList, Manifest.permission.ACCESS_COARSE_LOCATION))
             permissionsNeeded.add("COURLOC");
-        if (!addPermission(permissionsList, Manifest.permission.ACCESS_NETWORK_STATE))
+        if (addPermission(permissionsList, Manifest.permission.ACCESS_NETWORK_STATE))
             permissionsNeeded.add("NETWORK");
         if (permissionsList.size() > 0) {
             if (permissionsNeeded.size() > 0) {
                 // Need Rationale
-                String message = "You need to grant access to " + permissionsNeeded.get(0);
-                for (int i = 1; i < permissionsNeeded.size(); i++)
-                    message = message + ", " + permissionsNeeded.get(i);
+
+                String message = "\nLineFlag a besoin d'accéder à votre localisation afin de savoir dans quelle ville vous vous situez." +
+                        "\n" +
+                        "\nCela permet à l'application d'afficher le réseau de transport de votre ville et d'éviter les abus." +
+                        "\n";
                 showMessageOKCancel(message,
                         (dialog, which) -> {
 
                             if (Build.VERSION.SDK_INT >= 23) {
                                 // Marshmallow+
-                                requestPermissions(permissionsList.toArray(new String[permissionsList.size()]),
+                                requestPermissions(permissionsList.toArray(new String[0]),
                                         REQUEST_CODE_ASK_MULTIPLE_PERMISSIONS);
 
 
-                            } else {
-                                // Pre-Marshmallow
-                            }
+                            }  // Pre-Marshmallow
+
 
                         });
                 return;
@@ -149,20 +148,17 @@ public class SplashScreenActivity extends AppCompatActivity {
 
             if (Build.VERSION.SDK_INT >= 23) {
                 // Marshmallow+
-                requestPermissions(permissionsList.toArray(new String[permissionsList.size()]),
+                requestPermissions(permissionsList.toArray(new String[0]),
                         REQUEST_CODE_ASK_MULTIPLE_PERMISSIONS);
 
 
-            } else {
-                // Pre-Marshmallow
+            }  // Pre-Marshmallow
 
-            }
 
             return;
-        }else
-        {
-            // Toast.makeText(this,"Permission",Toast.LENGTH_LONG).show();
         }
+        // Toast.makeText(this,"Permission",Toast.LENGTH_LONG).show();
+
         final Handler handler = new Handler();
         handler.postDelayed(() -> {
             SharedPreferences pref = getApplicationContext().getSharedPreferences("Location", MODE_PRIVATE);
@@ -180,34 +176,29 @@ public class SplashScreenActivity extends AppCompatActivity {
     }
     private void showMessageOKCancel(String message, DialogInterface.OnClickListener okListener) {
         new AlertDialog.Builder(SplashScreenActivity.this)
+                .setTitle("Accès à la localisation")
                 .setMessage(message)
+                .setCancelable(false)
                 .setPositiveButton("OK", okListener)
-                .setNegativeButton("Cancel", null)
                 .create()
                 .show();
     }
     private boolean addPermission(List<String> permissionsList, String permission) {
 
-        Boolean cond;
+        boolean cond;
         if (Build.VERSION.SDK_INT >= 23) {
             // Marshmallow+
             if (checkSelfPermission(permission) != PackageManager.PERMISSION_GRANTED) {
                 permissionsList.add(permission);
                 // Check for Rationale Option
-                if (!shouldShowRequestPermissionRationale(permission))
-                    //  return false;
-
-                    cond = false;
+                shouldShowRequestPermissionRationale(permission);//  return false;
             }
             //  return true;
 
-            cond = true;
 
+        }  // Pre-Marshmallow
 
-        } else {
-            // Pre-Marshmallow
-            cond = true;
-        }
+        cond = true;
 
         return cond;
 
@@ -229,7 +220,7 @@ public class SplashScreenActivity extends AppCompatActivity {
             }
         }
         if (requestCode == REQUEST_CODE_ASK_MULTIPLE_PERMISSIONS) {
-            Map<String, Integer> perms = new HashMap<String, Integer>();
+            Map<String, Integer> perms = new HashMap<>();
             // Initial
             perms.put(Manifest.permission.ACCESS_NETWORK_STATE, PackageManager.PERMISSION_GRANTED);
             perms.put(Manifest.permission.ACCESS_COARSE_LOCATION, PackageManager.PERMISSION_GRANTED);
@@ -268,7 +259,7 @@ public class SplashScreenActivity extends AppCompatActivity {
 
                 AlertDialog alert = builder.create();
                 alert.show();
-            };
+            }
             }
 
         }

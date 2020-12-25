@@ -1,8 +1,8 @@
 /*
  * *
- *  * Created by Adam Elaoumari on 09/08/20 00:46
+ *  * Created by Adam Elaoumari on 26/12/20 00:59
  *  * Copyright (c) 2020 . All rights reserved.
- *  * Last modified 20/01/20 17:50
+ *  * Last modified 19/12/20 21:47
  *
  */
 
@@ -18,7 +18,7 @@ import com.android.volley.toolbox.Volley;
 public class MySingleton {
     private static MySingleton mInstance;
     private RequestQueue mRequestQueue;
-    private static Context mCtx;
+    private final Context mCtx;
 
     private MySingleton(Context context) {
         mCtx = context;

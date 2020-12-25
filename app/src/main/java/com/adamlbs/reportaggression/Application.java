@@ -1,8 +1,8 @@
 /*
  * *
- *  * Created by Adam Elaoumari on 20/11/20 18:20
+ *  * Created by Adam Elaoumari on 26/12/20 00:59
  *  * Copyright (c) 2020 . All rights reserved.
- *  * Last modified 20/11/20 15:03
+ *  * Last modified 19/12/20 21:42
  *
  */
 
@@ -60,11 +60,5 @@ public class Application extends android.app.Application {
         return shaky;
     }
 
-    public void setShakyTheme() {
-    }
-
-    public void setShakyPopupTheme() {
-
-    }
 }
 

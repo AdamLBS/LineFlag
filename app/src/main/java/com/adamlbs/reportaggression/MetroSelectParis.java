@@ -1,18 +1,15 @@
 /*
  * *
- *  * Created by Adam Elaoumari on 20/11/20 18:20
+ *  * Created by Adam Elaoumari on 26/12/20 00:59
  *  * Copyright (c) 2020 . All rights reserved.
- *  * Last modified 20/11/20 16:04
+ *  * Last modified 19/12/20 21:38
  *
  */
 
 package com.adamlbs.reportaggression;
 
-import android.app.Activity;
-import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.ImageButton;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,7 +20,6 @@ import java.util.Objects;
 
 public class MetroSelectParis extends AppCompatActivity {
 
-    private SessionHandler session;
     public ImageButton m1;
     private String text;
 
@@ -37,8 +33,8 @@ public class MetroSelectParis extends AppCompatActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         setContentView(R.layout.activity_metro_select_paris);
-        session = new SessionHandler(getApplicationContext());
-        User user = session.getUserDetails();
+        SessionHandler session = new SessionHandler(getApplicationContext());
+        session.getUserDetails();
         addListenerOnButton();
         final FloatingActionButton fab = findViewById(R.id.fab);
         if (fab != null) {
@@ -68,285 +64,166 @@ public class MetroSelectParis extends AppCompatActivity {
 
 
 
-        m1.setOnClickListener(new View.OnClickListener() {
-                                  @Override
-                                  public void onClick(View v) {
-                                      text = "1";
-                                      Bundle bundle = new Bundle();
+        m1.setOnClickListener(v -> {
+            text = "1";
+            Bundle bundle = new Bundle();
 
-                                      BottomSheetDialogParis bottomSheet = new BottomSheetDialogParis();
-                                      bundle.putString("text", text);
-                                      bottomSheet.setArguments(bundle);
-                                      bottomSheet.show(getSupportFragmentManager(),"text");
+            BottomSheetDialogParis bottomSheet = new BottomSheetDialogParis();
+            bundle.putString("text", text);
+            bottomSheet.setArguments(bundle);
+            bottomSheet.show(getSupportFragmentManager(),"text");
 
-                                  }
-
-
-                                  public void newActivity() {
-                                  }
-                              }
+        }
 
         );
 
 
-        m2.setOnClickListener(new View.OnClickListener() {
-                                  @Override
-                                  public void onClick(View v) {
-                                      text = "2";
-                                      Bundle bundle = new Bundle();
-                                      BottomSheetDialogParis bottomSheet = new BottomSheetDialogParis();
-                                      bundle.putString("text", text);
-                                      bottomSheet.setArguments(bundle);
-                                      bottomSheet.show(getSupportFragmentManager(),"text");
-                                  }
-
-
-                                  public void newActivity() {
-                                  }
-                              }
+        m2.setOnClickListener(v -> {
+            text = "2";
+            Bundle bundle = new Bundle();
+            BottomSheetDialogParis bottomSheet = new BottomSheetDialogParis();
+            bundle.putString("text", text);
+            bottomSheet.setArguments(bundle);
+            bottomSheet.show(getSupportFragmentManager(),"text");
+        }
 
         );
-        m3.setOnClickListener(new View.OnClickListener() {
-                                  @Override
-                                  public void onClick(View v) {
-                                      text = "3";
-                                      Bundle bundle = new Bundle();
-                                      BottomSheetDialogParis bottomSheet = new BottomSheetDialogParis();
-                                      bundle.putString("text", text);
-                                      bottomSheet.setArguments(bundle);
-                                      bottomSheet.show(getSupportFragmentManager(),"text");
-                                  }
-
-
-                                  public void newActivity() {
-                                  }
-                              }
+        m3.setOnClickListener(v -> {
+            text = "3";
+            Bundle bundle = new Bundle();
+            BottomSheetDialogParis bottomSheet = new BottomSheetDialogParis();
+            bundle.putString("text", text);
+            bottomSheet.setArguments(bundle);
+            bottomSheet.show(getSupportFragmentManager(),"text");
+        }
 
 
         );
-        m3bis.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                text = "3bis";
-                Bundle bundle = new Bundle();
-                BottomSheetDialogParis bottomSheet = new BottomSheetDialogParis();
-                bundle.putString("text", text);
-                bottomSheet.setArguments(bundle);
-                bottomSheet.show(getSupportFragmentManager(),"text");
-            }
-
-
-            public void newActivity() {
-            }
+        m3bis.setOnClickListener(v -> {
+            text = "3bis";
+            Bundle bundle = new Bundle();
+            BottomSheetDialogParis bottomSheet = new BottomSheetDialogParis();
+            bundle.putString("text", text);
+            bottomSheet.setArguments(bundle);
+            bottomSheet.show(getSupportFragmentManager(),"text");
         }
         );
-        m4.setOnClickListener(new View.OnClickListener() {
-                                     @Override
-                                     public void onClick(View v) {
-                                         text = "4";
-                                         Bundle bundle = new Bundle();
-                                         BottomSheetDialogParis bottomSheet = new BottomSheetDialogParis();
-                                         bundle.putString("text", text);
-                                         bottomSheet.setArguments(bundle);
-                                         bottomSheet.show(getSupportFragmentManager(),"text");
-                                     }
-
-
-                                     public void newActivity() {
-                                     }
-                                 }
+        m4.setOnClickListener(v -> {
+            text = "4";
+            Bundle bundle = new Bundle();
+            BottomSheetDialogParis bottomSheet = new BottomSheetDialogParis();
+            bundle.putString("text", text);
+            bottomSheet.setArguments(bundle);
+            bottomSheet.show(getSupportFragmentManager(),"text");
+        }
         );
-        m5.setOnClickListener(new View.OnClickListener() {
-                                     @Override
-                                     public void onClick(View v) {
-                                         text = "5";
-                                         Bundle bundle = new Bundle();
-                                         BottomSheetDialogParis bottomSheet = new BottomSheetDialogParis();
-                                         bundle.putString("text", text);
-                                         bottomSheet.setArguments(bundle);
-                                         bottomSheet.show(getSupportFragmentManager(),"text");
-                                     }
-
-
-                                     public void newActivity() {
-                                     }
-                                 }
+        m5.setOnClickListener(v -> {
+            text = "5";
+            Bundle bundle = new Bundle();
+            BottomSheetDialogParis bottomSheet = new BottomSheetDialogParis();
+            bundle.putString("text", text);
+            bottomSheet.setArguments(bundle);
+            bottomSheet.show(getSupportFragmentManager(),"text");
+        }
         );
-        m6.setOnClickListener(new View.OnClickListener() {
-                                     @Override
-                                     public void onClick(View v) {
-                                         text = "6";
-                                         Bundle bundle = new Bundle();
-                                         BottomSheetDialogParis bottomSheet = new BottomSheetDialogParis();
-                                         bundle.putString("text", text);
-                                         bottomSheet.setArguments(bundle);
-                                         bottomSheet.show(getSupportFragmentManager(),"text");
-                                     }
-
-
-                                     public void newActivity() {
-                                     }
-                                 }
+        m6.setOnClickListener(v -> {
+            text = "6";
+            Bundle bundle = new Bundle();
+            BottomSheetDialogParis bottomSheet = new BottomSheetDialogParis();
+            bundle.putString("text", text);
+            bottomSheet.setArguments(bundle);
+            bottomSheet.show(getSupportFragmentManager(),"text");
+        }
         );
-        m7.setOnClickListener(new View.OnClickListener() {
-                                     @Override
-                                     public void onClick(View v) {
-                                         text = "7";
-                                         Bundle bundle = new Bundle();
-                                         BottomSheetDialogParis bottomSheet = new BottomSheetDialogParis();
-                                         bundle.putString("text", text);
-                                         bottomSheet.setArguments(bundle);
-                                         bottomSheet.show(getSupportFragmentManager(),"text");
-                                     }
-
-
-                                     public void newActivity() {
-                                     }
-                                 }
+        m7.setOnClickListener(v -> {
+            text = "7";
+            Bundle bundle = new Bundle();
+            BottomSheetDialogParis bottomSheet = new BottomSheetDialogParis();
+            bundle.putString("text", text);
+            bottomSheet.setArguments(bundle);
+            bottomSheet.show(getSupportFragmentManager(),"text");
+        }
         );
-        m7bis.setOnClickListener(new View.OnClickListener() {
-                                     @Override
-                                     public void onClick(View v) {
-                                         text = "7bis";
-                                         Bundle bundle = new Bundle();
-                                         BottomSheetDialogParis bottomSheet = new BottomSheetDialogParis();
-                                         bundle.putString("text", text);
-                                         bottomSheet.setArguments(bundle);
-                                         bottomSheet.show(getSupportFragmentManager(),"text");
-                                     }
-
-
-                                     public void newActivity() {
-                                     }
-                                 }
+        m7bis.setOnClickListener(v -> {
+            text = "7bis";
+            Bundle bundle = new Bundle();
+            BottomSheetDialogParis bottomSheet = new BottomSheetDialogParis();
+            bundle.putString("text", text);
+            bottomSheet.setArguments(bundle);
+            bottomSheet.show(getSupportFragmentManager(),"text");
+        }
         );
-        m8.setOnClickListener(new View.OnClickListener() {
-                                     @Override
-                                     public void onClick(View v) {
-                                         text = "8";
-                                         Bundle bundle = new Bundle();
-                                         BottomSheetDialogParis bottomSheet = new BottomSheetDialogParis();
-                                         bundle.putString("text", text);
-                                         bottomSheet.setArguments(bundle);
-                                         bottomSheet.show(getSupportFragmentManager(),"text");
-                                     }
-
-
-                                     public void newActivity() {
-                                     }
-                                 }
+        m8.setOnClickListener(v -> {
+            text = "8";
+            Bundle bundle = new Bundle();
+            BottomSheetDialogParis bottomSheet = new BottomSheetDialogParis();
+            bundle.putString("text", text);
+            bottomSheet.setArguments(bundle);
+            bottomSheet.show(getSupportFragmentManager(),"text");
+        }
         );
-        m9.setOnClickListener(new View.OnClickListener() {
-                                     @Override
-                                     public void onClick(View v) {
-                                         text = "9";
-                                         Bundle bundle = new Bundle();
-                                         BottomSheetDialogParis bottomSheet = new BottomSheetDialogParis();
-                                         bundle.putString("text", text);
-                                         bottomSheet.setArguments(bundle);
-                                         bottomSheet.show(getSupportFragmentManager(),"text");
-                                     }
-
-
-                                     public void newActivity() {
-                                     }
-                                 }
+        m9.setOnClickListener(v -> {
+            text = "9";
+            Bundle bundle = new Bundle();
+            BottomSheetDialogParis bottomSheet = new BottomSheetDialogParis();
+            bundle.putString("text", text);
+            bottomSheet.setArguments(bundle);
+            bottomSheet.show(getSupportFragmentManager(),"text");
+        }
         );
-        m10.setOnClickListener(new View.OnClickListener() {
-                                     @Override
-                                     public void onClick(View v) {
-                                         text = "10";
-                                         Bundle bundle = new Bundle();
-                                         BottomSheetDialogParis bottomSheet = new BottomSheetDialogParis();
-                                         bundle.putString("text", text);
-                                         bottomSheet.setArguments(bundle);
-                                         bottomSheet.show(getSupportFragmentManager(),"text");
-                                     }
-
-
-                                     public void newActivity() {
-                                     }
-                                 }
+        m10.setOnClickListener(v -> {
+            text = "10";
+            Bundle bundle = new Bundle();
+            BottomSheetDialogParis bottomSheet = new BottomSheetDialogParis();
+            bundle.putString("text", text);
+            bottomSheet.setArguments(bundle);
+            bottomSheet.show(getSupportFragmentManager(),"text");
+        }
         );
-        m11.setOnClickListener(new View.OnClickListener() {
-                                     @Override
-                                     public void onClick(View v) {
-                                         text = "11";
-                                         Bundle bundle = new Bundle();
-                                         BottomSheetDialogParis bottomSheet = new BottomSheetDialogParis();
-                                         bundle.putString("text", text);
-                                         bottomSheet.setArguments(bundle);
-                                         bottomSheet.show(getSupportFragmentManager(),"text");
-                                     }
-
-
-                                     public void newActivity() {
-                                     }
-                                 }
+        m11.setOnClickListener(v -> {
+            text = "11";
+            Bundle bundle = new Bundle();
+            BottomSheetDialogParis bottomSheet = new BottomSheetDialogParis();
+            bundle.putString("text", text);
+            bottomSheet.setArguments(bundle);
+            bottomSheet.show(getSupportFragmentManager(),"text");
+        }
         );
-        m12.setOnClickListener(new View.OnClickListener() {
-                                     @Override
-                                     public void onClick(View v) {
-                                         text = "12";
-                                         Bundle bundle = new Bundle();
-                                         BottomSheetDialogParis bottomSheet = new BottomSheetDialogParis();
-                                         bundle.putString("text", text);
-                                         bottomSheet.setArguments(bundle);
-                                         bottomSheet.show(getSupportFragmentManager(),"text");
-                                     }
-
-
-                                     public void newActivity() {
-                                     }
-                                 }
+        m12.setOnClickListener(v -> {
+            text = "12";
+            Bundle bundle = new Bundle();
+            BottomSheetDialogParis bottomSheet = new BottomSheetDialogParis();
+            bundle.putString("text", text);
+            bottomSheet.setArguments(bundle);
+            bottomSheet.show(getSupportFragmentManager(),"text");
+        }
         );
-        m13.setOnClickListener(new View.OnClickListener() {
-                                     @Override
-                                     public void onClick(View v) {
-                                         text = "13";
-                                         Bundle bundle = new Bundle();
-                                         BottomSheetDialogParis bottomSheet = new BottomSheetDialogParis();
-                                         bundle.putString("text", text);
-                                         bottomSheet.setArguments(bundle);
-                                         bottomSheet.show(getSupportFragmentManager(),"text");
-                                     }
-
-
-                                     public void newActivity() {
-                                     }
-                                 }
+        m13.setOnClickListener(v -> {
+            text = "13";
+            Bundle bundle = new Bundle();
+            BottomSheetDialogParis bottomSheet = new BottomSheetDialogParis();
+            bundle.putString("text", text);
+            bottomSheet.setArguments(bundle);
+            bottomSheet.show(getSupportFragmentManager(),"text");
+        }
         );
-        m14.setOnClickListener(new View.OnClickListener() {
-                                     @Override
-                                     public void onClick(View v) {
-                                         text = "14";
-                                         Bundle bundle = new Bundle();
-                                         BottomSheetDialogParis bottomSheet = new BottomSheetDialogParis();
-                                         bundle.putString("text", text);
-                                         bottomSheet.setArguments(bundle);
-                                         bottomSheet.show(getSupportFragmentManager(),"text");
-                                     }
-
-
-                                     public void newActivity() {
-                                     }
-                                 }
+        m14.setOnClickListener(v -> {
+            text = "14";
+            Bundle bundle = new Bundle();
+            BottomSheetDialogParis bottomSheet = new BottomSheetDialogParis();
+            bundle.putString("text", text);
+            bottomSheet.setArguments(bundle);
+            bottomSheet.show(getSupportFragmentManager(),"text");
+        }
         );
-        orlyval.setOnClickListener(new View.OnClickListener() {
-                                     @Override
-                                     public void onClick(View v) {
-                                         text = "Orlyval";
-                                         Bundle bundle = new Bundle();
-                                         BottomSheetDialogParis bottomSheet = new BottomSheetDialogParis();
-                                         bundle.putString("text", text);
-                                         bottomSheet.setArguments(bundle);
-                                         bottomSheet.show(getSupportFragmentManager(),"text");
-                                     }
-
-
-                                     public void newActivity() {
-                                     }
-                                 }
+        orlyval.setOnClickListener(v -> {
+            text = "Orlyval";
+            Bundle bundle = new Bundle();
+            BottomSheetDialogParis bottomSheet = new BottomSheetDialogParis();
+            bundle.putString("text", text);
+            bottomSheet.setArguments(bundle);
+            bottomSheet.show(getSupportFragmentManager(),"text");
+        }
         );
     }
 }

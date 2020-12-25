@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
   ~ /**
-  ~  * Created by Adam Elaoumari on 20/11/20 18:20
+  ~  * Created by Adam Elaoumari on 26/12/20 00:59
   ~  * Copyright (c) 2020 . All rights reserved.
-  ~  * Last modified 20/11/20 14:46
+  ~  * Last modified 19/12/20 21:19
   ~  */
   -->
 
@@ -71,10 +71,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.adamlbs.reportaggression.DashboardActivity" />
         </activity>
-        <activity
-            android:name=".MainActivity111"
-            android:label="@string/title_activity_main111"
-            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".MetroSelect"
             android:parentActivityName=".DashboardActivity"
@@ -154,10 +150,6 @@
         </activity>
         <activity
             android:name=".LoginActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity
-            android:name=".RegisterActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity

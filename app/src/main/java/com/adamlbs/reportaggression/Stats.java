@@ -1,8 +1,8 @@
 /*
  * *
- *  * Created by Adam Elaoumari on 13/12/20 00:23
+ *  * Created by Adam Elaoumari on 26/12/20 00:59
  *  * Copyright (c) 2020 . All rights reserved.
- *  * Last modified 13/12/20 00:08
+ *  * Last modified 19/12/20 21:38
  *
  */
 
@@ -18,16 +18,11 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.text.Html;
-import android.view.View;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Description;
@@ -50,21 +45,18 @@ import java.util.Map;
 
 public class Stats extends AppCompatActivity {
     private int sexualAggression;
-    private int moralAggression;
     private int physicalAggression;
     private int verbalAggression;
     private int totalAggression;
-    private String description;
     private String location;
     int count;
 
     private String aggression;
     Activity context = this;
-    private String report_url = "https://api.lineflag.com/getStatistics.php";
+    private final String report_url = "https://api.lineflag.com/getStatistics.php";
     private static final String LOCATION = "location";
     private static final String AGGRESSION = "aggression";
     private ProgressDialog pDialog;
-    int c;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,12 +64,10 @@ public class Stats extends AppCompatActivity {
         setTheme(R.style.AppTheme);
         getSupportActionBar().hide();
 
-        SharedPreference sharedPreference = new SharedPreference();
         setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        ReviewManager manager = ReviewManagerFactory.create(context);
+        ReviewManagerFactory.create(context);
 
         setContentView(R.layout.activity_stats);
-        findViewsById();
         String aggression;
         Intent intent = getIntent();
          location = intent.getStringExtra("key");
@@ -90,10 +80,6 @@ public class Stats extends AppCompatActivity {
         }
     }
 
-    private void findViewsById() {
-        TextView welcomeText = (TextView) findViewById(R.id.Stats);
-
-    }
 
     private void displayLoader() {
         pDialog = new ProgressDialog(Stats.this);
@@ -127,10 +113,7 @@ public class Stats extends AppCompatActivity {
                     // We can get the ReviewInfo object
                     ReviewInfo reviewInfo = task.getResult();
                     Task<Void> flow = manager.launchReviewFlow(this, reviewInfo);
-                    flow.addOnCompleteListener(task2 -> {
-                        loadDashboard();
-
-                    });
+                    flow.addOnCompleteListener(task2 -> loadDashboard());
 
                 } else {
                     loadDashboard();
@@ -167,7 +150,6 @@ public class Stats extends AppCompatActivity {
                     try {
                         sexualAggression = response.getInt("sexualAggression");// ** STATUS IS 1 HERE **
                         verbalAggression = response.getInt("verbalAggression");
-                        moralAggression = response.getInt("moralAggression");
                         physicalAggression = response.getInt("physicalAggression");
                         totalAggression = response.getInt("totalAggression");
                         if(totalAggression == 0) {
@@ -189,10 +171,7 @@ public class Stats extends AppCompatActivity {
                                 }
                                 AlertDialog alert = builder.create();
                                 alert.show();
-                                checkStatus();
-                                    {
-                            }
-                        } else {
+                            } else {
                                 if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
                                     builder.setMessage(Html.fromHtml("Il y a actuellement " + "<b>" + totalAggression + " agressions " + "</b>" + "signalées sur la ligne " + location, Html.FROM_HTML_MODE_LEGACY));
 
@@ -201,9 +180,9 @@ public class Stats extends AppCompatActivity {
                                 }
                                 AlertDialog alert = builder.create();
                                 alert.show();
-                                checkStatus();
                             }
-                            }
+                            checkStatus();
+                        }
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -216,8 +195,8 @@ public class Stats extends AppCompatActivity {
                 }) {
 
             @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> params = new HashMap<String, String>();
+            public Map<String, String> getHeaders() {
+                Map<String, String> params = new HashMap<>();
                 params.put("User-Agent", "LineFlag-App");
                 params.put("language", "fr");
 
@@ -229,19 +208,7 @@ public class Stats extends AppCompatActivity {
         // Access the RequestQueue through singleton class.
         MySingleton.getInstance(this).addToRequestQueue(jsArrayRequest);
     }
-public void rateapp () {
-    ReviewManager manager = ReviewManagerFactory.create(this);
-    Task<ReviewInfo> request = manager.requestReviewFlow();
-    request.addOnCompleteListener(task -> {
-        if (task.isSuccessful()) {
-            // We can get the ReviewInfo object
-            ReviewInfo reviewInfo = task.getResult();
-        } else {
-            // There was some problem, continue regardless of the result.
-        }
-    });
 
-}
     private void checkStatus() {
         PieChart pieChart = (PieChart) findViewById(R.id.chart);
         PieDataSet pieDataSet = new PieDataSet(getData(),"Détail des agressions");
@@ -264,5 +231,9 @@ public void rateapp () {
         entries.add(new PieEntry(physicalAggression));
         entries.add(new PieEntry(verbalAggression));
         return entries;
+    }
+
+    public void setAggression(String aggression) {
+        this.aggression = aggression;
     }
 }

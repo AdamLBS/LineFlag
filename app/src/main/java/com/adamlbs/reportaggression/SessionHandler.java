@@ -1,13 +1,14 @@
 /*
  * *
- *  * Created by Adam Elaoumari on 09/08/20 00:46
+ *  * Created by Adam Elaoumari on 26/12/20 00:59
  *  * Copyright (c) 2020 . All rights reserved.
- *  * Last modified 20/01/20 17:50
+ *  * Last modified 19/12/20 21:38
  *
  */
 
 package com.adamlbs.reportaggression;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 
@@ -20,12 +21,11 @@ public class SessionHandler {
     private static final String KEY_EXPIRES = "expires";
     private static final String KEY_FULL_NAME = "full_name";
     private static final String KEY_EMPTY = "";
-    private Context mContext;
-    private SharedPreferences.Editor mEditor;
-    private SharedPreferences mPreferences;
+    private final SharedPreferences.Editor mEditor;
+    private final SharedPreferences mPreferences;
 
+    @SuppressLint("CommitPrefEdits")
     public SessionHandler(Context mContext) {
-        this.mContext = mContext;
         mPreferences = mContext.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
         this.mEditor = mPreferences.edit();
     }
@@ -50,7 +50,6 @@ public class SessionHandler {
     /**
      * Checks whether user is logged in
      *
-     * @return
      */
     public boolean isLoggedIn() {
         Date currentDate = new Date();
@@ -87,14 +86,6 @@ public class SessionHandler {
         user.setSessionExpiryDate(new Date(mPreferences.getLong(KEY_EXPIRES, 0)));
 
         return user;
-    }
-
-    /**
-     * Logs out user by clearing the session
-     */
-    public void logoutUser(){
-        mEditor.clear();
-        mEditor.commit();
     }
 
 }

@@ -1,19 +1,15 @@
 /*
  * *
- *  * Created by Adam Elaoumari on 20/11/20 18:20
+ *  * Created by Adam Elaoumari on 26/12/20 00:59
  *  * Copyright (c) 2020 . All rights reserved.
- *  * Last modified 20/11/20 16:04
+ *  * Last modified 19/12/20 21:42
  *
  */
 
 package com.adamlbs.reportaggression;
 
-import android.app.Activity;
-import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.ImageButton;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,11 +17,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class TramSelect extends AppCompatActivity {
-    private SessionHandler session;
-    public ImageButton t1, t2,t3;
-    private SharedPreferences sharedPreference;
+    public ImageButton t1,t3;
     private String text;
-    Activity context = this;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -35,8 +28,8 @@ public class TramSelect extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tramselect);
-        session = new SessionHandler(getApplicationContext());
-        User user = session.getUserDetails();
+        SessionHandler session = new SessionHandler(getApplicationContext());
+        session.getUserDetails();
         addListenerOnButton();
         final FloatingActionButton fab = findViewById(R.id.fab);
         if (fab != null) {
@@ -49,69 +42,39 @@ public class TramSelect extends AppCompatActivity {
         t1 = (ImageButton) findViewById(R.id.t1);
         ImageButton t2 = findViewById(R.id.t2);
         t3 = (ImageButton) findViewById(R.id.t3);
-        t1.setOnClickListener(new View.OnClickListener() {
-                                  @Override
-                                  public void onClick(View v) {
-                                      text = "T1";
-                                      Bundle bundle = new Bundle();
-                                      BottomSheetDialog bottomSheet = new BottomSheetDialog();
-                                      bundle.putString("text", text);
-                                      bottomSheet.setArguments(bundle);
-                                      bottomSheet.show(getSupportFragmentManager(),"text");
-                                  }
-
-
-
-                                  public void newActivity() {
-                                  }
-                              }
+        t1.setOnClickListener(v -> {
+            text = "T1";
+            Bundle bundle = new Bundle();
+            BottomSheetDialog bottomSheet = new BottomSheetDialog();
+            bundle.putString("text", text);
+            bottomSheet.setArguments(bundle);
+            bottomSheet.show(getSupportFragmentManager(),"text");
+        }
 
         );
 
 
-        t2.setOnClickListener(new View.OnClickListener() {
-                                  @Override
-                                  public void onClick(View v) {
-                                      text = "T2";
-                                      Bundle bundle = new Bundle();
-                                      BottomSheetDialog bottomSheet = new BottomSheetDialog();
-                                      bundle.putString("text", text);
-                                      bottomSheet.setArguments(bundle);
-                                      bottomSheet.show(getSupportFragmentManager(),"text");
-                                  }
-
-
-
-                                  public void newActivity() {
-                                  }
-                              }
+        t2.setOnClickListener(v -> {
+            text = "T2";
+            Bundle bundle = new Bundle();
+            BottomSheetDialog bottomSheet = new BottomSheetDialog();
+            bundle.putString("text", text);
+            bottomSheet.setArguments(bundle);
+            bottomSheet.show(getSupportFragmentManager(),"text");
+        }
 
         );
-        t3.setOnClickListener(new View.OnClickListener() {
-                                  @Override
-                                  public void onClick(View v) {
-                                      text = "T3";
-                                      Bundle bundle = new Bundle();
-                                      BottomSheetDialog bottomSheet = new BottomSheetDialog();
-                                      bundle.putString("text", text);
-                                      bottomSheet.setArguments(bundle);
-                                      bottomSheet.show(getSupportFragmentManager(),"text");
-                                  }
-
-
-
-                                  public void newActivity() {
-                                  }
-                              }
+        t3.setOnClickListener(v -> {
+            text = "T3";
+            Bundle bundle = new Bundle();
+            BottomSheetDialog bottomSheet = new BottomSheetDialog();
+            bundle.putString("text", text);
+            bottomSheet.setArguments(bundle);
+            bottomSheet.show(getSupportFragmentManager(),"text");
+        }
 
         );
     }
 
 
-    public void loadStatistics() {
-        Intent i = new Intent(TramSelect.this, Stats.class);
-        i.putExtra("key", text); //Optional parameters
-        startActivity(i);
-
-    }
 }
