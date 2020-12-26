@@ -1,8 +1,8 @@
 /*
  * *
- *  * Created by Adam Elaoumari on 13/12/20 00:23
+ *  * Created by Adam Elaoumari on 26/12/20 00:59
  *  * Copyright (c) 2020 . All rights reserved.
- *  * Last modified 13/12/20 00:23
+ *  * Last modified 19/12/20 21:19
  *  
  */
 
@@ -12,9 +12,7 @@ import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.IntentSender;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
@@ -26,7 +24,6 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.text.InputType;
 import android.util.Log;
-import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
@@ -35,36 +32,25 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
-import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.play.core.appupdate.AppUpdateInfo;
-import com.google.android.play.core.appupdate.AppUpdateManager;
-import com.google.android.play.core.appupdate.AppUpdateManagerFactory;
-import com.google.android.play.core.install.model.AppUpdateType;
-import com.google.android.play.core.install.model.UpdateAvailability;
 import com.google.firebase.FirebaseException;
 import com.google.firebase.FirebaseTooManyRequestsException;
 import com.google.firebase.auth.AuthCredential;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.firebase.auth.OAuthProvider;
 import com.google.firebase.auth.PhoneAuthCredential;
+import com.google.firebase.auth.PhoneAuthOptions;
 import com.google.firebase.auth.PhoneAuthProvider;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
@@ -94,18 +80,14 @@ public class LoginActivity extends AppCompatActivity {
     private static final int MY_REQUEST_CODE = 1;
 
     private String password;
-    String SITE_KEY = "6LeXlQEVAAAAAPK43M8C4Q1yvRtGIJGbagyYZFx1\n";
-
-    String SECRET_KEY = "6LeXlQEVAAAAAGp4tqerbY0zUNCUf4mYT8vi_pkG";
     private GoogleSignInClient googleSignInClient;
     private FirebaseRemoteConfig mFirebaseRemoteConfig;
     private static final int RC_SIGN_IN = 49404;
     private static final String TAG = LoginActivity.class.getSimpleName();
     private FirebaseAuth mAuth;
     private ProgressDialog pDialog;
-    private String login_url = "https://api.lineflag.com/login.php";
+    private final String login_url = "https://api.lineflag.com/login.php";
     private SessionHandler session;
-    private int currentUser;
     Activity context = this;
     Location gps_loc;
     Location network_loc;
@@ -118,7 +100,7 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         SharedPreferences pref = getApplicationContext().getSharedPreferences("Location", MODE_PRIVATE);
-        String city = pref.getString("city", null);         // getting String
+        pref.getString("city", null);
         LocationManager locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
                 && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED
@@ -190,7 +172,6 @@ loadDashboard();
 
         etUsername = findViewById(R.id.etLoginUsername);
         etPassword = findViewById(R.id.etLoginPassword);
-        ImageButton signInButton = findViewById(R.id.sign_in_button);
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
@@ -201,51 +182,20 @@ loadDashboard();
         ImageButton googleButton = findViewById(R.id.sign_in_button);
         ImageButton phoneButton = findViewById(R.id.phone);
 
-        googleButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                switch (v.getId()) {
-                    case R.id.sign_in_button:
-
-                        googleconfig();
-                        break;
-
-                }
+        googleButton.setOnClickListener(v -> {
+            if (v.getId() == R.id.sign_in_button) {
+                googleconfig();
             }
         });
 
         //Launch SMS screen when Register Button is clicked
-        phoneButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                config_phone();
-            }
-        });
+        phoneButton.setOnClickListener(v -> config_phone());
 
-        login.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                config();
-
-            }
-        });
-        twitter.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                twitterconfig();
-            }
-        });
+        login.setOnClickListener(v -> config());
+        twitter.setOnClickListener(v -> twitterconfig());
         final FloatingActionButton fab = findViewById(R.id.fab);
         if (fab != null) {
-            fab.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    ((Application) getApplication()).getShaky().startFeedbackFlow();
-
-                }
-            });
+            fab.setOnClickListener(view -> ((Application) getApplication()).getShaky().startFeedbackFlow());
         }
     }
 
@@ -265,43 +215,6 @@ loadDashboard();
             // User already logged in
             loadDashboard();
         }
-        ;
-    }
-
-    private void checkforupdate() {
-// Creates instance of the manager.
-
-
-        AppUpdateManager appUpdateManager = AppUpdateManagerFactory.create(this);
-
-// Returns an intent object that you use to check for an update.
-        com.google.android.play.core.tasks.Task<AppUpdateInfo> appUpdateInfoTask = appUpdateManager.getAppUpdateInfo();
-
-// Checks that the platform will allow the specified type of update.
-        appUpdateInfoTask.addOnSuccessListener(appUpdateInfo -> {
-            if (appUpdateInfo.updateAvailability() == UpdateAvailability.UPDATE_AVAILABLE
-                    // For a flexible update, use AppUpdateType.FLEXIBLE
-                    && appUpdateInfo.isUpdateTypeAllowed(AppUpdateType.IMMEDIATE)) {
-                // Request the update.
-            }
-
-            try {
-                appUpdateManager.startUpdateFlowForResult(
-                        // Pass the intent that is returned by 'getAppUpdateInfo()'.
-                        appUpdateInfo,
-                        // Or 'AppUpdateType.FLEXIBLE' for flexible updates.
-                        AppUpdateType.IMMEDIATE,
-                        // The current activity making the update request.
-                        this,
-                        // Include a request code to later monitor this update request.
-                        MY_REQUEST_CODE);
-            } catch (IntentSender.SendIntentException e) {
-                e.printStackTrace();
-            }
-
-        });
-
-
     }
 
     private void loadDashboard() {
@@ -315,9 +228,6 @@ loadDashboard();
 
     }
 
-    private boolean isSignedIn() {
-        return GoogleSignIn.getLastSignedInAccount(context) != null;
-    }
     private void loadDashboardParis() {
         Intent i = new Intent(getApplicationContext(), DashboardParis.class);
         startActivity(i);
@@ -329,21 +239,18 @@ loadDashboard();
 
         AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
         mAuth.signInWithCredential(credential)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            Log.d(TAG, "signInWithCredential:success");
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            loadDashboard();
-                        } else {
-                            // If sign in fails, display a message to the user.
-                            Log.w(TAG, "signInWithCredential:failure", task.getException());
-                        }
-
-                        // ...
+                .addOnCompleteListener(this, task -> {
+                    if (task.isSuccessful()) {
+                        // Sign in success, update UI with the signed-in user's information
+                        Log.d(TAG, "signInWithCredential:success");
+                        mAuth.getCurrentUser();
+                        loadDashboard();
+                    } else {
+                        // If sign in fails, display a message to the user.
+                        Log.w(TAG, "signInWithCredential:failure", task.getException());
                     }
+
+                    // ...
                 });
     }
 
@@ -367,21 +274,17 @@ loadDashboard();
         alert.setView(input);
         final String prefix = "+33";
         input.setText(prefix);
-        alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int whichButton) {
+        alert.setPositiveButton("Ok", (dialog, whichButton) -> {
 
-                number = input.getText().toString().toLowerCase().trim();;
+            number = input.getText().toString().toLowerCase().trim();
 
-                phone();
+            phone();
 
 
-            }
         });
 
-        alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int whichButton) {
-                // Canceled.
-            }
+        alert.setNegativeButton("Cancel", (dialog, whichButton) -> {
+            // Canceled.
         });
 
         alert.show();
@@ -391,10 +294,9 @@ loadDashboard();
         ProgressDialog dialog = ProgressDialog.show(LoginActivity.this, "En attente du SMS de vérification",
                 "Veuillez patienter...", true);
         PhoneAuthProvider.OnVerificationStateChangedCallbacks     mCallbacks = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
-            private PhoneAuthProvider.ForceResendingToken mResendToken;
             String mVerificationId;
             @Override
-            public void onVerificationCompleted(PhoneAuthCredential credential) {
+            public void onVerificationCompleted(@NonNull PhoneAuthCredential credential) {
                 // This callback will be invoked in two situations:
                 // 1 - Instant verification. In some cases the phone number can be instantly
                 //     verified without needing to send or enter a verification code.
@@ -406,7 +308,7 @@ loadDashboard();
                 signInWithPhoneAuthCredential(credential);
             }
             @Override
-            public void onVerificationFailed(FirebaseException e) {
+            public void onVerificationFailed(@NonNull FirebaseException e) {
                 // This callback is invoked in an invalid request for verification is made,
                 // for instance if the the phone number format is not valid.
                 Log.w(TAG, "onVerificationFailed", e);
@@ -437,16 +339,18 @@ loadDashboard();
 
                 // Save verification ID and resending token so we can use them later
                 mVerificationId = verificationId;
-                mResendToken = token;
             }
-        };;        // OnVerificationStateChangedCallbacks
+        };// OnVerificationStateChangedCallbacks
 
-        PhoneAuthProvider.getInstance().verifyPhoneNumber(
-                number,        // Phone number to verify
-                60,                 // Timeout duration
-                TimeUnit.SECONDS,   // Unit of timeout
-                this,               // Activity (for callback binding)
-                mCallbacks);
+PhoneAuthOptions options =
+        PhoneAuthOptions.newBuilder(mAuth)
+        .setPhoneNumber(number)
+        .setTimeout(60L, TimeUnit.SECONDS)
+        .setActivity(this)
+        .setCallbacks(mCallbacks)
+        .build();
+
+PhoneAuthProvider.verifyPhoneNumber(options);
 
     }
 
@@ -462,23 +366,17 @@ loadDashboard();
 
     private void signInWithPhoneAuthCredential(PhoneAuthCredential credential) {
         mAuth.signInWithCredential(credential)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            Log.d(TAG, "signInWithCredential:success");
+                .addOnCompleteListener(this, task -> {
+                    if (task.isSuccessful()) {
+                        Log.d(TAG, "signInWithCredential:success");
 
-                            FirebaseUser user = task.getResult().getUser();
-                            loadDashboard();
-                        } else {
-                            Toast.makeText(LoginActivity.this, "Impossible de vous connecter par téléphone. Veuillez secouer votre téléphone pour signaler ce problème.",
-                                    Toast.LENGTH_SHORT).show();
+                        task.getResult().getUser();
+                        loadDashboard();
+                    } else {
+                        Toast.makeText(LoginActivity.this, "Impossible de vous connecter par téléphone. Veuillez secouer votre téléphone pour signaler ce problème.",
+                                Toast.LENGTH_SHORT).show();
 
-                            Log.w(TAG, "signInWithCredential:failure", task.getException());
-                            if (task.getException() instanceof FirebaseAuthInvalidCredentialsException) {
-                                // The verification code entered was invalid
-                            }
-                        }
+                        Log.w(TAG, "signInWithCredential:failure", task.getException());
                     }
                 });
     }
@@ -490,31 +388,28 @@ loadDashboard();
 
         mFirebaseRemoteConfig.setConfigSettingsAsync(configSettings);
         mFirebaseRemoteConfig.fetchAndActivate()
-                .addOnCompleteListener(this, new OnCompleteListener<Boolean>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Boolean> task) {
-                        if (task.isSuccessful()) {
-                            boolean updated = task.getResult();
-                            Log.d(TAG, "Config params updated: " + updated);
-                            //  Toast.makeText(LoginActivity.this, "Fetch and activate succeeded",
-                            //        Toast.LENGTH_SHORT).show();
-                            // Toast.makeText(LoginActivity.this, mFirebaseRemoteConfig.getString("maintenance"),
-                            //       Toast.LENGTH_SHORT).show();
-                            maintenance = mFirebaseRemoteConfig.getString("maintenance_phone");
-                            if (maintenance.equals("0")) {
-                                Log.w(TAG, "0");
-                                Toast.makeText(LoginActivity.this, "La connexion via SMS a été désactivée pour une maintenance.",
-                                        Toast.LENGTH_SHORT).show();
-                            } else
-                                phonelogin();
-                            //Retrieve the data entered in the edit texts
-                        }
-
-
-                        else {
-                            Toast.makeText(LoginActivity.this, "Erreur. Veuillez secouer votre téléphone pour signaler cette erreur.",
+                .addOnCompleteListener(this, task -> {
+                    if (task.isSuccessful()) {
+                        boolean updated = task.getResult();
+                        Log.d(TAG, "Config params updated: " + updated);
+                        //  Toast.makeText(LoginActivity.this, "Fetch and activate succeeded",
+                        //        Toast.LENGTH_SHORT).show();
+                        // Toast.makeText(LoginActivity.this, mFirebaseRemoteConfig.getString("maintenance"),
+                        //       Toast.LENGTH_SHORT).show();
+                        maintenance = mFirebaseRemoteConfig.getString("maintenance_phone");
+                        if (maintenance.equals("0")) {
+                            Log.w(TAG, "0");
+                            Toast.makeText(LoginActivity.this, "La connexion via SMS a été désactivée pour une maintenance.",
                                     Toast.LENGTH_SHORT).show();
-                        }
+                        } else
+                            phonelogin();
+                        //Retrieve the data entered in the edit texts
+                    }
+
+
+                    else {
+                        Toast.makeText(LoginActivity.this, "Erreur. Veuillez secouer votre téléphone pour signaler cette erreur.",
+                                Toast.LENGTH_SHORT).show();
                     }
                 });
 
@@ -527,31 +422,28 @@ loadDashboard();
 
         mFirebaseRemoteConfig.setConfigSettingsAsync(configSettings);
         mFirebaseRemoteConfig.fetchAndActivate()
-                .addOnCompleteListener(this, new OnCompleteListener<Boolean>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Boolean> task) {
-                        if (task.isSuccessful()) {
-                            boolean updated = task.getResult();
-                            Log.d(TAG, "Config params updated: " + updated);
-                            //  Toast.makeText(LoginActivity.this, "Fetch and activate succeeded",
-                            //        Toast.LENGTH_SHORT).show();
-                            // Toast.makeText(LoginActivity.this, mFirebaseRemoteConfig.getString("maintenance"),
-                            //       Toast.LENGTH_SHORT).show();
-                            maintenance = mFirebaseRemoteConfig.getString("maintenance");
-                            if (maintenance.equals("0")) {
-                                Log.w(TAG, "0");
-                                Toast.makeText(LoginActivity.this, "La connexion via mail/mot de passe a été désactivée.",
-                                        Toast.LENGTH_SHORT).show();
-                            } else
-                                login2();
-                            //Retrieve the data entered in the edit texts
-                        }
-
-
-                        else {
-                            Toast.makeText(LoginActivity.this, "Erreur. Veuillez réessayer ultérieurement..",
+                .addOnCompleteListener(this, task -> {
+                    if (task.isSuccessful()) {
+                        boolean updated = task.getResult();
+                        Log.d(TAG, "Config params updated: " + updated);
+                        //  Toast.makeText(LoginActivity.this, "Fetch and activate succeeded",
+                        //        Toast.LENGTH_SHORT).show();
+                        // Toast.makeText(LoginActivity.this, mFirebaseRemoteConfig.getString("maintenance"),
+                        //       Toast.LENGTH_SHORT).show();
+                        maintenance = mFirebaseRemoteConfig.getString("maintenance");
+                        if (maintenance.equals("0")) {
+                            Log.w(TAG, "0");
+                            Toast.makeText(LoginActivity.this, "La connexion via mail/mot de passe a été désactivée.",
                                     Toast.LENGTH_SHORT).show();
-                        }
+                        } else
+                            login2();
+                        //Retrieve the data entered in the edit texts
+                    }
+
+
+                    else {
+                        Toast.makeText(LoginActivity.this, "Erreur. Veuillez réessayer ultérieurement..",
+                                Toast.LENGTH_SHORT).show();
                     }
                 });
     }
@@ -564,32 +456,29 @@ loadDashboard();
 
         mFirebaseRemoteConfig.setConfigSettingsAsync(configSettings);
         mFirebaseRemoteConfig.fetchAndActivate()
-                .addOnCompleteListener(this, new OnCompleteListener<Boolean>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Boolean> task) {
-                        if (task.isSuccessful()) {
-                            boolean updated = task.getResult();
-                            Log.d(TAG, "Config params updated: " + updated);
-                            //  Toast.makeText(LoginActivity.this, "Fetch and activate succeeded",
-                            //        Toast.LENGTH_SHORT).show();
-                            // Toast.makeText(LoginActivity.this, mFirebaseRemoteConfig.getString("maintenance"),
-                            //       Toast.LENGTH_SHORT).show();
-                            maintenance = mFirebaseRemoteConfig.getString("maintenance");
-                            if (maintenance.equals("0")) {
-                                Log.w(TAG, "0");
-                                Toast.makeText(LoginActivity.this, "La connexion via Google a été désactivée.",
-                                        Toast.LENGTH_SHORT).show();
-                            } else
-
-                                signIn();
-                            //Retrieve the data entered in the edit texts
-                        }
-
-
-                        else {
-                            Toast.makeText(LoginActivity.this, "Erreur. Veuillez secouer votre téléphone pour signaler cette erreur.",
+                .addOnCompleteListener(this, task -> {
+                    if (task.isSuccessful()) {
+                        boolean updated = task.getResult();
+                        Log.d(TAG, "Config params updated: " + updated);
+                        //  Toast.makeText(LoginActivity.this, "Fetch and activate succeeded",
+                        //        Toast.LENGTH_SHORT).show();
+                        // Toast.makeText(LoginActivity.this, mFirebaseRemoteConfig.getString("maintenance"),
+                        //       Toast.LENGTH_SHORT).show();
+                        maintenance = mFirebaseRemoteConfig.getString("maintenance");
+                        if (maintenance.equals("0")) {
+                            Log.w(TAG, "0");
+                            Toast.makeText(LoginActivity.this, "La connexion via Google a été désactivée.",
                                     Toast.LENGTH_SHORT).show();
-                        }
+                        } else
+
+                            signIn();
+                        //Retrieve the data entered in the edit texts
+                    }
+
+
+                    else {
+                        Toast.makeText(LoginActivity.this, "Erreur. Veuillez secouer votre téléphone pour signaler cette erreur.",
+                                Toast.LENGTH_SHORT).show();
                     }
                 });
     }
@@ -601,31 +490,28 @@ loadDashboard();
 
         mFirebaseRemoteConfig.setConfigSettingsAsync(configSettings);
         mFirebaseRemoteConfig.fetchAndActivate()
-                .addOnCompleteListener(this, new OnCompleteListener<Boolean>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Boolean> task) {
-                        if (task.isSuccessful()) {
-                            boolean updated = task.getResult();
-                            Log.d(TAG, "Config params updated: " + updated);
-                            //  Toast.makeText(LoginActivity.this, "Fetch and activate succeeded",
-                            //        Toast.LENGTH_SHORT).show();
-                            // Toast.makeText(LoginActivity.this, mFirebaseRemoteConfig.getString("maintenance"),
-                            //       Toast.LENGTH_SHORT).show();
-                            maintenance = mFirebaseRemoteConfig.getString("maintenance");
-                            if (maintenance.equals("0")) {
-                                Log.w(TAG, "0");
-                                Toast.makeText(LoginActivity.this, "La connexion via Twitter a été désactivée.",
-                                        Toast.LENGTH_SHORT).show();
-                            } else
-                                twitterLogin();
-                            //Retrieve the data entered in the edit texts
-                        }
-
-
-                        else {
-                            Toast.makeText(LoginActivity.this, "Erreur. Veuillez secouer votre téléphone pour signaler cette erreur.",
+                .addOnCompleteListener(this, task -> {
+                    if (task.isSuccessful()) {
+                        boolean updated = task.getResult();
+                        Log.d(TAG, "Config params updated: " + updated);
+                        //  Toast.makeText(LoginActivity.this, "Fetch and activate succeeded",
+                        //        Toast.LENGTH_SHORT).show();
+                        // Toast.makeText(LoginActivity.this, mFirebaseRemoteConfig.getString("maintenance"),
+                        //       Toast.LENGTH_SHORT).show();
+                        maintenance = mFirebaseRemoteConfig.getString("maintenance");
+                        if (maintenance.equals("0")) {
+                            Log.w(TAG, "0");
+                            Toast.makeText(LoginActivity.this, "La connexion via Twitter a été désactivée.",
                                     Toast.LENGTH_SHORT).show();
-                        }
+                        } else
+                            twitterLogin();
+                        //Retrieve the data entered in the edit texts
+                    }
+
+
+                    else {
+                        Toast.makeText(LoginActivity.this, "Erreur. Veuillez secouer votre téléphone pour signaler cette erreur.",
+                                Toast.LENGTH_SHORT).show();
                     }
                 });
     }
@@ -636,27 +522,19 @@ private void twitterLogin() {
     mAuth
             .startActivityForSignInWithProvider(/* activity= */ this, provider.build())
             .addOnSuccessListener(
-                    new OnSuccessListener<AuthResult>() {
-                        @Override
-                        public void onSuccess(AuthResult authResult) {
-                            // User is signed in.
-                            // IdP data available in
-                            // authResult.getAdditionalUserInfo().getProfile().
-                            // The OAuth access token can also be retrieved:
-                            // authResult.getCredential().getAccessToken().
-                            // The OAuth secret can be retrieved by calling:
-                            // authResult.getCredential().getSecret().
-                            Log.d(TAG, "signInWithCredential:success");
-                            loadDashboard();
-                        }
+                    authResult -> {
+                        // User is signed in.
+                        // IdP data available in
+                        // authResult.getAdditionalUserInfo().getProfile().
+                        // The OAuth access token can also be retrieved:
+                        // authResult.getCredential().getAccessToken().
+                        // The OAuth secret can be retrieved by calling:
+                        // authResult.getCredential().getSecret().
+                        Log.d(TAG, "signInWithCredential:success");
+                        loadDashboard();
                     })
             .addOnFailureListener(
-                    new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            Log.w(TAG, "Twitter sign in failed", e);
-                        }
-                    });
+                    e -> Log.w(TAG, "Twitter sign in failed", e));
 
 }
     private void displayLoader() {
@@ -679,41 +557,34 @@ private void twitterLogin() {
             e.printStackTrace();
         }
         JsonObjectRequest jsArrayRequest = new JsonObjectRequest
-                (Request.Method.POST, login_url, request, new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        pDialog.dismiss();
-                        try {
-                            //Check if user got logged in successfully
+                (Request.Method.POST, login_url, request, response -> {
+                    pDialog.dismiss();
+                    try {
+                        //Check if user got logged in successfully
 
-                            if (response.getInt(KEY_STATUS) == 0) {
-                                session.loginUser(username,response.getString(KEY_FULL_NAME));
-                                loadDashboard();
+                        if (response.getInt(KEY_STATUS) == 0) {
+                            session.loginUser(username,response.getString(KEY_FULL_NAME));
+                            loadDashboard();
 
-                            }else{
-                                Toast.makeText(getApplicationContext(),
-                                        response.getString(KEY_MESSAGE), Toast.LENGTH_SHORT).show();
+                        }else{
+                            Toast.makeText(getApplicationContext(),
+                                    response.getString(KEY_MESSAGE), Toast.LENGTH_SHORT).show();
 
-                            }
-                        } catch (JSONException e) {
-                            e.printStackTrace();
                         }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
                     }
-                }, new Response.ErrorListener() {
+                }, error -> {
+                    pDialog.dismiss();
+
+                    //Display error message whenever an error occurs
+                    Toast.makeText(LoginActivity.this, "Impossible de contacter le serveur d'authentification... Veuillez réssayer ultérieurement. ",
+                            Toast.LENGTH_SHORT).show();
+                }) {
 
                     @Override
-                    public void onErrorResponse(VolleyError error) {
-                        pDialog.dismiss();
-
-                        //Display error message whenever an error occurs
-                        Toast.makeText(LoginActivity.this, "Impossible de contacter le serveur d'authentification... Veuillez réssayer ultérieurement. ",
-                                Toast.LENGTH_SHORT).show();
-                    }
-                    }) {
-
-                    @Override
-                    public Map<String, String> getHeaders() throws AuthFailureError {
-                        Map<String, String> params = new HashMap<String, String>();
+                    public Map<String, String> getHeaders() {
+                        Map<String, String> params = new HashMap<>();
                         params.put("User-Agent", "LineFlag-App");
                         params.put("language", "fr");
 
@@ -727,7 +598,6 @@ private void twitterLogin() {
 
     /**
      * Validates inputs and shows error if any
-     * @return
      */
     private boolean validateInputs() {
         if(KEY_EMPTY.equals(username)){

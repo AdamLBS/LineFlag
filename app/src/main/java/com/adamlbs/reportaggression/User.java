@@ -1,8 +1,8 @@
 /*
  * *
- *  * Created by Adam Elaoumari on 09/08/20 00:46
+ *  * Created by Adam Elaoumari on 26/12/20 00:59
  *  * Copyright (c) 2020 . All rights reserved.
- *  * Last modified 20/01/20 17:50
+ *  * Last modified 19/12/20 21:42
  *
  */
 
@@ -28,15 +28,4 @@ public class User {
         this.sessionExpiryDate = sessionExpiryDate;
     }
 
-    public String getUsername() {
-        return username;
-    }
-
-    public String getFullName() {
-        return fullName;
-    }
-
-    public Date getSessionExpiryDate() {
-        return sessionExpiryDate;
-    }
 }
