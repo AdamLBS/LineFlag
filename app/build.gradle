@@ -58,7 +58,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-auth:20.0.1'
     implementation 'com.google.android.gms:play-services-safetynet:17.0.0'
     implementation 'com.amitshekhar.android:android-networking:1.0.2'
-    implementation 'com.google.firebase:firebase-config:20.0.2'
+    implementation 'com.google.firebase:firebase-config:20.0.3'
 
 
 }
