@@ -13,7 +13,7 @@ Sexual assault, verbal assault and moral assault. Right now we only support the 
 
 ## Build instructions
 
-- Install Android sdk and  dqsdqsdqsdndk 
+- Install Android sdk and ndk  
 - Clone this repository
 - The app is built with ``minSdkVersion`` set to ``23 (Android 6)`` and ``targetSdkVersion`` set to ``29 (Android 10)``
 
