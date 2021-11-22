@@ -39,7 +39,7 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'com.linkedin.shaky:shaky:2.0.3'
+    implementation 'com.linkedin.shaky:shaky:3.0.4'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     implementation 'com.android.volley:volley:1.2.0'
     implementation 'androidx.appcompat:appcompat:1.2.0'
